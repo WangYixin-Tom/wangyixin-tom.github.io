@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://wangyixin-tom.github.io/"/>
-  <updated>2020-04-04T11:43:42.000Z</updated>
+  <updated>2020-10-25T08:40:47.223Z</updated>
   <id>https://wangyixin-tom.github.io/</id>
   
   <author>
@@ -15,6 +15,34 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>redis主从同步</title>
+    <link href="https://wangyixin-tom.github.io/2020/10/25/redis-zhu-cong-tong-bu/"/>
+    <id>https://wangyixin-tom.github.io/2020/10/25/redis-zhu-cong-tong-bu/</id>
+    <published>2020-10-25T08:30:01.000Z</published>
+    <updated>2020-10-25T08:40:47.223Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;[toc]&lt;/p&gt;
+&lt;p&gt;主从库之间采用读写分离。&lt;br&gt;读操作：主库、从库都可以接收；&lt;br&gt;写操作：首先到主库执行，然后，主库将写操作同步给从库。&lt;br&gt;&lt;img src=&quot;duxiefenli.jpg&quot; alt=&quot;读写分离&quot;&gt;&lt;/p&gt;
+&lt;h2
+        
+      
+    
+    </summary>
+    
+      <category term="redis" scheme="https://wangyixin-tom.github.io/categories/redis/"/>
+    
+    
+      <category term="redis" scheme="https://wangyixin-tom.github.io/tags/redis/"/>
+    
+  </entry>
   
   <entry>
     <title>十大经典排序算法整理汇总（附代码）</title>
