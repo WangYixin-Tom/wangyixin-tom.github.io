@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://wangyixin-tom.github.io/"/>
-  <updated>2020-10-25T08:40:47.223Z</updated>
+  <updated>2020-10-25T14:06:19.503Z</updated>
   <id>https://wangyixin-tom.github.io/</id>
   
   <author>
@@ -17,11 +17,41 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>redis哨兵机制</title>
+    <link href="https://wangyixin-tom.github.io/2020/10/25/redis-shao-bing-ji-zhi/"/>
+    <id>https://wangyixin-tom.github.io/2020/10/25/redis-shao-bing-ji-zhi/</id>
+    <published>2020-10-25T13:16:39.000Z</published>
+    <updated>2020-10-25T14:06:19.503Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h2 id=&quot;问题&quot;&gt;&lt;a href=&quot;#问题&quot; class=&quot;headerlink&quot; title=&quot;问题&quot;&gt;&lt;/a&gt;问题&lt;/h2&gt;&lt;p&gt;主库故障的相关问题：&lt;/p&gt;
+&lt;p&gt;1、确定主库故障&lt;/p&gt;
+&lt;p&gt;2、选择新的主库&lt;/p&gt;
+&lt;p&gt;3、新主库信息通知&lt;/p&gt;
+&lt;h2
+        
+      
+    
+    </summary>
+    
+      <category term="redis" scheme="https://wangyixin-tom.github.io/categories/redis/"/>
+    
+    
+      <category term="redis" scheme="https://wangyixin-tom.github.io/tags/redis/"/>
+    
+  </entry>
+  
+  <entry>
     <title>redis主从同步</title>
     <link href="https://wangyixin-tom.github.io/2020/10/25/redis-zhu-cong-tong-bu/"/>
     <id>https://wangyixin-tom.github.io/2020/10/25/redis-zhu-cong-tong-bu/</id>
     <published>2020-10-25T08:30:01.000Z</published>
-    <updated>2020-10-25T08:40:47.223Z</updated>
+    <updated>2020-10-25T13:16:00.896Z</updated>
     
     <summary type="html">
     

@@ -2,9 +2,16 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://wangyixin-tom.github.io/2020/10/25/redis-shao-bing-ji-zhi/</loc>
+    
+    <lastmod>2020-10-25T14:06:19.503Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://wangyixin-tom.github.io/2020/10/25/redis-zhu-cong-tong-bu/</loc>
     
-    <lastmod>2020-10-25T08:40:47.223Z</lastmod>
+    <lastmod>2020-10-25T13:16:00.896Z</lastmod>
     
   </url>
   
@@ -30,6 +37,13 @@
   </url>
   
   <url>
+    <loc>https://wangyixin-tom.github.io/archives/index.html</loc>
+    
+    <lastmod>2020-04-04T11:43:42.000Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://wangyixin-tom.github.io/categories/index.html</loc>
     
     <lastmod>2020-04-04T11:43:42.000Z</lastmod>
@@ -44,7 +58,7 @@
   </url>
   
   <url>
-    <loc>https://wangyixin-tom.github.io/archives/index.html</loc>
+    <loc>https://wangyixin-tom.github.io/tags/index.html</loc>
     
     <lastmod>2020-04-04T11:43:42.000Z</lastmod>
     
@@ -52,13 +66,6 @@
   
   <url>
     <loc>https://wangyixin-tom.github.io/friends/index.html</loc>
-    
-    <lastmod>2020-04-04T11:43:42.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://wangyixin-tom.github.io/tags/index.html</loc>
     
     <lastmod>2020-04-04T11:43:42.000Z</lastmod>
     
