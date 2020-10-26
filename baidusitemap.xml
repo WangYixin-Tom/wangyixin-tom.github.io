@@ -1,6 +1,48 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>https://wangyixin-tom.github.io/2020/10/26/rabbitmq-xiao-xi-ke-kao-xing/</loc>
+    <lastmod>2020-10-26</lastmod>
+  </url>  <url>
+    <loc>https://wangyixin-tom.github.io/2020/10/26/rabbitmq-xiao-xi-chong-fu/</loc>
+    <lastmod>2020-10-26</lastmod>
+  </url>  <url>
+    <loc>https://wangyixin-tom.github.io/2020/10/26/rabbitmq-ji-qun/</loc>
+    <lastmod>2020-10-26</lastmod>
+  </url>  <url>
+    <loc>https://wangyixin-tom.github.io/2020/10/26/rabbitmq-xiao-xi-xiao-fei/</loc>
+    <lastmod>2020-10-26</lastmod>
+  </url>  <url>
+    <loc>https://wangyixin-tom.github.io/2020/10/26/rabbitmq-xiao-xi-lu-you/</loc>
+    <lastmod>2020-10-26</lastmod>
+  </url>  <url>
+    <loc>https://wangyixin-tom.github.io/2020/10/26/rabbitmq-xiao-xi-fa-bu/</loc>
+    <lastmod>2020-10-26</lastmod>
+  </url>  <url>
+    <loc>https://wangyixin-tom.github.io/2020/10/26/redis-rdb-ji-zhi/</loc>
+    <lastmod>2020-10-26</lastmod>
+  </url>  <url>
+    <loc>https://wangyixin-tom.github.io/2020/10/26/redis-aof-ji-zhi/</loc>
+    <lastmod>2020-10-26</lastmod>
+  </url>  <url>
+    <loc>https://wangyixin-tom.github.io/2020/10/26/redis-wang-luo-io-mo-xing/</loc>
+    <lastmod>2020-10-26</lastmod>
+  </url>  <url>
+    <loc>https://wangyixin-tom.github.io/2020/10/26/redis-shu-ju-jie-gou/</loc>
+    <lastmod>2020-10-26</lastmod>
+  </url>  <url>
+    <loc>https://wangyixin-tom.github.io/2020/10/26/redis-bian-man-yi-ji-you-hua-fang-fa/</loc>
+    <lastmod>2020-10-26</lastmod>
+  </url>  <url>
+    <loc>https://wangyixin-tom.github.io/2020/10/26/ji-yu-duo-cpu-duo-he-jia-gou-de-redis-xing-neng-you-hua/</loc>
+    <lastmod>2020-10-26</lastmod>
+  </url>  <url>
+    <loc>https://wangyixin-tom.github.io/2020/10/26/redis-zu-sai-ji-jie-jue-ban-fa/</loc>
+    <lastmod>2020-10-26</lastmod>
+  </url>  <url>
+    <loc>https://wangyixin-tom.github.io/2020/10/26/redis-qie-pian-ji-qun/</loc>
+    <lastmod>2020-10-26</lastmod>
+  </url>  <url>
     <loc>https://wangyixin-tom.github.io/2020/10/25/redis-shao-bing-ji-zhi/</loc>
     <lastmod>2020-10-25</lastmod>
   </url>  <url>

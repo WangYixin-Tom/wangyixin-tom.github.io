@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://wangyixin-tom.github.io/"/>
-  <updated>2020-10-25T14:06:19.503Z</updated>
+  <updated>2020-10-26T14:20:01.589Z</updated>
   <id>https://wangyixin-tom.github.io/</id>
   
   <author>
@@ -15,6 +15,382 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>rabbitmq消息可靠性</title>
+    <link href="https://wangyixin-tom.github.io/2020/10/26/rabbitmq-xiao-xi-ke-kao-xing/"/>
+    <id>https://wangyixin-tom.github.io/2020/10/26/rabbitmq-xiao-xi-ke-kao-xing/</id>
+    <published>2020-10-26T14:19:29.000Z</published>
+    <updated>2020-10-26T14:20:01.589Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h2 id=&quot;消息丢失场景&quot;&gt;&lt;a href=&quot;#消息丢失场景&quot; class=&quot;headerlink&quot; title=&quot;消息丢失场景&quot;&gt;&lt;/a&gt;消息丢失场景&lt;/h2&gt;&lt;h3 id=&quot;消息从生产者写入到消息队列的过程&quot;&gt;&lt;a href=&quot;#消息从生产者写入到消息队列的过程&quot;
+        
+      
+    
+    </summary>
+    
+      <category term="rabbitmq" scheme="https://wangyixin-tom.github.io/categories/rabbitmq/"/>
+    
+    
+      <category term="rammitmq" scheme="https://wangyixin-tom.github.io/tags/rammitmq/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>rabbitmq消息重复</title>
+    <link href="https://wangyixin-tom.github.io/2020/10/26/rabbitmq-xiao-xi-chong-fu/"/>
+    <id>https://wangyixin-tom.github.io/2020/10/26/rabbitmq-xiao-xi-chong-fu/</id>
+    <published>2020-10-26T14:18:39.000Z</published>
+    <updated>2020-10-26T14:19:10.087Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h2 id=&quot;场景&quot;&gt;&lt;a href=&quot;#场景&quot; class=&quot;headerlink&quot;
+        
+      
+    
+    </summary>
+    
+      <category term="rabbitmq" scheme="https://wangyixin-tom.github.io/categories/rabbitmq/"/>
+    
+    
+      <category term="rabbitmq" scheme="https://wangyixin-tom.github.io/tags/rabbitmq/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>rabbitmq集群</title>
+    <link href="https://wangyixin-tom.github.io/2020/10/26/rabbitmq-ji-qun/"/>
+    <id>https://wangyixin-tom.github.io/2020/10/26/rabbitmq-ji-qun/</id>
+    <published>2020-10-26T14:17:41.000Z</published>
+    <updated>2020-10-26T14:18:16.538Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h2 id=&quot;集群概述&quot;&gt;&lt;a href=&quot;#集群概述&quot; class=&quot;headerlink&quot; title=&quot;集群概述&quot;&gt;&lt;/a&gt;集群概述&lt;/h2&gt;&lt;hr&gt;
+&lt;h3 id=&quot;集群节点类型&quot;&gt;&lt;a href=&quot;#集群节点类型&quot; class=&quot;headerlink&quot;
+        
+      
+    
+    </summary>
+    
+      <category term="rabbitmq" scheme="https://wangyixin-tom.github.io/categories/rabbitmq/"/>
+    
+    
+      <category term="rabbitmq" scheme="https://wangyixin-tom.github.io/tags/rabbitmq/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>rabbitmq消息消费</title>
+    <link href="https://wangyixin-tom.github.io/2020/10/26/rabbitmq-xiao-xi-xiao-fei/"/>
+    <id>https://wangyixin-tom.github.io/2020/10/26/rabbitmq-xiao-xi-xiao-fei/</id>
+    <published>2020-10-26T14:16:01.000Z</published>
+    <updated>2020-10-26T14:17:11.348Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h2 id=&quot;消费方法&quot;&gt;&lt;a href=&quot;#消费方法&quot; class=&quot;headerlink&quot; title=&quot;消费方法&quot;&gt;&lt;/a&gt;消费方法&lt;/h2&gt;&lt;hr&gt;
+&lt;h3 id=&quot;Basic-Get&quot;&gt;&lt;a href=&quot;#Basic-Get&quot; class=&quot;headerlink&quot;
+        
+      
+    
+    </summary>
+    
+      <category term="rabbitmq" scheme="https://wangyixin-tom.github.io/categories/rabbitmq/"/>
+    
+    
+      <category term="rabbitmq" scheme="https://wangyixin-tom.github.io/tags/rabbitmq/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>rabbitmq消息路由</title>
+    <link href="https://wangyixin-tom.github.io/2020/10/26/rabbitmq-xiao-xi-lu-you/"/>
+    <id>https://wangyixin-tom.github.io/2020/10/26/rabbitmq-xiao-xi-lu-you/</id>
+    <published>2020-10-26T14:15:04.000Z</published>
+    <updated>2020-10-26T14:15:38.277Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;hr&gt;
+&lt;p&gt;[toc]&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&quot;direct交换器&quot;&gt;&lt;a href=&quot;#direct交换器&quot; class=&quot;headerlink&quot; title=&quot;direct交换器&quot;&gt;&lt;/a&gt;direct交换器&lt;/h2&gt;&lt;hr&gt;
+&lt;h3 id=&quot;特点&quot;&gt;&lt;a
+        
+      
+    
+    </summary>
+    
+      <category term="rabbitmq" scheme="https://wangyixin-tom.github.io/categories/rabbitmq/"/>
+    
+    
+      <category term="rabbitmq" scheme="https://wangyixin-tom.github.io/tags/rabbitmq/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>rabbitmq消息发布</title>
+    <link href="https://wangyixin-tom.github.io/2020/10/26/rabbitmq-xiao-xi-fa-bu/"/>
+    <id>https://wangyixin-tom.github.io/2020/10/26/rabbitmq-xiao-xi-fa-bu/</id>
+    <published>2020-10-26T14:13:06.000Z</published>
+    <updated>2020-10-26T14:13:48.938Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h2 id=&quot;可靠投递&quot;&gt;&lt;a href=&quot;#可靠投递&quot; class=&quot;headerlink&quot; title=&quot;可靠投递&quot;&gt;&lt;/a&gt;可靠投递&lt;/h2&gt;&lt;hr&gt;
+&lt;h3 id=&quot;mandatory&quot;&gt;&lt;a href=&quot;#mandatory&quot; class=&quot;headerlink&quot;
+        
+      
+    
+    </summary>
+    
+      <category term="rabbitmq" scheme="https://wangyixin-tom.github.io/categories/rabbitmq/"/>
+    
+    
+      <category term="rabbitmq" scheme="https://wangyixin-tom.github.io/tags/rabbitmq/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>redis RBD机制</title>
+    <link href="https://wangyixin-tom.github.io/2020/10/26/redis-rdb-ji-zhi/"/>
+    <id>https://wangyixin-tom.github.io/2020/10/26/redis-rdb-ji-zhi/</id>
+    <published>2020-10-26T14:09:31.000Z</published>
+    <updated>2020-10-26T14:10:13.293Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;RDB 就是 Redis DataBase，内存中的全量数据在某一个时刻的状态记录。&lt;/p&gt;
+&lt;h2 id=&quot;快照机制&quot;&gt;&lt;a href=&quot;#快照机制&quot; class=&quot;headerlink&quot;
+        
+      
+    
+    </summary>
+    
+      <category term="redis" scheme="https://wangyixin-tom.github.io/categories/redis/"/>
+    
+    
+      <category term="redis" scheme="https://wangyixin-tom.github.io/tags/redis/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>redis AOF机制</title>
+    <link href="https://wangyixin-tom.github.io/2020/10/26/redis-aof-ji-zhi/"/>
+    <id>https://wangyixin-tom.github.io/2020/10/26/redis-aof-ji-zhi/</id>
+    <published>2020-10-26T14:07:40.000Z</published>
+    <updated>2020-10-26T14:08:25.343Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;先写内存，在写日志。&lt;br&gt;1、命令执行成功才会被记录日志。&lt;br&gt;2、避免对当前命令的阻塞。&lt;/p&gt;
+&lt;h2 id=&quot;风险&quot;&gt;&lt;a href=&quot;#风险&quot; class=&quot;headerlink&quot;
+        
+      
+    
+    </summary>
+    
+      <category term="redis" scheme="https://wangyixin-tom.github.io/categories/redis/"/>
+    
+    
+      <category term="redis" scheme="https://wangyixin-tom.github.io/tags/redis/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>redis网络IO模型</title>
+    <link href="https://wangyixin-tom.github.io/2020/10/26/redis-wang-luo-io-mo-xing/"/>
+    <id>https://wangyixin-tom.github.io/2020/10/26/redis-wang-luo-io-mo-xing/</id>
+    <published>2020-10-26T14:06:23.000Z</published>
+    <updated>2020-10-26T14:06:52.697Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h2 id=&quot;单线程&quot;&gt;&lt;a href=&quot;#单线程&quot; class=&quot;headerlink&quot; title=&quot;单线程&quot;&gt;&lt;/a&gt;单线程&lt;/h2&gt;&lt;p&gt;Redis 是单线程，主要是指 Redis 的网络 IO
+        
+      
+    
+    </summary>
+    
+      <category term="redis" scheme="https://wangyixin-tom.github.io/categories/redis/"/>
+    
+    
+      <category term="redis" scheme="https://wangyixin-tom.github.io/tags/redis/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>redis数据结构</title>
+    <link href="https://wangyixin-tom.github.io/2020/10/26/redis-shu-ju-jie-gou/"/>
+    <id>https://wangyixin-tom.github.io/2020/10/26/redis-shu-ju-jie-gou/</id>
+    <published>2020-10-26T13:44:02.000Z</published>
+    <updated>2020-10-26T14:05:41.804Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;基本数据结构包括：String（字符串）、List（列表）、Hash（哈希）、Set（集合）和 Sorted
+        
+      
+    
+    </summary>
+    
+      <category term="redis" scheme="https://wangyixin-tom.github.io/categories/redis/"/>
+    
+    
+      <category term="redis" scheme="https://wangyixin-tom.github.io/tags/redis/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>redis变慢以及优化方法</title>
+    <link href="https://wangyixin-tom.github.io/2020/10/26/redis-bian-man-yi-ji-you-hua-fang-fa/"/>
+    <id>https://wangyixin-tom.github.io/2020/10/26/redis-bian-man-yi-ji-you-hua-fang-fa/</id>
+    <published>2020-10-26T13:42:19.000Z</published>
+    <updated>2020-10-26T13:43:17.126Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h2 id=&quot;确定问题&quot;&gt;&lt;a href=&quot;#确定问题&quot; class=&quot;headerlink&quot; title=&quot;确定问题&quot;&gt;&lt;/a&gt;确定问题&lt;/h2&gt;&lt;p&gt;1、查看 Redis 的响应延迟。&lt;br&gt;2、基于当前环境下的 Redis
+        
+      
+    
+    </summary>
+    
+      <category term="redis" scheme="https://wangyixin-tom.github.io/categories/redis/"/>
+    
+    
+      <category term="redis" scheme="https://wangyixin-tom.github.io/tags/redis/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>基于多CPU多核架构的redis性能优化</title>
+    <link href="https://wangyixin-tom.github.io/2020/10/26/ji-yu-duo-cpu-duo-he-jia-gou-de-redis-xing-neng-you-hua/"/>
+    <id>https://wangyixin-tom.github.io/2020/10/26/ji-yu-duo-cpu-duo-he-jia-gou-de-redis-xing-neng-you-hua/</id>
+    <published>2020-10-26T13:40:55.000Z</published>
+    <updated>2020-10-26T13:41:25.063Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h2 id=&quot;CPU架构&quot;&gt;&lt;a href=&quot;#CPU架构&quot; class=&quot;headerlink&quot; title=&quot;CPU架构&quot;&gt;&lt;/a&gt;CPU架构&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;一个 CPU 处理器中一般有多个物理核。&lt;/li&gt;
+&lt;li&gt;每个物理核都拥有私有的一级缓存（ L1
+        
+      
+    
+    </summary>
+    
+      <category term="redis" scheme="https://wangyixin-tom.github.io/categories/redis/"/>
+    
+    
+      <category term="redis" scheme="https://wangyixin-tom.github.io/tags/redis/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>redis阻塞及解决办法</title>
+    <link href="https://wangyixin-tom.github.io/2020/10/26/redis-zu-sai-ji-jie-jue-ban-fa/"/>
+    <id>https://wangyixin-tom.github.io/2020/10/26/redis-zu-sai-ji-jie-jue-ban-fa/</id>
+    <published>2020-10-26T13:39:01.000Z</published>
+    <updated>2020-10-26T13:40:08.814Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;hr&gt;
+&lt;h2 id=&quot;阻塞分析&quot;&gt;&lt;a href=&quot;#阻塞分析&quot; class=&quot;headerlink&quot; title=&quot;阻塞分析&quot;&gt;&lt;/a&gt;阻塞分析&lt;/h2&gt;&lt;h3 id=&quot;客户端&quot;&gt;&lt;a href=&quot;#客户端&quot; class=&quot;headerlink&quot;
+        
+      
+    
+    </summary>
+    
+      <category term="redis" scheme="https://wangyixin-tom.github.io/categories/redis/"/>
+    
+    
+      <category term="redis" scheme="https://wangyixin-tom.github.io/tags/redis/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>redis切片集群</title>
+    <link href="https://wangyixin-tom.github.io/2020/10/26/redis-qie-pian-ji-qun/"/>
+    <id>https://wangyixin-tom.github.io/2020/10/26/redis-qie-pian-ji-qun/</id>
+    <published>2020-10-26T12:32:35.000Z</published>
+    <updated>2020-10-26T13:35:36.025Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h2 id=&quot;问题&quot;&gt;&lt;a href=&quot;#问题&quot; class=&quot;headerlink&quot; title=&quot;问题&quot;&gt;&lt;/a&gt;问题&lt;/h2&gt;&lt;p&gt; RDB 持久化时，Rfork 子进程用时和 Redis 的数据量是正相关的。数据量越大，fork
+        
+      
+    
+    </summary>
+    
+      <category term="redis" scheme="https://wangyixin-tom.github.io/categories/redis/"/>
+    
+    
+      <category term="redis" scheme="https://wangyixin-tom.github.io/tags/redis/"/>
+    
+  </entry>
   
   <entry>
     <title>redis哨兵机制</title>
