@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://wangyixin-tom.github.io/"/>
-  <updated>2020-10-26T14:20:01.589Z</updated>
+  <updated>2020-10-29T14:15:21.376Z</updated>
   <id>https://wangyixin-tom.github.io/</id>
   
   <author>
@@ -15,6 +15,33 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>redis缓存</title>
+    <link href="https://wangyixin-tom.github.io/2020/10/27/redis-huan-cun/"/>
+    <id>https://wangyixin-tom.github.io/2020/10/27/redis-huan-cun/</id>
+    <published>2020-10-27T12:04:59.000Z</published>
+    <updated>2020-10-29T14:15:21.376Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h2 id=&quot;redis缓存&quot;&gt;&lt;a href=&quot;#redis缓存&quot; class=&quot;headerlink&quot; title=&quot;redis缓存&quot;&gt;&lt;/a&gt;redis缓存&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;应用读取数据时，需要先读取
+        
+      
+    
+    </summary>
+    
+      <category term="redis" scheme="https://wangyixin-tom.github.io/categories/redis/"/>
+    
+    
+      <category term="reids" scheme="https://wangyixin-tom.github.io/tags/reids/"/>
+    
+  </entry>
   
   <entry>
     <title>rabbitmq消息可靠性</title>

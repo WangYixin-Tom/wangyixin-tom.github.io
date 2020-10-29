@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://wangyixin-tom.github.io/2020/10/27/redis-huan-cun/</loc>
+    
+    <lastmod>2020-10-29T14:15:21.376Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://wangyixin-tom.github.io/2020/10/26/rabbitmq-xiao-xi-ke-kao-xing/</loc>
     
     <lastmod>2020-10-26T14:20:01.589Z</lastmod>
@@ -128,13 +135,6 @@
   </url>
   
   <url>
-    <loc>https://wangyixin-tom.github.io/about/index.html</loc>
-    
-    <lastmod>2020-04-04T11:43:42.000Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://wangyixin-tom.github.io/archives/index.html</loc>
     
     <lastmod>2020-04-04T11:43:42.000Z</lastmod>
@@ -142,7 +142,7 @@
   </url>
   
   <url>
-    <loc>https://wangyixin-tom.github.io/friends/index.html</loc>
+    <loc>https://wangyixin-tom.github.io/about/index.html</loc>
     
     <lastmod>2020-04-04T11:43:42.000Z</lastmod>
     
@@ -156,7 +156,7 @@
   </url>
   
   <url>
-    <loc>https://wangyixin-tom.github.io/contact/index.html</loc>
+    <loc>https://wangyixin-tom.github.io/friends/index.html</loc>
     
     <lastmod>2020-04-04T11:43:42.000Z</lastmod>
     
@@ -164,6 +164,13 @@
   
   <url>
     <loc>https://wangyixin-tom.github.io/tags/index.html</loc>
+    
+    <lastmod>2020-04-04T11:43:42.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://wangyixin-tom.github.io/contact/index.html</loc>
     
     <lastmod>2020-04-04T11:43:42.000Z</lastmod>
     
