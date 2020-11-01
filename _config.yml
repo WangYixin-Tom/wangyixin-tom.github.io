@@ -3,11 +3,11 @@
 ## Source: https://github.com/hexojs/hexo/
 
 # Site
-title: 韦阳的博客
-subtitle: 算法码上来
-description: 华东师范大学 | 计算机科学与技术 | 自然语言处理
-keywords: "ECNU NLP DeepLearning AntNLP 韦阳 godweiyang WeiYang 自然语言处理 深度学习 算法码上来"
-author: 韦阳
+title: wangyixin-tom的博客
+subtitle: 知识分享
+description: python
+keywords: "Python rabbitmq redis flask"
+author: wangyixin-tom
 language: zh-CN
 timezone:
 
@@ -140,6 +140,6 @@ live2d:
 
 baidu_url_submit:
   count: 100
-  host: godweiyang.com
+  host: https://wangyixin-tom.github.io
   token:  # 填写你的百度统计token，不写也没事
   path: baidu_urls.txt
