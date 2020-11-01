@@ -4,6 +4,56 @@
   
     
     <entry>
+      <title>redis事务</title>
+      <link href="/2020/11/01/redis-shi-wu/"/>
+      <url>/2020/11/01/redis-shi-wu/</url>
+      
+        <content type="html"><![CDATA[<h2 id="事务实现"><a href="#事务实现" class="headerlink" title="事务实现"></a>事务实现</h2><h3 id="基本命令"><a href="#基本命令" class="headerlink" title="基本命令"></a>基本命令</h3><ul><li>MULTI</li></ul><p>显式地表示一个事务的开启，把这些命令暂存到一个命令队列中</p><ul><li>EXEC </li></ul><p>实际执行命令队列中的所有命令</p><ul><li>DISCARD</li></ul><p>主动放弃事务执行，把暂存的命令队列清空（起不到回滚的效果）</p><ul><li>WATCH</li></ul><p>在事务执行前，监控一个或多个键的值变化情况，当事务调用 EXEC 命令执行时，WATCH 机制会先检查监控的键是否被其它客户端修改了。如果修改了，就放弃事务执行，避免事务的隔离性被破坏。然后，客户端可以再次执行事务，此时，如果没有并发修改事务数据的操作了，事务就能正常执行。</p><h3 id="异常分析"><a href="#异常分析" class="headerlink" title="异常分析"></a>异常分析</h3><p>1、客户端发送的操作命令中存在语法错误</p><p>拒绝执行所有提交的命令操作，返回事务失败</p><p>2、命令和操作的数据类型不匹配，但 Redis 实例没有检查出错误</p><p>Redis 对错误命令报错，但正确的命令也会执行。（事务的原子性就无法得到保证）</p><p>3、在执行事务的 EXEC 命令时，Redis 实例发生了故障，导致事务执行失败</p><ul><li>如 Redis 开启了 AOF 日志，那么，只会有部分的事务操作被记录到 AOF 日志中。</li></ul><p>使用 redis-check-aof 工具检查 AOF 日志文件，可把已完成的事务操作从 AOF 文件中去除。使用 AOF 恢复实例后，事务操作不会再被执行，从而保证了原子性。</p><ul><li>如 AOF 日志没有开启，那么实例重启后，数据没法恢复了，此时，也就谈不上原子性了。</li></ul>]]></content>
+      
+      
+      <categories>
+          
+          <category> redis </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> redis </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>redis分布式锁</title>
+      <link href="/2020/10/29/redis-fen-bu-shi-suo/"/>
+      <url>/2020/10/29/redis-fen-bu-shi-suo/</url>
+      
+        <content type="html"><![CDATA[<p>为了保证并发访问的正确性，Redis 提供了两种方法，分别是加锁和原子操作。</p><h2 id="redis原子操作"><a href="#redis原子操作" class="headerlink" title="redis原子操作"></a>redis原子操作</h2><ul><li>单命令操作（INCR/DECR）；</li><li>把多个操作写到一个 Lua 脚本中，以原子性方式执行单个 Lua 脚本</li></ul><h2 id="分布式锁"><a href="#分布式锁" class="headerlink" title="分布式锁"></a>分布式锁</h2><ul><li><p>分布式锁的加锁和释放锁的过程，涉及多个操作。需要保证这些锁操作的原子性；</p></li><li><p>共享存储系统保存了锁变量，需要考虑保证共享存储系统的可靠性，进而保证锁的可靠性。</p></li></ul><h3 id="单个-Redis-节点的分布式锁"><a href="#单个-Redis-节点的分布式锁" class="headerlink" title="单个 Redis 节点的分布式锁"></a>单个 Redis 节点的分布式锁</h3><ul><li><strong>SETNX key value</strong></li></ul><p>key 不存在， key 会被创建。执行完业务逻辑后，使用 DEL 命令删除锁变量，从而释放锁。</p><p><strong>可能风险：</strong></p><ul><li>操作共享数据时发生了异常，结果一直没有执行最后的 DEL 命令释放锁。</li><li>客户端 A 执行了 SETNX 命令加锁后，客户端 B 执行了 DEL 命令释放锁，客户端 A 的锁就被误释放</li></ul><ul><li>SET key value [EX seconds | PX milliseconds]  [NX]</li></ul><h3 id="多个-Redis-节点的高可靠分布式锁"><a href="#多个-Redis-节点的高可靠分布式锁" class="headerlink" title="多个 Redis 节点的高可靠分布式锁"></a>多个 Redis 节点的高可靠分布式锁</h3><p>分布式锁算法 Redlock</p><ul><li>客户端获取当前时间。</li><li>客户端按顺序依次向 N 个 Redis 实例执行加锁操作。</li><li>一旦客户端完成了和所有 Redis 实例的加锁操作，客户端就要计算整个加锁过程的总耗时</li></ul><p><strong>加锁成功条件</strong></p><ul><li><p>客户端从超过半数（大于等于 N/2+1）的 Redis 实例上成功获取到了锁；</p></li><li><p>客户端获取锁的总耗时没有超过锁的有效时间。</p></li></ul>]]></content>
+      
+      
+      <categories>
+          
+          <category> redis </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> redis </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>redis缓存</title>
       <link href="/2020/10/27/redis-huan-cun/"/>
       <url>/2020/10/27/redis-huan-cun/</url>

@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://wangyixin-tom.github.io/"/>
-  <updated>2020-10-29T14:15:21.376Z</updated>
+  <updated>2020-11-01T13:00:22.149Z</updated>
   <id>https://wangyixin-tom.github.io/</id>
   
   <author>
@@ -15,6 +15,59 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>redis事务</title>
+    <link href="https://wangyixin-tom.github.io/2020/11/01/redis-shi-wu/"/>
+    <id>https://wangyixin-tom.github.io/2020/11/01/redis-shi-wu/</id>
+    <published>2020-11-01T05:28:57.000Z</published>
+    <updated>2020-11-01T13:00:22.149Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h2 id=&quot;事务实现&quot;&gt;&lt;a href=&quot;#事务实现&quot; class=&quot;headerlink&quot; title=&quot;事务实现&quot;&gt;&lt;/a&gt;事务实现&lt;/h2&gt;&lt;h3 id=&quot;基本命令&quot;&gt;&lt;a href=&quot;#基本命令&quot; class=&quot;headerlink&quot;
+        
+      
+    
+    </summary>
+    
+      <category term="redis" scheme="https://wangyixin-tom.github.io/categories/redis/"/>
+    
+    
+      <category term="redis" scheme="https://wangyixin-tom.github.io/tags/redis/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>redis分布式锁</title>
+    <link href="https://wangyixin-tom.github.io/2020/10/29/redis-fen-bu-shi-suo/"/>
+    <id>https://wangyixin-tom.github.io/2020/10/29/redis-fen-bu-shi-suo/</id>
+    <published>2020-10-29T15:52:36.000Z</published>
+    <updated>2020-11-01T05:25:04.898Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;为了保证并发访问的正确性，Redis 提供了两种方法，分别是加锁和原子操作。&lt;/p&gt;
+&lt;h2 id=&quot;redis原子操作&quot;&gt;&lt;a href=&quot;#redis原子操作&quot; class=&quot;headerlink&quot;
+        
+      
+    
+    </summary>
+    
+      <category term="redis" scheme="https://wangyixin-tom.github.io/categories/redis/"/>
+    
+    
+      <category term="redis" scheme="https://wangyixin-tom.github.io/tags/redis/"/>
+    
+  </entry>
   
   <entry>
     <title>redis缓存</title>
