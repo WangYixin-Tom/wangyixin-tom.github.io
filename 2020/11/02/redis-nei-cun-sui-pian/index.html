@@ -4,15 +4,11 @@
 
 <head><meta name="generator" content="Hexo 3.9.0">
     <meta charset="utf-8">
-    <meta name="keywords" content="redis阻塞及解决办法, Python rabbitmq redis flask">
+    <meta name="keywords" content="redis内存碎片, Python rabbitmq redis flask">
     <meta name="baidu-site-verification" content="code-KoKq36g1n2">
     <meta name="google-site-verification" content="yCy2azpds5XSuGZvis6OuA-XIGF5GuGpYRAaGfD6o48">
     <meta name="360-site-verification" content="b7c11a830ef90fd1464ad6206bb7b6e7">
-    <meta name="description" content="
-阻塞分析客户端复杂度高的增删改查操作1、集合全量查询和聚合操作2、bigkey 删除3、清空数据库
-磁盘1、AOF 日志同步写
-主从节点1、从库接收 RDB 文件后、清空数据库、加载 RDB 文件；
-切片集群向其他实例传输哈希槽信息，数据">
+    <meta name="description" content="redis内存碎片 | wangyixin-tom的博客">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -20,7 +16,7 @@
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>redis阻塞及解决办法 | wangyixin-tom的博客</title>
+    <title>redis内存碎片 | wangyixin-tom的博客</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
@@ -270,13 +266,13 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/22.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/9.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
                     <div class="description center-align post-title">
-                        redis阻塞及解决办法
+                        redis内存碎片
                     </div>
                 </div>
             </div>
@@ -386,24 +382,11 @@
                 <div class="col s7">
                     
                     <div class="article-tag">
-                        
-                        <a href="/tags/redis/" target="_blank">
-                            <span class="chip bg-color">redis</span>
-                        </a>
-                        
+                        <span class="chip bg-color">无标签</span>
                     </div>
                     
                 </div>
                 <div class="col s5 right-align">
-                    
-                    <div class="post-cate">
-                        <i class="fa fa-bookmark fa-fw icon-category"></i>
-                        
-                        <a href="/categories/redis/" class="post-category" target="_blank">
-                            redis
-                        </a>
-                        
-                    </div>
                     
                 </div>
             </div>
@@ -411,7 +394,7 @@
             <div class="post-info">
                 <div class="post-date info-break-policy">
                     <i class="fa fa-calendar-minus-o fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2020-10-26
+                    2020-11-02
                 </div>
 
                 <div class="post-author info-break-policy">
@@ -425,7 +408,7 @@
                 
                 <div class="info-break-policy">
                     <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    567
+                    0
                 </div>
                 
 
@@ -443,17 +426,7 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <hr>
-<h2 id="阻塞分析"><a href="#阻塞分析" class="headerlink" title="阻塞分析"></a>阻塞分析</h2><h3 id="客户端"><a href="#客户端" class="headerlink" title="客户端"></a>客户端</h3><p><strong>复杂度高的增删改查操作</strong><br>1、集合全量查询和聚合操作<br>2、bigkey 删除<br>3、清空数据库</p>
-<h3 id="磁盘"><a href="#磁盘" class="headerlink" title="磁盘"></a>磁盘</h3><p>1、AOF 日志同步写</p>
-<h3 id="主从节点"><a href="#主从节点" class="headerlink" title="主从节点"></a>主从节点</h3><p>1、从库接收 RDB 文件后、<strong>清空数据库、加载 RDB 文件</strong>；</p>
-<h3 id="切片集群"><a href="#切片集群" class="headerlink" title="切片集群"></a>切片集群</h3><p>向其他实例传输哈希槽信息，数据迁移时遇到big key。</p>
-<h3 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h3><p>关键路径：集合全量查询和聚合操作和从库加载 RDB 文件<br>非关键路径： bigkey 删除，清空数据库，以及 AOF 日志同步写。</p>
-<h2 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h2><h3 id="异步的子线程机制"><a href="#异步的子线程机制" class="headerlink" title="异步的子线程机制"></a>异步的子线程机制</h3><p>Redis 主线程启动后，会使用操作系统提供的 pthread_create 函数创建 3 个子线程，分别由它们负责 AOF 日志写操作、键值对删除以及文件关闭的异步执行。主线程通过一个链表形式的任务队列和子线程进行交互。当收到键值对删除和清空数据库的操作时，主线程会把这个操作封装成一个任务，放入到任务队列中，然后给客户端返回一个完成信息，表明删除已经完成（惰性删除）。当 AOF 日志配置成 everysec 选项后，主线程会把 AOF 写日志操作封装成一个任务，也放到任务队列中。后台子线程读取任务后，开始自行写入 AOF 日志，这样主线程就不用一直等待 AOF 日志写完了。</p>
-<p>注：异步的键值对删除和数据库清空操作是 Redis 4.0 后提供的功能。之前的版本Big key删除可以先使用集合类型提供的 SCAN 命令读取数据，然后再进行删除。因为用 SCAN 命令可以每次只读取一部分数据并进行删除，这样可以避免一次性删除大量 key 给主线程带来的阻塞。</p>
-<h3 id="分批读取"><a href="#分批读取" class="headerlink" title="分批读取"></a>分批读取</h3><p>集合全量查询和聚合操作：可以使用 SCAN 命令，分批读取数据，再在客户端进行聚合计算</p>
-<h3 id="控制RBD大小"><a href="#控制RBD大小" class="headerlink" title="控制RBD大小"></a>控制RBD大小</h3><p>从库加载 RDB 文件：把主库的数据量大小控制在 2~4GB 左右，以保证 RDB 文件能以较快的速度加载。</p>
-
+                
             </div>
             <hr />
 
@@ -611,9 +584,9 @@
             <br/>
             <span xmlns:dct="http://purl.org/dc/terms/" href="http://purl.org/dc/dcmitype/Text"
                   property="dct:title" rel="dct:type">
-                    《redis阻塞及解决办法》
+                    《redis内存碎片》
                 </span> 由
-            <a xmlns:cc="http://creativecommons.org/ns#" href="/2020/10/26/redis-zu-sai-ji-jie-jue-ban-fa/" property="cc:attributionName"
+            <a xmlns:cc="http://creativecommons.org/ns#" href="/2020/11/02/redis-nei-cun-sui-pian/" property="cc:attributionName"
                rel="cc:attributionURL">
                 wangyixin-tom
             </a> 采用
@@ -654,7 +627,7 @@
         repo: 'wangyixin-tom.github.io',
         owner: 'WangYixin-Tom',
         admin: "WangYixin-Tom",
-        id: '2020/10/26/redis-zu-sai-ji-jie-jue-ban-fa/',
+        id: '2020/11/02/redis-nei-cun-sui-pian/',
         distractionFreeMode: false  // Facebook-like distraction free mode
     });
 
@@ -941,28 +914,35 @@
             <div class="article-badge left-badge text-color">
                 <i class="fa fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2020/10/26/ji-yu-duo-cpu-duo-he-jia-gou-de-redis-xing-neng-you-hua/">
+                <a href="/2020/11/02/redis-xiao-xi-dui-lie/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/19.jpg" class="responsive-img" alt="基于多CPU多核架构的redis性能优化">
+                        <img src="/medias/featureimages/15.jpg" class="responsive-img" alt="redis消息队列">
                         
-                        <span class="card-title">基于多CPU多核架构的redis性能优化</span>
+                        <span class="card-title">redis消息队列</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            CPU架构
-一个 CPU 处理器中一般有多个物理核。
-每个物理核都拥有私有的一级缓存（ L1 cache）和私有的二级缓存（L2 cache）。
-不同的物理核还会共享一个共同的三级缓存
-每个物理核通常都会运行两个超线程，也叫作逻辑核。同一个
+                            需求分析
+消息保序：消费者需要按照生产者发送消息的顺序来处理消息
+
+处理重复的消息：消费者避免多次处理重复的消息
+
+保证消息可靠性：消费者重启后，可以重新读取消息再次进行处理
+
+
+基于List
+LPUSH 
+
+把要发送的消息依次写入 Lis
                         
                     </div>
                     <div class="publish-info">
                         <span class="publish-date">
-                            <i class="fa fa-clock-o fa-fw icon-date"></i>2020-10-26
+                            <i class="fa fa-clock-o fa-fw icon-date"></i>2020-11-02
                         </span>
                         <span class="publish-author">
                             
@@ -994,26 +974,39 @@
                 下一篇&nbsp;<i class="fa fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2020/10/26/redis-qie-pian-ji-qun/">
+                <a href="/2020/11/01/redis-shi-wu/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/5.jpg" class="responsive-img" alt="redis切片集群">
+                        <img src="/medias/featureimages/27.jpg" class="responsive-img" alt="redis事务">
                         
-                        <span class="card-title">redis切片集群</span>
+                        <span class="card-title">redis事务</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            问题 RDB 持久化时，Rfork 子进程用时和 Redis 的数据量是正相关的。数据量越大，fork 操作造成的主线程阻塞的时间越长。
-切片集群机制
-一个切片集群共有 16384 个哈希槽，哈希槽类似于数据分区，每个键值对都会根据它的 k
+                            事务实现基本命令
+MULTI
+
+显式地表示一个事务的开启，把这些命令暂存到一个命令队列中
+
+EXEC 
+
+实际执行命令队列中的所有命令
+
+DISCARD
+
+主动放弃事务执行，把暂存的命令队列清空（起不到回滚的效果）
+
+WATCH
+
+在事务执
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="fa fa-clock-o fa-fw icon-date"></i>2020-10-26
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2020-11-01
                             </span>
                         <span class="publish-author">
                             

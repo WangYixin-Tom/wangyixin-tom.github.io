@@ -302,11 +302,11 @@ $('.bg-cover').css('background-image', 'url(/medias/banner/' + new Date().getDay
                 </a>
                 
                 
-                <a href="/categories/redis/" title="redis: 13">
+                <a href="/categories/redis/" title="redis: 14">
                     <span class="chip center-align waves-effect waves-light
                              chip-active "
                             style="background-color: #F5EEF8;">redis
-                        <span class="tag-length">13</span>
+                        <span class="tag-length">14</span>
                     </span>
                 </a>
                 
@@ -332,11 +332,68 @@ $('.bg-cover').css('background-image', 'url(/medias/banner/' + new Date().getDay
             
             <div class="article tag-post col s12 m6 l4" data-aos="zoom-in">
                 <div class="card">
+                    <a href="/2020/11/02/redis-xiao-xi-dui-lie/">
+                        <div class="card-image tag-image">
+                            
+                            
+                            <img src="/medias/featureimages/15.jpg" class="responsive-img" alt="redis消息队列">
+                            
+                            <span class="card-title">redis消息队列</span>
+                        </div>
+                    </a>
+                    <div class="card-content article-content">
+                        <div class="summary block-with-text">
+                            
+                                需求分析
+消息保序：消费者需要按照生产者发送消息的顺序来处理消息
+
+处理重复的消息：消费者避免多次处理重复的消息
+
+保证消息可靠性：消费者重启后，可以重新读取消息再次进行处理
+
+
+基于List
+LPUSH 
+
+把要发送的消息依次写入 Lis
+                            
+                        </div>
+                        <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2020-11-02
+                            </span>
+                            <span class="publish-author">
+                                
+                                <i class="fa fa-bookmark fa-fw icon-category"></i>
+                                
+                                <a href="/categories/redis/" class="post-category" target="_blank">
+                                    redis
+                                </a>
+                                
+                                
+                            </span>
+                        </div>
+                    </div>
+
+                    
+                    <div class="card-action article-tags">
+                        
+                        <a href="/tags/redis/" target="_blank">
+                            <span class="chip bg-color">redis</span>
+                        </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+            
+            <div class="article tag-post col s12 m6 l4" data-aos="zoom-in">
+                <div class="card">
                     <a href="/2020/11/01/redis-shi-wu/">
                         <div class="card-image tag-image">
                             
                             
-                            <img src="/medias/featureimages/26.jpg" class="responsive-img" alt="redis事务">
+                            <img src="/medias/featureimages/27.jpg" class="responsive-img" alt="redis事务">
                             
                             <span class="card-title">redis事务</span>
                         </div>
@@ -397,7 +454,7 @@ WATCH
                         <div class="card-image tag-image">
                             
                             
-                            <img src="/medias/featureimages/4.jpg" class="responsive-img" alt="redis分布式锁">
+                            <img src="/medias/featureimages/3.jpg" class="responsive-img" alt="redis分布式锁">
                             
                             <span class="card-title">redis分布式锁</span>
                         </div>
@@ -449,7 +506,7 @@ redis原子操作
                         <div class="card-image tag-image">
                             
                             
-                            <img src="/medias/featureimages/19.jpg" class="responsive-img" alt="redis缓存">
+                            <img src="/medias/featureimages/20.jpg" class="responsive-img" alt="redis缓存">
                             
                             <span class="card-title">redis缓存</span>
                         </div>
@@ -504,7 +561,7 @@ Redis也称为旁路缓存，因为读取缓存、读取数据库和更新缓存
                         <div class="card-image tag-image">
                             
                             
-                            <img src="/medias/featureimages/6.jpg" class="responsive-img" alt="redis RBD机制">
+                            <img src="/medias/featureimages/7.jpg" class="responsive-img" alt="redis RBD机制">
                             
                             <span class="card-title">redis RBD机制</span>
                         </div>
@@ -552,7 +609,7 @@ bgsave命令：主进
                         <div class="card-image tag-image">
                             
                             
-                            <img src="/medias/featureimages/20.jpg" class="responsive-img" alt="redis AOF机制">
+                            <img src="/medias/featureimages/21.jpg" class="responsive-img" alt="redis AOF机制">
                             
                             <span class="card-title">redis AOF机制</span>
                         </div>
@@ -599,7 +656,7 @@ bgsave命令：主进
                         <div class="card-image tag-image">
                             
                             
-                            <img src="/medias/featureimages/9.jpg" class="responsive-img" alt="redis网络IO模型">
+                            <img src="/medias/featureimages/10.jpg" class="responsive-img" alt="redis网络IO模型">
                             
                             <span class="card-title">redis网络IO模型</span>
                         </div>
@@ -647,7 +704,7 @@ bgsave命令：主进
                         <div class="card-image tag-image">
                             
                             
-                            <img src="/medias/featureimages/15.jpg" class="responsive-img" alt="redis数据结构">
+                            <img src="/medias/featureimages/14.jpg" class="responsive-img" alt="redis数据结构">
                             
                             <span class="card-title">redis数据结构</span>
                         </div>
@@ -711,7 +768,7 @@ Hash
                         <div class="card-image tag-image">
                             
                             
-                            <img src="/medias/featureimages/28.jpg" class="responsive-img" alt="redis变慢以及优化方法">
+                            <img src="/medias/featureimages/27.jpg" class="responsive-img" alt="redis变慢以及优化方法">
                             
                             <span class="card-title">redis变慢以及优化方法</span>
                         </div>
@@ -758,7 +815,7 @@ Hash
                         <div class="card-image tag-image">
                             
                             
-                            <img src="/medias/featureimages/20.jpg" class="responsive-img" alt="基于多CPU多核架构的redis性能优化">
+                            <img src="/medias/featureimages/19.jpg" class="responsive-img" alt="基于多CPU多核架构的redis性能优化">
                             
                             <span class="card-title">基于多CPU多核架构的redis性能优化</span>
                         </div>
@@ -808,7 +865,7 @@ Hash
                         <div class="card-image tag-image">
                             
                             
-                            <img src="/medias/featureimages/23.jpg" class="responsive-img" alt="redis阻塞及解决办法">
+                            <img src="/medias/featureimages/22.jpg" class="responsive-img" alt="redis阻塞及解决办法">
                             
                             <span class="card-title">redis阻塞及解决办法</span>
                         </div>
@@ -858,7 +915,7 @@ Hash
                         <div class="card-image tag-image">
                             
                             
-                            <img src="/medias/featureimages/6.jpg" class="responsive-img" alt="redis切片集群">
+                            <img src="/medias/featureimages/5.jpg" class="responsive-img" alt="redis切片集群">
                             
                             <span class="card-title">redis切片集群</span>
                         </div>
@@ -874,59 +931,6 @@ Hash
                         <div class="publish-info">
                             <span class="publish-date">
                                 <i class="fa fa-clock-o fa-fw icon-date"></i>2020-10-26
-                            </span>
-                            <span class="publish-author">
-                                
-                                <i class="fa fa-bookmark fa-fw icon-category"></i>
-                                
-                                <a href="/categories/redis/" class="post-category" target="_blank">
-                                    redis
-                                </a>
-                                
-                                
-                            </span>
-                        </div>
-                    </div>
-
-                    
-                    <div class="card-action article-tags">
-                        
-                        <a href="/tags/redis/" target="_blank">
-                            <span class="chip bg-color">redis</span>
-                        </a>
-                        
-                    </div>
-                    
-                </div>
-            </div>
-            
-            <div class="article tag-post col s12 m6 l4" data-aos="zoom-in">
-                <div class="card">
-                    <a href="/2020/10/25/redis-shao-bing-ji-zhi/">
-                        <div class="card-image tag-image">
-                            
-                            
-                            <img src="/medias/featureimages/8.jpg" class="responsive-img" alt="redis哨兵机制">
-                            
-                            <span class="card-title">redis哨兵机制</span>
-                        </div>
-                    </a>
-                    <div class="card-content article-content">
-                        <div class="summary block-with-text">
-                            
-                                问题主库故障的相关问题：
-1、确定主库故障
-2、选择新的主库
-3、新主库信息通知
-基本功能监控
-哨兵进程周期性地给所有的主从库发送 PING 命令，检测它们是否仍然在线运行。
-
-主库或从库对 PING 命令的响应超时了，哨兵会标记为“主观下
-                            
-                        </div>
-                        <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="fa fa-clock-o fa-fw icon-date"></i>2020-10-25
                             </span>
                             <span class="publish-author">
                                 
@@ -989,7 +993,7 @@ Hash
 
             
             &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-            <span class="white-color">15.4k</span>
+            <span class="white-color">16.6k</span>
             
 
             <br>
