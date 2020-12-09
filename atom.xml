@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://wangyixin-tom.github.io/"/>
-  <updated>2020-11-02T14:14:19.108Z</updated>
+  <updated>2020-12-09T05:53:02.082Z</updated>
   <id>https://wangyixin-tom.github.io/</id>
   
   <author>
@@ -15,6 +15,32 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>redis6.0</title>
+    <link href="https://wangyixin-tom.github.io/2020/12/09/redis6-0/"/>
+    <id>https://wangyixin-tom.github.io/2020/12/09/redis6-0/</id>
+    <published>2020-12-09T05:35:15.000Z</published>
+    <updated>2020-12-09T05:53:02.082Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h2 id=&quot;多线程&quot;&gt;&lt;a href=&quot;#多线程&quot; class=&quot;headerlink&quot;
+        
+      
+    
+    </summary>
+    
+      <category term="redis" scheme="https://wangyixin-tom.github.io/categories/redis/"/>
+    
+    
+      <category term="redis" scheme="https://wangyixin-tom.github.io/tags/redis/"/>
+    
+  </entry>
   
   <entry>
     <title>redis消息队列</title>
@@ -500,36 +526,6 @@
         
         
           &lt;h2 id=&quot;问题&quot;&gt;&lt;a href=&quot;#问题&quot; class=&quot;headerlink&quot; title=&quot;问题&quot;&gt;&lt;/a&gt;问题&lt;/h2&gt;&lt;p&gt; RDB 持久化时，Rfork 子进程用时和 Redis 的数据量是正相关的。数据量越大，fork
-        
-      
-    
-    </summary>
-    
-      <category term="redis" scheme="https://wangyixin-tom.github.io/categories/redis/"/>
-    
-    
-      <category term="redis" scheme="https://wangyixin-tom.github.io/tags/redis/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>redis哨兵机制</title>
-    <link href="https://wangyixin-tom.github.io/2020/10/25/redis-shao-bing-ji-zhi/"/>
-    <id>https://wangyixin-tom.github.io/2020/10/25/redis-shao-bing-ji-zhi/</id>
-    <published>2020-10-25T13:16:39.000Z</published>
-    <updated>2020-10-25T14:06:19.503Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;h2 id=&quot;问题&quot;&gt;&lt;a href=&quot;#问题&quot; class=&quot;headerlink&quot; title=&quot;问题&quot;&gt;&lt;/a&gt;问题&lt;/h2&gt;&lt;p&gt;主库故障的相关问题：&lt;/p&gt;
-&lt;p&gt;1、确定主库故障&lt;/p&gt;
-&lt;p&gt;2、选择新的主库&lt;/p&gt;
-&lt;p&gt;3、新主库信息通知&lt;/p&gt;
-&lt;h2
         
       
     

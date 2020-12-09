@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://wangyixin-tom.github.io/2020/12/09/redis6-0/</loc>
+    
+    <lastmod>2020-12-09T05:53:02.082Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://wangyixin-tom.github.io/2020/11/02/redis-xiao-xi-dui-lie/</loc>
     
     <lastmod>2020-11-02T14:14:19.108Z</lastmod>
@@ -170,7 +177,7 @@
   </url>
   
   <url>
-    <loc>https://wangyixin-tom.github.io/about/index.html</loc>
+    <loc>https://wangyixin-tom.github.io/friends/index.html</loc>
     
     <lastmod>2020-04-04T11:43:42.000Z</lastmod>
     
@@ -191,7 +198,7 @@
   </url>
   
   <url>
-    <loc>https://wangyixin-tom.github.io/friends/index.html</loc>
+    <loc>https://wangyixin-tom.github.io/about/index.html</loc>
     
     <lastmod>2020-04-04T11:43:42.000Z</lastmod>
     

@@ -277,7 +277,7 @@ LPUSH
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/15.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/13.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
@@ -966,41 +966,33 @@ LPUSH
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fa fa-dot-circle-o"></i>&nbsp;本篇
-            </div>
+                <i class="fa fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2020/11/02/redis-xiao-xi-dui-lie/">
+                <a href="/2020/12/09/redis6-0/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/15.jpg" class="responsive-img" alt="redis消息队列">
+                        <img src="/medias/featureimages/13.jpg" class="responsive-img" alt="redis6.0">
                         
-                        <span class="card-title">redis消息队列</span>
+                        <span class="card-title">redis6.0</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            需求分析
-消息保序：消费者需要按照生产者发送消息的顺序来处理消息
-
-处理重复的消息：消费者避免多次处理重复的消息
-
-保证消息可靠性：消费者重启后，可以重新读取消息再次进行处理
-
-
-基于List
-LPUSH 
-
-把要发送的消息依次写入 Lis
+                            多线程问题
+单个主线程处理网络请求的速度跟不上底层网络硬件的速度。
+优化
+多个 IO 线程并行处理网络操作，可以提升实例的整体处理性能。使用单线程执行命令操作，就不用为了保证 Lua 脚本、事务的原子性，额外开发多线程互斥机制了。
+具体流程
                         
                     </div>
                     <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="fa fa-clock-o fa-fw icon-date"></i>2020-11-02
-                            </span>
+                        <span class="publish-date">
+                            <i class="fa fa-clock-o fa-fw icon-date"></i>2020-12-09
+                        </span>
                         <span class="publish-author">
                             
                             <i class="fa fa-bookmark fa-fw icon-category"></i>
@@ -1013,7 +1005,6 @@ LPUSH
                         </span>
                     </div>
                 </div>
-
                 
                 <div class="card-action article-tags">
                     
@@ -1036,7 +1027,7 @@ LPUSH
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/9.jpg" class="responsive-img" alt="redis内存碎片">
+                        <img src="/medias/featureimages/7.jpg" class="responsive-img" alt="redis内存碎片">
                         
                         <span class="card-title">redis内存碎片</span>
                     </div>
@@ -1226,7 +1217,7 @@ LPUSH
 
             
             &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-            <span class="white-color">16.6k</span>
+            <span class="white-color">17.2k</span>
             
 
             <br>

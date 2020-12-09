@@ -4,6 +4,31 @@
   
     
     <entry>
+      <title>redis6.0</title>
+      <link href="/2020/12/09/redis6-0/"/>
+      <url>/2020/12/09/redis6-0/</url>
+      
+        <content type="html"><![CDATA[<h2 id="多线程"><a href="#多线程" class="headerlink" title="多线程"></a>多线程</h2><p><strong>问题</strong></p><p>单个主线程处理网络请求的速度跟不上底层网络硬件的速度。</p><p><strong>优化</strong></p><p>多个 IO 线程并行处理网络操作，可以提升实例的整体处理性能。使用单线程执行命令操作，就不用为了保证 Lua 脚本、事务的原子性，额外开发多线程互斥机制了。</p><p><strong>具体流程</strong></p><p>1、服务端和客户端建立 Socket 连接，并分配处理线程</p><p>2、IO 线程读取并解析请求</p><p>3、主线程执行请求操作</p><p>4、IO 线程回写 Socket 和主线程清空全局队列</p><p>相关配置：</p><pre><code>io-threads-do-reads yes #启用多线程io-threads  6           #线程个数要小于 Redis 实例所在机器的 CPU 核个数</code></pre><h2 id="服务端协助的客户端缓存（Tracking）"><a href="#服务端协助的客户端缓存（Tracking）" class="headerlink" title="服务端协助的客户端缓存（Tracking）"></a>服务端协助的客户端缓存（Tracking）</h2><p><strong>问题</strong></p><p>如果数据被修改了或是失效了，如何通知客户端对缓存的数据做失效处理。</p><h3 id="普通模式"><a href="#普通模式" class="headerlink" title="普通模式"></a>普通模式</h3><p>实例会在服务端记录客户端读取过的 key，并监测 key 是否有修改。一旦 key 的值发生变化，服务端会给客户端发送 invalidate 消息，通知客户端缓存失效了。</p><p>服务端对于记录的 key 只会报告一次 invalidate 消息</p><p>只有当客户端再次执行读命令时，服务端才会再次监测被读取的 key，并在 key 修改时发送 invalidate 消息</p><p><strong>设置命令</strong></p><pre><code>CLIENT TRACKING ON|OFF</code></pre><h3 id="广播模式"><a href="#广播模式" class="headerlink" title="广播模式"></a>广播模式</h3><p>服务端会给客户端广播所有 key 的失效情况，不过，这样做了之后，如果 key 被频繁修改，服务端会发送大量的失效广播消息，这就会消耗大量的网络带宽资源。</p><p><strong>应用场景</strong></p><p>我们会让客户端注册希望跟踪的 key 的前缀，当带有注册前缀的 key 被修改时，服务端会把失效消息广播给所有注册的客户端。</p><p><strong>区别</strong>：</p><p>在广播模式下，即使客户端还没有读取过 key，但只要它注册了要跟踪的 key，服务端都会把 key 失效消息通知给这个客户端。</p><h2 id="细粒度的权限控制"><a href="#细粒度的权限控制" class="headerlink" title="细粒度的权限控制"></a>细粒度的权限控制</h2><p>1、支持创建不同用户来使用 Redis</p><pre><code>ACL SETUSER normaluser on &gt; abc #创建并启用一个用户 normaluser，把它的密码设置为“abc” </code></pre><p>2、支持以用户为粒度设置命令操作的访问权限</p><p><img src="acl_cmd.jpg" alt="acl_cmd"></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> redis </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> redis </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>redis消息队列</title>
       <link href="/2020/11/02/redis-xiao-xi-dui-lie/"/>
       <url>/2020/11/02/redis-xiao-xi-dui-lie/</url>
