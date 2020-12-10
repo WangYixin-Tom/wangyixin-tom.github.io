@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://wangyixin-tom.github.io/"/>
-  <updated>2020-12-09T05:53:02.082Z</updated>
+  <updated>2020-12-10T13:44:49.227Z</updated>
   <id>https://wangyixin-tom.github.io/</id>
   
   <author>
@@ -15,6 +15,33 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>kafka集群配置</title>
+    <link href="https://wangyixin-tom.github.io/2020/12/10/kafka-ji-qun-pei-zhi/"/>
+    <id>https://wangyixin-tom.github.io/2020/12/10/kafka-ji-qun-pei-zhi/</id>
+    <published>2020-12-10T13:12:03.000Z</published>
+    <updated>2020-12-10T13:44:49.227Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h2 id=&quot;Broker-端参数&quot;&gt;&lt;a href=&quot;#Broker-端参数&quot; class=&quot;headerlink&quot; title=&quot;Broker 端参数&quot;&gt;&lt;/a&gt;Broker 端参数&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;log.dirs：Broker
+        
+      
+    
+    </summary>
+    
+      <category term="kafka" scheme="https://wangyixin-tom.github.io/categories/kafka/"/>
+    
+    
+      <category term="kafka" scheme="https://wangyixin-tom.github.io/tags/kafka/"/>
+    
+  </entry>
   
   <entry>
     <title>redis6.0</title>
@@ -500,32 +527,6 @@
         
           &lt;hr&gt;
 &lt;h2 id=&quot;阻塞分析&quot;&gt;&lt;a href=&quot;#阻塞分析&quot; class=&quot;headerlink&quot; title=&quot;阻塞分析&quot;&gt;&lt;/a&gt;阻塞分析&lt;/h2&gt;&lt;h3 id=&quot;客户端&quot;&gt;&lt;a href=&quot;#客户端&quot; class=&quot;headerlink&quot;
-        
-      
-    
-    </summary>
-    
-      <category term="redis" scheme="https://wangyixin-tom.github.io/categories/redis/"/>
-    
-    
-      <category term="redis" scheme="https://wangyixin-tom.github.io/tags/redis/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>redis切片集群</title>
-    <link href="https://wangyixin-tom.github.io/2020/10/26/redis-qie-pian-ji-qun/"/>
-    <id>https://wangyixin-tom.github.io/2020/10/26/redis-qie-pian-ji-qun/</id>
-    <published>2020-10-26T12:32:35.000Z</published>
-    <updated>2020-10-26T13:35:36.025Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;h2 id=&quot;问题&quot;&gt;&lt;a href=&quot;#问题&quot; class=&quot;headerlink&quot; title=&quot;问题&quot;&gt;&lt;/a&gt;问题&lt;/h2&gt;&lt;p&gt; RDB 持久化时，Rfork 子进程用时和 Redis 的数据量是正相关的。数据量越大，fork
         
       
     

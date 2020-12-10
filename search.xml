@@ -4,6 +4,31 @@
   
     
     <entry>
+      <title>kafka集群配置</title>
+      <link href="/2020/12/10/kafka-ji-qun-pei-zhi/"/>
+      <url>/2020/12/10/kafka-ji-qun-pei-zhi/</url>
+      
+        <content type="html"><![CDATA[<h2 id="Broker-端参数"><a href="#Broker-端参数" class="headerlink" title="Broker 端参数"></a>Broker 端参数</h2><ul><li><p>log.dirs：Broker 需要使用的若干个文件目录路径，必须指定；最好不同路径挂载到不同的物理磁盘，提升读写性能且能能够实现故障转移</p></li><li><p>log.dir：单个路径</p></li><li><p>zookeeper.connect：zookeeper端口</p></li><li><p>listeners：访问kafka的监听器</p></li><li><p>advertised.listeners：Broker 用于对外发布的监听器</p></li><li><p>auto.create.topics.enable：是否允许自动创建 Topic，建议最好设置成 false</p></li><li><p>unclean.leader.election.enable：是否允许 Unclean Leader 选举，是否能让那些落后太多的副本竞选 Leader,建议false</p></li><li><p>auto.leader.rebalance.enable：是否允许定期进行 Leader 选举，成本太高，建议false</p></li><li><p>log.retention.{hours|minutes|ms}：控制一条消息数据被保存多长时间。从优先级上来说 ms 设置最高、minutes 次之、hours 最低</p></li><li><p>log.retention.bytes：这是指定 Broker 为消息保存的总磁盘容量大小。默认-1</p></li><li><p>message.max.bytes：控制 Broker 能够接收的最大消息大小。</p></li></ul><h2 id="Topic-级别参数"><a href="#Topic-级别参数" class="headerlink" title="Topic 级别参数"></a>Topic 级别参数</h2><ul><li><p>retention.ms： Topic 消息被保存的时长。默认是 7 天。会覆盖掉 Broker 端的全局参数值。</p></li><li><p>retention.bytes： Topic 预留多大的磁盘空间。通常在多租户的 Kafka 集群中会有用武之地。默认值是 -1，表示可以无限使用磁盘空间。</p></li><li><p>max.message.bytes：Broker 能够正常接收该 Topic 的最大消息大小</p></li></ul><p>创建topic时设置:</p><pre><code>bin/kafka-topics.sh --bootstrap-server localhost:9092 --create --topic transaction --partitions 1 --replication-factor 1 --config retention.ms=15552000000 --config max.message.bytes=5242880</code></pre><p>修改topic(推荐)：</p><pre><code>bin/kafka-configs.sh --zookeeper localhost:2181 --entity-type topics --entity-name transaction --alter --add-config max.message.bytes=10485760</code></pre><h2 id="JVM参数"><a href="#JVM参数" class="headerlink" title="JVM参数"></a>JVM参数</h2><p> JVM 堆大小设置成 6GB ，用默认的 G1 收集器</p><ul><li>KAFKA_HEAP_OPTS：指定堆大小。</li><li>KAFKA_JVM_PERFORMANCE_OPTS：指定 GC 参数。</li></ul><p>启动broker前设置：</p><pre><code>$&gt; export KAFKA_HEAP_OPTS=--Xms6g  --Xmx6g$&gt; export KAFKA_JVM_PERFORMANCE_OPTS= -server -XX:+UseG1GC -XX:MaxGCPauseMillis=20 -XX:InitiatingHeapOccupancyPercent=35 -XX:+ExplicitGCInvokesConcurrent -Djava.awt.headless=true$&gt; bin/kafka-server-start.sh config/server.properties</code></pre><h2 id="操作系统参数"><a href="#操作系统参数" class="headerlink" title="操作系统参数"></a>操作系统参数</h2><p>文件描述符限制：<code>ulimit -n 1000000</code>，通常将它设置成一个超大的值</p><p>文件系统类型：最好选择xfs</p><p>Swap：设置成一个比较小的值，当开始使用 swap 空间时，能够观测到 Broker 性能开始出现急剧下降，避免直接OOM，从而给你进一步调优和诊断问题的时间。</p><p>提交时间（Flush 落盘时间）：适当地增加提交间隔来降低物理磁盘的写操作</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> kafka </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> kafka </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>redis6.0</title>
       <link href="/2020/12/09/redis6-0/"/>
       <url>/2020/12/09/redis6-0/</url>
