@@ -595,9 +595,9 @@ $('.bg-cover').css('background-image', 'url(/medias/banner/' + new Date().getDay
                         <div class="card-content article-content">
                             <div class="summary block-with-text">
                                 
-                                问题 RDB 持久化时，Rfork 子进程用时和 Redis 的数据量是正相关的。数据量越大，fork 操作造成的主线程阻塞的时间越长。
+                                问题 RDB 持久化时，fork 子进程用时和 Redis 的数据量是正相关的。数据量越大，fork 操作造成的主线程阻塞的时间越长。
 切片集群机制
-一个切片集群共有 16384 个哈希槽，哈希槽类似于数据分区，每个键值对都会根据它的 k
+一个切片集群共有 16384 个哈希槽，哈希槽类似于数据分区，每个键值对都会根据它的 ke
                                 
                             </div>
                             <div class="publish-info">

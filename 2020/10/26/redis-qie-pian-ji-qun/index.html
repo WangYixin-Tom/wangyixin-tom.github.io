@@ -8,9 +8,9 @@
     <meta name="baidu-site-verification" content="code-KoKq36g1n2">
     <meta name="google-site-verification" content="yCy2azpds5XSuGZvis6OuA-XIGF5GuGpYRAaGfD6o48">
     <meta name="360-site-verification" content="b7c11a830ef90fd1464ad6206bb7b6e7">
-    <meta name="description" content="问题 RDB 持久化时，Rfork 子进程用时和 Redis 的数据量是正相关的。数据量越大，fork 操作造成的主线程阻塞的时间越长。
+    <meta name="description" content="问题 RDB 持久化时，fork 子进程用时和 Redis 的数据量是正相关的。数据量越大，fork 操作造成的主线程阻塞的时间越长。
 切片集群机制
-一个切片集群共有 16384 个哈希槽，哈希槽类似于数据分区，每个键值对都会根据它的 k">
+一个切片集群共有 16384 个哈希槽，哈希槽类似于数据分区，每个键值对都会根据它的 ke">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -441,7 +441,7 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h2><p> RDB 持久化时，Rfork 子进程用时和 Redis 的数据量是正相关的。数据量越大，fork 操作造成的主线程阻塞的时间越长。</p>
+                <h2 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h2><p> RDB 持久化时，fork 子进程用时和 Redis 的数据量是正相关的。数据量越大，fork 操作造成的主线程阻塞的时间越长。</p>
 <h2 id="切片集群机制"><a href="#切片集群机制" class="headerlink" title="切片集群机制"></a>切片集群机制</h2><ul>
 <li>一个切片集群共有 16384 个哈希槽，哈希槽类似于数据分区，每个键值对都会根据它的 key，被映射到一个哈希槽中。</li>
 <li>映射方法：按照CRC16 算法计算一个 16 bit 的值；再用这个 16bit 值对 16384 取模，得到 0~16383 范围内的模数，对应相应编号的哈希槽</li>

@@ -392,8 +392,8 @@ Redis也称为旁路缓存，因为读取缓存、读取数据库和更新缓存
                     
                     <div class="article-tag">
                         
-                        <a href="/tags/reids/" target="_blank">
-                            <span class="chip bg-color">reids</span>
+                        <a href="/tags/redis/" target="_blank">
+                            <span class="chip bg-color">redis</span>
                         </a>
                         
                     </div>
@@ -521,12 +521,12 @@ Redis也称为旁路缓存，因为读取缓存、读取数据库和更新缓存
 <p><strong>计数规则</strong>：每当数据被访问一次时，首先，用计数器当前的值乘以配置项 lfu_log_factor 再加 1，再取其倒数，得到一个 p 值；然后，把这个 p 值和一个取值范围在（0，1）间的随机数 r 值比大小，只有 p 值大于 r 值时，计数器才加 1。</p>
 <p><strong>counter 值的衰减机制</strong></p>
 <p>LFU 策略会计算当前时间和数据最近一次访问时间的差值，并把这个差值换算成以分钟为单位。然后，LFU 策略再把这个差值除以 lfu_decay_time 值，所得的结果就是数据 counter 要衰减的值。</p>
-<h2 id="缓存一致性"><a href="#缓存一致性" class="headerlink" title="缓存一致性"></a>缓存一致性</h2><h3 id="原因1：更新操作失败"><a href="#原因1：更新操作失败" class="headerlink" title="原因1：更新操作失败"></a>原因1：更新操作失败</h3><p>只读缓存：无法保证删改数据库和喊出缓存的原子性。</p>
+<h2 id="缓存一致性"><a href="#缓存一致性" class="headerlink" title="缓存一致性"></a>缓存一致性</h2><h3 id="原因1：更新操作失败"><a href="#原因1：更新操作失败" class="headerlink" title="原因1：更新操作失败"></a>原因1：更新操作失败</h3><p>只读缓存：无法保证删改数据库和删除缓存的原子性。</p>
 <ul>
 <li>先删缓存，后更数据库（失败）：缓存缺失，数据库读取到旧值。</li>
 <li>先更数据库，后删缓存（失败）：先在缓存中查询，但此时，就会读到旧值了</li>
 </ul>
-<p><strong>解决办法：重试机制</strong>–</p>
+<p><strong>解决办法：重试机制</strong></p>
 <ul>
 <li>把要删除的缓存值或者是要更新的数据库值暂存到消息队列中（例如使用 Kafka 消息队列）。当应用没有能够成功地删除缓存值或者是更新数据库值时，可以从消息队列中重新读取这些值，然后再次进行删除或更新。</li>
 <li>如果重试超过的一定次数，还是没有成功，我们就需要向业务层发送报错信息了。</li>
