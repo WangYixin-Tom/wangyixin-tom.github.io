@@ -4,6 +4,31 @@
   
     
     <entry>
+      <title>redis思维导图</title>
+      <link href="/2021/03/08/redis-si-wei-dao-tu/"/>
+      <url>/2021/03/08/redis-si-wei-dao-tu/</url>
+      
+        <content type="html"><![CDATA[<p><img src="redis.png" alt="思维导图"></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> redis </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> redis </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>kafka集群配置</title>
       <link href="/2020/12/10/kafka-ji-qun-pei-zhi/"/>
       <url>/2020/12/10/kafka-ji-qun-pei-zhi/</url>

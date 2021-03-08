@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://wangyixin-tom.github.io/"/>
-  <updated>2020-12-10T13:44:49.227Z</updated>
+  <updated>2021-03-08T00:09:25.459Z</updated>
   <id>https://wangyixin-tom.github.io/</id>
   
   <author>
@@ -15,6 +15,32 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>redis思维导图</title>
+    <link href="https://wangyixin-tom.github.io/2021/03/08/redis-si-wei-dao-tu/"/>
+    <id>https://wangyixin-tom.github.io/2021/03/08/redis-si-wei-dao-tu/</id>
+    <published>2021-03-08T00:06:00.000Z</published>
+    <updated>2021-03-08T00:09:25.459Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;&lt;img src=&quot;redis.png&quot;
+        
+      
+    
+    </summary>
+    
+      <category term="redis" scheme="https://wangyixin-tom.github.io/categories/redis/"/>
+    
+    
+      <category term="redis" scheme="https://wangyixin-tom.github.io/tags/redis/"/>
+    
+  </entry>
   
   <entry>
     <title>kafka集群配置</title>
@@ -500,33 +526,6 @@
           &lt;h2 id=&quot;CPU架构&quot;&gt;&lt;a href=&quot;#CPU架构&quot; class=&quot;headerlink&quot; title=&quot;CPU架构&quot;&gt;&lt;/a&gt;CPU架构&lt;/h2&gt;&lt;ul&gt;
 &lt;li&gt;一个 CPU 处理器中一般有多个物理核。&lt;/li&gt;
 &lt;li&gt;每个物理核都拥有私有的一级缓存（ L1
-        
-      
-    
-    </summary>
-    
-      <category term="redis" scheme="https://wangyixin-tom.github.io/categories/redis/"/>
-    
-    
-      <category term="redis" scheme="https://wangyixin-tom.github.io/tags/redis/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>redis阻塞及解决办法</title>
-    <link href="https://wangyixin-tom.github.io/2020/10/26/redis-zu-sai-ji-jie-jue-ban-fa/"/>
-    <id>https://wangyixin-tom.github.io/2020/10/26/redis-zu-sai-ji-jie-jue-ban-fa/</id>
-    <published>2020-10-26T13:39:01.000Z</published>
-    <updated>2021-03-07T12:24:43.496Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;hr&gt;
-&lt;h2 id=&quot;阻塞分析&quot;&gt;&lt;a href=&quot;#阻塞分析&quot; class=&quot;headerlink&quot; title=&quot;阻塞分析&quot;&gt;&lt;/a&gt;阻塞分析&lt;/h2&gt;&lt;h3 id=&quot;客户端&quot;&gt;&lt;a href=&quot;#客户端&quot; class=&quot;headerlink&quot;
         
       
     
