@@ -1,3 +1,4 @@
+https://wangyixin-tom.github.io/2021/03/10/redis-ying-yong/
 https://wangyixin-tom.github.io/2021/03/08/redis-si-wei-dao-tu/
 https://wangyixin-tom.github.io/2020/12/10/kafka-ji-qun-pei-zhi/
 https://wangyixin-tom.github.io/2020/12/09/redis6-0/

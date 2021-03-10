@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://wangyixin-tom.github.io/"/>
-  <updated>2021-03-08T00:09:25.459Z</updated>
+  <updated>2021-03-10T13:23:00.022Z</updated>
   <id>https://wangyixin-tom.github.io/</id>
   
   <author>
@@ -15,6 +15,32 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>redis应用</title>
+    <link href="https://wangyixin-tom.github.io/2021/03/10/redis-ying-yong/"/>
+    <id>https://wangyixin-tom.github.io/2021/03/10/redis-ying-yong/</id>
+    <published>2021-03-10T13:22:09.000Z</published>
+    <updated>2021-03-10T13:23:00.022Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h2 id=&quot;分布式锁&quot;&gt;&lt;a href=&quot;#分布式锁&quot; class=&quot;headerlink&quot; title=&quot;分布式锁&quot;&gt;&lt;/a&gt;分布式锁&lt;/h2&gt;&lt;p&gt;实现：set lock:codehole true ex5
+        
+      
+    
+    </summary>
+    
+      <category term="redis" scheme="https://wangyixin-tom.github.io/categories/redis/"/>
+    
+    
+      <category term="redis" scheme="https://wangyixin-tom.github.io/tags/redis/"/>
+    
+  </entry>
   
   <entry>
     <title>redis思维导图</title>
@@ -193,7 +219,7 @@
     <link href="https://wangyixin-tom.github.io/2020/10/27/redis-huan-cun/"/>
     <id>https://wangyixin-tom.github.io/2020/10/27/redis-huan-cun/</id>
     <published>2020-10-27T12:04:59.000Z</published>
-    <updated>2021-03-07T13:59:28.404Z</updated>
+    <updated>2021-03-08T14:04:39.698Z</updated>
     
     <summary type="html">
     
@@ -498,34 +524,6 @@
         
         
           &lt;h2 id=&quot;确定问题&quot;&gt;&lt;a href=&quot;#确定问题&quot; class=&quot;headerlink&quot; title=&quot;确定问题&quot;&gt;&lt;/a&gt;确定问题&lt;/h2&gt;&lt;p&gt;1、查看 Redis 的响应延迟。&lt;br&gt;2、基于当前环境下的 Redis
-        
-      
-    
-    </summary>
-    
-      <category term="redis" scheme="https://wangyixin-tom.github.io/categories/redis/"/>
-    
-    
-      <category term="redis" scheme="https://wangyixin-tom.github.io/tags/redis/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>基于多CPU多核架构的redis性能优化</title>
-    <link href="https://wangyixin-tom.github.io/2020/10/26/ji-yu-duo-cpu-duo-he-jia-gou-de-redis-xing-neng-you-hua/"/>
-    <id>https://wangyixin-tom.github.io/2020/10/26/ji-yu-duo-cpu-duo-he-jia-gou-de-redis-xing-neng-you-hua/</id>
-    <published>2020-10-26T13:40:55.000Z</published>
-    <updated>2020-10-26T13:41:25.063Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;h2 id=&quot;CPU架构&quot;&gt;&lt;a href=&quot;#CPU架构&quot; class=&quot;headerlink&quot; title=&quot;CPU架构&quot;&gt;&lt;/a&gt;CPU架构&lt;/h2&gt;&lt;ul&gt;
-&lt;li&gt;一个 CPU 处理器中一般有多个物理核。&lt;/li&gt;
-&lt;li&gt;每个物理核都拥有私有的一级缓存（ L1
         
       
     

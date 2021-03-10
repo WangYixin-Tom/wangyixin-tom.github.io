@@ -4,12 +4,14 @@
 
 <head><meta name="generator" content="Hexo 3.9.0">
     <meta charset="utf-8">
-    <meta name="keywords" content="rabbitmq消息发布, Python rabbitmq redis flask">
+    <meta name="keywords" content="redis应用, Python rabbitmq redis flask">
     <meta name="baidu-site-verification" content="code-KoKq36g1n2">
     <meta name="google-site-verification" content="yCy2azpds5XSuGZvis6OuA-XIGF5GuGpYRAaGfD6o48">
     <meta name="360-site-verification" content="b7c11a830ef90fd1464ad6206bb7b6e7">
-    <meta name="description" content="可靠投递
-mandatory当交换器无法路由消息，RabbitMQ将回发Basic.Return消息到发布者，同时回发完整消息。Basic.Return是异步的，在消息发布后的任何时候都可能发生。在rabbitpy库中，客户端自动接收Bas">
+    <meta name="description" content="分布式锁实现：set lock:codehole true ex5 nx
+注意：不要用于较长任务，可能超时释放
+优化：设置value是一个随机值，保证不会被其他线程释放
+可重入锁：基于线程的Threadlocal变量存储当前持有锁的计数。如">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -17,7 +19,7 @@ mandatory当交换器无法路由消息，RabbitMQ将回发Basic.Return消息到
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>rabbitmq消息发布 | wangyixin-tom的博客</title>
+    <title>redis应用 | wangyixin-tom的博客</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
@@ -267,13 +269,13 @@ mandatory当交换器无法路由消息，RabbitMQ将回发Basic.Return消息到
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/8.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/26.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
                     <div class="description center-align post-title">
-                        rabbitmq消息发布
+                        redis应用
                     </div>
                 </div>
             </div>
@@ -384,8 +386,8 @@ mandatory当交换器无法路由消息，RabbitMQ将回发Basic.Return消息到
                     
                     <div class="article-tag">
                         
-                        <a href="/tags/rabbitmq/" target="_blank">
-                            <span class="chip bg-color">rabbitmq</span>
+                        <a href="/tags/redis/" target="_blank">
+                            <span class="chip bg-color">redis</span>
                         </a>
                         
                     </div>
@@ -396,8 +398,8 @@ mandatory当交换器无法路由消息，RabbitMQ将回发Basic.Return消息到
                     <div class="post-cate">
                         <i class="fa fa-bookmark fa-fw icon-category"></i>
                         
-                        <a href="/categories/rabbitmq/" class="post-category" target="_blank">
-                            rabbitmq
+                        <a href="/categories/redis/" class="post-category" target="_blank">
+                            redis
                         </a>
                         
                     </div>
@@ -408,7 +410,7 @@ mandatory当交换器无法路由消息，RabbitMQ将回发Basic.Return消息到
             <div class="post-info">
                 <div class="post-date info-break-policy">
                     <i class="fa fa-calendar-minus-o fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2020-10-26
+                    2021-03-10
                 </div>
 
                 <div class="post-author info-break-policy">
@@ -422,14 +424,14 @@ mandatory当交换器无法路由消息，RabbitMQ将回发Basic.Return消息到
                 
                 <div class="info-break-policy">
                     <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    919
+                    669
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="fa fa-clock-o fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    4 分
+                    2 分
                 </div>
                 
                 
@@ -440,139 +442,27 @@ mandatory当交换器无法路由消息，RabbitMQ将回发Basic.Return消息到
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="可靠投递"><a href="#可靠投递" class="headerlink" title="可靠投递"></a>可靠投递</h2><hr>
-<h3 id="mandatory"><a href="#mandatory" class="headerlink" title="mandatory"></a>mandatory</h3><p>当交换器无法路由消息，RabbitMQ将回发Basic.Return消息到发布者，同时回发完整消息。<br>Basic.Return是异步的，在消息发布后的任何时候都可能发生。<br>在rabbitpy库中，客户端自动接收Basic.Return，并触发异常</p>
-<p>示例程序：发布失败</p>
-<pre class="line-numbers language-python"><code class="language-python"><span class="token keyword">import</span> datetime
-<span class="token keyword">import</span> rabbitpy
-
-<span class="token comment" spellcheck="true"># Connect to the default URL of amqp://guest:guest@localhost:15672/%2F</span>
-<span class="token keyword">with</span> rabbitpy<span class="token punctuation">.</span>Connection<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">as</span> connection<span class="token punctuation">:</span>
-    <span class="token keyword">with</span> connection<span class="token punctuation">.</span>channel<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">as</span> channel<span class="token punctuation">:</span>
-        <span class="token comment" spellcheck="true"># Create the message to send</span>
-        body <span class="token operator">=</span> <span class="token string">'server.cpu.utilization 25.5 1350884514'</span>
-        message <span class="token operator">=</span> rabbitpy<span class="token punctuation">.</span>Message<span class="token punctuation">(</span>channel<span class="token punctuation">,</span>
-                                   body<span class="token punctuation">,</span>
-                                   <span class="token punctuation">{</span><span class="token string">'content_type'</span><span class="token punctuation">:</span> <span class="token string">'text/plain'</span><span class="token punctuation">,</span>
-                                    <span class="token string">'timestamp'</span><span class="token punctuation">:</span> datetime<span class="token punctuation">.</span>datetime<span class="token punctuation">.</span>now<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
-                                    <span class="token string">'message_type'</span><span class="token punctuation">:</span> <span class="token string">'graphite metric'</span><span class="token punctuation">}</span><span class="token punctuation">)</span>
-
-        <span class="token comment" spellcheck="true"># Publish the message to the exchange with the routing key</span>
-        <span class="token comment" spellcheck="true"># "server-metrics" and make sure it is routed to the exchange</span>
-        message<span class="token punctuation">.</span>publish<span class="token punctuation">(</span><span class="token string">'chapter2-example'</span><span class="token punctuation">,</span> <span class="token string">'server-metrics'</span><span class="token punctuation">,</span> mandatory<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>示例程序：异常捕获</p>
-<pre class="line-numbers language-python"><code class="language-python"><span class="token keyword">import</span> datetime
-<span class="token keyword">import</span> rabbitpy
-
-<span class="token comment" spellcheck="true"># Connect to the default URL of amqp://guest:guest@localhost:15672/%2F</span>
-connection <span class="token operator">=</span> rabbitpy<span class="token punctuation">.</span>Connection<span class="token punctuation">(</span><span class="token punctuation">)</span>
-<span class="token keyword">try</span><span class="token punctuation">:</span>
-    <span class="token keyword">with</span> connection<span class="token punctuation">.</span>channel<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">as</span> channel<span class="token punctuation">:</span>
-        properties <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token string">'content_type'</span><span class="token punctuation">:</span> <span class="token string">'text/plain'</span><span class="token punctuation">,</span>
-                      <span class="token string">'timestamp'</span><span class="token punctuation">:</span> datetime<span class="token punctuation">.</span>datetime<span class="token punctuation">.</span>now<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
-                      <span class="token string">'message_type'</span><span class="token punctuation">:</span> <span class="token string">'graphite metric'</span><span class="token punctuation">}</span>
-        body <span class="token operator">=</span> <span class="token string">'server.cpu.utilization 25.5 1350884514'</span>
-        message <span class="token operator">=</span> rabbitpy<span class="token punctuation">.</span>Message<span class="token punctuation">(</span>channel<span class="token punctuation">,</span> body<span class="token punctuation">,</span> properties<span class="token punctuation">)</span>
-        message<span class="token punctuation">.</span>publish<span class="token punctuation">(</span><span class="token string">'chapter2-example'</span><span class="token punctuation">,</span>
-                        <span class="token string">'server-metrics'</span><span class="token punctuation">,</span>
-                        mandatory<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">)</span>
-<span class="token keyword">except</span> rabbitpy<span class="token punctuation">.</span>exceptions<span class="token punctuation">.</span>MessageReturnedException <span class="token keyword">as</span> error<span class="token punctuation">:</span>
-    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'Publish failure: %s'</span> <span class="token operator">%</span> error<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h3 id="发布者确认"><a href="#发布者确认" class="headerlink" title="发布者确认"></a>发布者确认</h3><p>发布者发送给RabbitMQ的每条消息，服务器发送一个确认(Basic.Ack)或者否认相应（Basic.Nack）。</p>
-<p>示例程序：发布者确认</p>
-<pre class="line-numbers language-python"><code class="language-python"><span class="token keyword">import</span> rabbitpy
-
-
-<span class="token keyword">with</span> rabbitpy<span class="token punctuation">.</span>Connection<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">as</span> connection<span class="token punctuation">:</span>
-    <span class="token keyword">with</span> connection<span class="token punctuation">.</span>channel<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">as</span> channel<span class="token punctuation">:</span>
-        exchange <span class="token operator">=</span> rabbitpy<span class="token punctuation">.</span>Exchange<span class="token punctuation">(</span>channel<span class="token punctuation">,</span> <span class="token string">'chapter4-example'</span><span class="token punctuation">)</span>
-        exchange<span class="token punctuation">.</span>declare<span class="token punctuation">(</span><span class="token punctuation">)</span>
-        channel<span class="token punctuation">.</span>enable_publisher_confirms<span class="token punctuation">(</span><span class="token punctuation">)</span>
-        message <span class="token operator">=</span> rabbitpy<span class="token punctuation">.</span>Message<span class="token punctuation">(</span>channel<span class="token punctuation">,</span>
-                                   <span class="token string">'This is an important message'</span><span class="token punctuation">,</span>
-                                   <span class="token punctuation">{</span><span class="token string">'content_type'</span><span class="token punctuation">:</span> <span class="token string">'text/plain'</span><span class="token punctuation">,</span>
-                                    <span class="token string">'message_type'</span><span class="token punctuation">:</span> <span class="token string">'very important'</span><span class="token punctuation">}</span><span class="token punctuation">)</span>
-        <span class="token keyword">if</span> message<span class="token punctuation">.</span>publish<span class="token punctuation">(</span><span class="token string">'chapter4-example'</span><span class="token punctuation">,</span> <span class="token string">'important.message'</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
-            <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'The message was confirmed'</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>rabbitpy中没有使用回调的方法，而是在确认收到之前会一直阻塞。</p>
-<h3 id="备用交换器"><a href="#备用交换器" class="headerlink" title="备用交换器"></a>备用交换器</h3><p>处理无法路由的消息。当不可路由的消息发布到已经定义了备用交换器的交换器中时，它将被路由到备用交换器。</p>
-<p>示例程序：备用交换器</p>
-<pre class="line-numbers language-python"><code class="language-python"><span class="token keyword">import</span> rabbitpy
-
-<span class="token keyword">with</span> rabbitpy<span class="token punctuation">.</span>Connection<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">as</span> connection<span class="token punctuation">:</span>
-    <span class="token keyword">with</span> connection<span class="token punctuation">.</span>channel<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">as</span> channel<span class="token punctuation">:</span>
-        my_ae <span class="token operator">=</span> rabbitpy<span class="token punctuation">.</span>Exchange<span class="token punctuation">(</span>channel<span class="token punctuation">,</span> <span class="token string">'my-ae'</span><span class="token punctuation">,</span>
-                                  exchange_type<span class="token operator">=</span><span class="token string">'fanout'</span><span class="token punctuation">)</span>
-        my_ae<span class="token punctuation">.</span>declare<span class="token punctuation">(</span><span class="token punctuation">)</span>
-        args <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token string">'alternate-exchange'</span><span class="token punctuation">:</span> my_ae<span class="token punctuation">.</span>name<span class="token punctuation">}</span>
-        exchange <span class="token operator">=</span> rabbitpy<span class="token punctuation">.</span>Exchange<span class="token punctuation">(</span>channel<span class="token punctuation">,</span>
-                                     <span class="token string">'graphite'</span><span class="token punctuation">,</span>
-                                     exchange_type<span class="token operator">=</span><span class="token string">'topic'</span><span class="token punctuation">,</span>
-                                     arguments<span class="token operator">=</span>args<span class="token punctuation">)</span>
-        exchange<span class="token punctuation">.</span>declare<span class="token punctuation">(</span><span class="token punctuation">)</span>
-        queue <span class="token operator">=</span> rabbitpy<span class="token punctuation">.</span>Queue<span class="token punctuation">(</span>channel<span class="token punctuation">,</span> <span class="token string">'unroutable-messages'</span><span class="token punctuation">)</span>
-        queue<span class="token punctuation">.</span>declare<span class="token punctuation">(</span><span class="token punctuation">)</span>
-        <span class="token keyword">if</span> queue<span class="token punctuation">.</span>bind<span class="token punctuation">(</span>my_ae<span class="token punctuation">,</span> <span class="token string">'#'</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
-            <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'Queue bound to alternate-exchange'</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h3 id="基于事务的批量处理"><a href="#基于事务的批量处理" class="headerlink" title="基于事务的批量处理"></a>基于事务的批量处理</h3><p>确保消息投递成功。</p>
-<pre class="line-numbers language-python"><code class="language-python"><span class="token keyword">import</span> rabbitpy
-
-<span class="token keyword">with</span> rabbitpy<span class="token punctuation">.</span>Connection<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">as</span> connection<span class="token punctuation">:</span>
-    <span class="token keyword">with</span> connection<span class="token punctuation">.</span>channel<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">as</span> channel<span class="token punctuation">:</span>
-        tx <span class="token operator">=</span> rabbitpy<span class="token punctuation">.</span>Tx<span class="token punctuation">(</span>channel<span class="token punctuation">)</span>
-        tx<span class="token punctuation">.</span>select<span class="token punctuation">(</span><span class="token punctuation">)</span>
-        message <span class="token operator">=</span> rabbitpy<span class="token punctuation">.</span>Message<span class="token punctuation">(</span>channel<span class="token punctuation">,</span>
-                                   <span class="token string">'This is an important message'</span><span class="token punctuation">,</span>
-                                   <span class="token punctuation">{</span><span class="token string">'content_type'</span><span class="token punctuation">:</span> <span class="token string">'text/plain'</span><span class="token punctuation">,</span>
-                                    <span class="token string">'delivery_mode'</span><span class="token punctuation">:</span> <span class="token number">2</span><span class="token punctuation">,</span>
-                                    <span class="token string">'message_type'</span><span class="token punctuation">:</span> <span class="token string">'important'</span><span class="token punctuation">}</span><span class="token punctuation">)</span>
-        message<span class="token punctuation">.</span>publish<span class="token punctuation">(</span><span class="token string">'chapter4-example'</span><span class="token punctuation">,</span> <span class="token string">'important.message'</span><span class="token punctuation">)</span>
-        <span class="token keyword">try</span><span class="token punctuation">:</span>
-            <span class="token keyword">if</span> tx<span class="token punctuation">.</span>commit<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
-                <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'Transaction committed'</span><span class="token punctuation">)</span>
-        <span class="token keyword">except</span> rabbitpy<span class="token punctuation">.</span>exceptions<span class="token punctuation">.</span>NoActiveTransactionError<span class="token punctuation">:</span>
-            <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'Tried to commit without active transaction'</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>由于错误无法路由消息时，将及时返回Basic.Return。发布者应发送TX.RollbackRPC请求并等待来自代理服务器的TX.Rollback相应，然后继续后续的工作。</p>
-<h3 id="HA队列"><a href="#HA队列" class="headerlink" title="HA队列"></a>HA队列</h3><p>允许队列在多个服务器拥有冗余副本。<br>发布者发送消息到集群中的任何节点。RabbitMQ节点同步队列中消息的状态。发布的消息被放入队列，并存储在每台服务器上。</p>
-<p>示例代码：HA队列声明</p>
-<pre class="line-numbers language-python"><code class="language-python"><span class="token keyword">import</span> rabbitpy
-
-connection <span class="token operator">=</span> rabbitpy<span class="token punctuation">.</span>Connection<span class="token punctuation">(</span><span class="token punctuation">)</span>
-<span class="token keyword">try</span><span class="token punctuation">:</span>
-    <span class="token keyword">with</span> connection<span class="token punctuation">.</span>channel<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">as</span> channel<span class="token punctuation">:</span>
-        queue <span class="token operator">=</span> rabbitpy<span class="token punctuation">.</span>Queue<span class="token punctuation">(</span>channel<span class="token punctuation">,</span>
-                               <span class="token string">'my-ha-queue'</span><span class="token punctuation">,</span>
-                               arguments<span class="token operator">=</span><span class="token punctuation">{</span><span class="token string">'x-ha-policy'</span><span class="token punctuation">:</span> <span class="token string">'all'</span><span class="token punctuation">}</span><span class="token punctuation">)</span>
-        <span class="token keyword">if</span> queue<span class="token punctuation">.</span>declare<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
-            <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'Queue declared'</span><span class="token punctuation">)</span>
-<span class="token keyword">except</span> rabbitpy<span class="token punctuation">.</span>exceptions<span class="token punctuation">.</span>RemoteClosedChannelException <span class="token keyword">as</span> error<span class="token punctuation">:</span>
-    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'Queue declare failed: %s'</span> <span class="token operator">%</span> error<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>示例代码：HA队列指定节点</p>
-<pre class="line-numbers language-python"><code class="language-python"><span class="token keyword">import</span> rabbitpy
-
-connection <span class="token operator">=</span> rabbitpy<span class="token punctuation">.</span>Connection<span class="token punctuation">(</span><span class="token punctuation">)</span>
-<span class="token keyword">try</span><span class="token punctuation">:</span>
-    <span class="token keyword">with</span> connection<span class="token punctuation">.</span>channel<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">as</span> channel<span class="token punctuation">:</span>
-        arguments <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token string">'x-ha-policy'</span><span class="token punctuation">:</span> <span class="token string">'nodes'</span><span class="token punctuation">,</span>
-                     <span class="token string">'x-ha-nodes'</span><span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token string">'rabbit@node1'</span><span class="token punctuation">,</span>
-                                    <span class="token string">'rabbit@node2'</span><span class="token punctuation">,</span>
-                                    <span class="token string">'rabbit@node3'</span><span class="token punctuation">]</span><span class="token punctuation">}</span>
-        queue <span class="token operator">=</span> rabbitpy<span class="token punctuation">.</span>Queue<span class="token punctuation">(</span>channel<span class="token punctuation">,</span>
-                               <span class="token string">'my-2nd-ha-queue'</span><span class="token punctuation">,</span>
-                               arguments<span class="token operator">=</span>arguments<span class="token punctuation">)</span>
-        <span class="token keyword">if</span> queue<span class="token punctuation">.</span>declare<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
-            <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'Queue declared'</span><span class="token punctuation">)</span>
-<span class="token keyword">except</span> rabbitpy<span class="token punctuation">.</span>exceptions<span class="token punctuation">.</span>RemoteClosedChannelException <span class="token keyword">as</span> error<span class="token punctuation">:</span>
-    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'Queue declare failed: %s'</span> <span class="token operator">%</span> error<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h3 id="消息持久化"><a href="#消息持久化" class="headerlink" title="消息持久化"></a>消息持久化</h3><p>delivery-mode=1，保存到内存；delivery-mode=2，保存到磁盘。服务器重启后，消息仍在队列中（队列必须声明为durable）。</p>
-<p>如果rabbitmq经常等待操作系统响应读写请求，消息吞吐量将大大降低。</p>
-<h2 id="rabbitmq回推"><a href="#rabbitmq回推" class="headerlink" title="rabbitmq回推"></a>rabbitmq回推</h2><p>发布者发布消息太快，RabbitMQ发送Channel.Flow RPC方法，阻塞发布者。发布者不能发送消息直到收到另一条Channel.Flow命令。</p>
-<p>示例代码：检测连接状态</p>
-<pre class="line-numbers language-python"><code class="language-python"><span class="token keyword">import</span> rabbitpy
-
-connection <span class="token operator">=</span> rabbitpy<span class="token punctuation">.</span>Connection<span class="token punctuation">(</span><span class="token punctuation">)</span>
-<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'Channel is Blocked? %s'</span> <span class="token operator">%</span> connection<span class="token punctuation">.</span>blocked<span class="token punctuation">)</span>
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+                <h2 id="分布式锁"><a href="#分布式锁" class="headerlink" title="分布式锁"></a>分布式锁</h2><p>实现：set lock:codehole true ex5 nx</p>
+<p>注意：不要用于较长任务，可能超时释放</p>
+<p>优化：设置value是一个随机值，保证不会被其他线程释放</p>
+<p>可重入锁：基于线程的Threadlocal变量存储当前持有锁的计数。如果当前有该锁的记录，则计数加一，返回加锁成功。否则尝试加锁，若不存在锁则成功，其他线程/进程会加锁失败。</p>
+<h2 id="延时队列"><a href="#延时队列" class="headerlink" title="延时队列"></a>延时队列</h2><p>实现：使用zset ，消息序列化成value，到期时间作为score。为保障可用性，可以使用多个线程/进程轮询到期任务进行处理（zrangebyscore）。通过zrem结果，判断任务被哪个线程/进程获取，再进一步处理。</p>
+<p>优化：考虑将zrangebyscore 和zrem，封装lua scripting,避免获取任务的浪费操作。</p>
+<h2 id="用户一年的签到统计"><a href="#用户一年的签到统计" class="headerlink" title="用户一年的签到统计"></a>用户一年的签到统计</h2><p>使用位图，1天的签到记录只需要占据一个位，一年365位。</p>
+<h2 id="页面访问量"><a href="#页面访问量" class="headerlink" title="页面访问量"></a>页面访问量</h2><p>简单方案：使用set集合存储当天访问某一个用户ID， scard可以统计集合大小。</p>
+<p>优化：用户很多时，使用HyperLogLog，提供了不精确的去重方案，节省空间。pfadd/pfcount</p>
+<h2 id="数据去重"><a href="#数据去重" class="headerlink" title="数据去重"></a>数据去重</h2><p>场景：用户为看过的内容推荐去重；爬虫URL去重；</p>
+<p>实现：简单去重，使用set。大数据去重，使用布隆过滤器（redis&gt;4.0）bf.add/bf.exists。</p>
+<p>误差：布隆过滤器返回存在，实际可能不存在；返回不存在，实际一定不存在。</p>
+<p>原理：大型位数组和几个不一样的无偏hash函数。</p>
+<h2 id="简单限流"><a href="#简单限流" class="headerlink" title="简单限流"></a>简单限流</h2><p>场景：限制用户行为在一定时间内的次数</p>
+<p>实现：每个用户每种行为作为key，使用zset,value和score都使用时间戳。在pipeline中，增加用户行为，移除时间窗口之前数据，<strong>获取当前剩下行为总数</strong>，并给该key增加过期时间，避免长期占用内存。通过剩下行为总数，判断是否超额。</p>
+<p>缺点：不适合1min操作不超过100万次这种场景。</p>
+<h2 id="漏斗限流"><a href="#漏斗限流" class="headerlink" title="漏斗限流"></a>漏斗限流</h2><p>实现：使用redis-cell（redis 4.0），其使用漏斗算法，提供了限流指令。cl.throttle。</p>
+<p>非常棒，被拒绝还提供了重试时间。</p>
+<h2 id="附近的人"><a href="#附近的人" class="headerlink" title="附近的人"></a>附近的人</h2><p>实现：使用GeoHash.</p>
+<p>原理：将二维经纬度数据映射到一维整数，距离近的点映射距离也会比较近。类似逐步切分蛋糕。</p>
+<p>注意：Geo数据将被放到一个zset中。集群环境中集合迁移，可能会影响线上服务运行，建议GEO数据使用单独的redis示例部署。</p>
 
             </div>
             <hr />
@@ -731,9 +621,9 @@ connection <span class="token operator">=</span> rabbitpy<span class="token punc
             <br/>
             <span xmlns:dct="http://purl.org/dc/terms/" href="http://purl.org/dc/dcmitype/Text"
                   property="dct:title" rel="dct:type">
-                    《rabbitmq消息发布》
+                    《redis应用》
                 </span> 由
-            <a xmlns:cc="http://creativecommons.org/ns#" href="/2020/10/26/rabbitmq-xiao-xi-fa-bu/" property="cc:attributionName"
+            <a xmlns:cc="http://creativecommons.org/ns#" href="/2021/03/10/redis-ying-yong/" property="cc:attributionName"
                rel="cc:attributionURL">
                 wangyixin-tom
             </a> 采用
@@ -774,7 +664,7 @@ connection <span class="token operator">=</span> rabbitpy<span class="token punc
         repo: 'wangyixin-tom.github.io',
         owner: 'WangYixin-Tom',
         admin: "WangYixin-Tom",
-        id: '2020/10/26/rabbitmq-xiao-xi-fa-bu/',
+        id: '2021/03/10/redis-ying-yong/',
         distractionFreeMode: false  // Facebook-like distraction free mode
     });
 
@@ -1057,56 +947,51 @@ connection <span class="token operator">=</span> rabbitpy<span class="token punc
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fa fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="fa fa-dot-circle-o"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="/2020/10/26/rabbitmq-xiao-xi-lu-you/">
+                <a href="/2021/03/10/redis-ying-yong/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/17.jpg" class="responsive-img" alt="rabbitmq消息路由">
+                        <img src="/medias/featureimages/26.jpg" class="responsive-img" alt="redis应用">
                         
-                        <span class="card-title">rabbitmq消息路由</span>
+                        <span class="card-title">redis应用</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            
-[toc]
-
-direct交换器
-特点
-投递的消息有一个或者多个确定的目标。
-检查字符串是否相等，不允许使用模式匹配。
-绑定相同路由键的队列都能收到该路由键对应的消息。
-适用于RPC消息通信模式下的路由应答消息
-
-示例代码：Direct交
+                            分布式锁实现：set lock:codehole true ex5 nx
+注意：不要用于较长任务，可能超时释放
+优化：设置value是一个随机值，保证不会被其他线程释放
+可重入锁：基于线程的Threadlocal变量存储当前持有锁的计数。如
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="fa fa-clock-o fa-fw icon-date"></i>2020-10-26
-                        </span>
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2021-03-10
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fa fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/rabbitmq/" class="post-category" target="_blank">
-                                    rabbitmq
+                            <a href="/categories/redis/" class="post-category" target="_blank">
+                                    redis
                                 </a>
                             
                             
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/rabbitmq/" target="_blank">
-                        <span class="chip bg-color">rabbitmq</span>
+                    <a href="/tags/redis/" target="_blank">
+                        <span class="chip bg-color">redis</span>
                     </a>
                     
                 </div>
@@ -1120,26 +1005,25 @@ direct交换器
                 下一篇&nbsp;<i class="fa fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2020/10/26/redis-rdb-ji-zhi/">
+                <a href="/2021/03/08/redis-si-wei-dao-tu/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/9.jpg" class="responsive-img" alt="redis RBD机制">
+                        <img src="/medias/featureimages/15.jpg" class="responsive-img" alt="redis思维导图">
                         
-                        <span class="card-title">redis RBD机制</span>
+                        <span class="card-title">redis思维导图</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            RDB 就是 Redis DataBase，内存中的全量数据在某一个时刻的状态记录。
-快照机制引入原因：AOF日志进行故障恢复的时候，需要逐一执行操作日志。如果操作日志非常多，Redis 恢复得很慢，影响到正常使用。
-bgsave命令：主进
+                            
+
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="fa fa-clock-o fa-fw icon-date"></i>2020-10-26
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2021-03-08
                             </span>
                         <span class="publish-author">
                             
