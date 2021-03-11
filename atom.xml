@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://wangyixin-tom.github.io/"/>
-  <updated>2021-03-10T13:23:00.022Z</updated>
+  <updated>2021-03-11T13:59:14.217Z</updated>
   <id>https://wangyixin-tom.github.io/</id>
   
   <author>
@@ -15,6 +15,33 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>慢查询定位与分析</title>
+    <link href="https://wangyixin-tom.github.io/2021/03/11/man-cha-xun-ding-wei-yu-fen-xi/"/>
+    <id>https://wangyixin-tom.github.io/2021/03/11/man-cha-xun-ding-wei-yu-fen-xi/</id>
+    <published>2021-03-11T13:58:12.000Z</published>
+    <updated>2021-03-11T13:59:14.217Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h2 id=&quot;定位慢sql&quot;&gt;&lt;a href=&quot;#定位慢sql&quot; class=&quot;headerlink&quot; title=&quot;定位慢sql&quot;&gt;&lt;/a&gt;定位慢sql&lt;/h2&gt;&lt;p&gt;1、查看慢查询日志确定已经执行完的慢查询&lt;/p&gt;
+&lt;pre class=&quot;line-numbers
+        
+      
+    
+    </summary>
+    
+      <category term="redis" scheme="https://wangyixin-tom.github.io/categories/redis/"/>
+    
+    
+      <category term="redis" scheme="https://wangyixin-tom.github.io/tags/redis/"/>
+    
+  </entry>
   
   <entry>
     <title>redis应用</title>
@@ -498,32 +525,6 @@
         
         
           &lt;p&gt;基本数据结构包括：String（字符串）、List（列表）、Hash（哈希）、Set（集合）和 Sorted
-        
-      
-    
-    </summary>
-    
-      <category term="redis" scheme="https://wangyixin-tom.github.io/categories/redis/"/>
-    
-    
-      <category term="redis" scheme="https://wangyixin-tom.github.io/tags/redis/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>redis变慢以及优化方法</title>
-    <link href="https://wangyixin-tom.github.io/2020/10/26/redis-bian-man-yi-ji-you-hua-fang-fa/"/>
-    <id>https://wangyixin-tom.github.io/2020/10/26/redis-bian-man-yi-ji-you-hua-fang-fa/</id>
-    <published>2020-10-26T13:42:19.000Z</published>
-    <updated>2020-10-26T13:43:17.126Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;h2 id=&quot;确定问题&quot;&gt;&lt;a href=&quot;#确定问题&quot; class=&quot;headerlink&quot; title=&quot;确定问题&quot;&gt;&lt;/a&gt;确定问题&lt;/h2&gt;&lt;p&gt;1、查看 Redis 的响应延迟。&lt;br&gt;2、基于当前环境下的 Redis
         
       
     
