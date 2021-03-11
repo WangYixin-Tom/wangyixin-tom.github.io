@@ -8,7 +8,7 @@ date: 2020-10-26 22:19:29
 password:
 summary:
 tags:
-- rammitmq
+- rabbitmq
 categories:
 - rabbitmq
 ---
