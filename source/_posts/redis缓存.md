@@ -96,12 +96,19 @@ Redis也称为旁路缓存，因为读取缓存、读取数据库和更新缓存
 - 在设置了过期时间的数据中进行淘汰，包括 volatile-random、volatile-ttl、volatile-lru、volatile-lfu（Redis  4.0 后新增）。
 - 在所有数据范围内进行淘汰，包括 allkeys-lru、allkeys-random、allkeys-lfu（Redis 4.0 后新增）。
 
+**淘汰策略**
+
+- volatile-lru 尝试淘汰设置了过期时间的 key，最少使用的 key 优先被淘汰。没有设置过期时间的 key 不会被淘汰，这样可以保证需要持久化的数据不会突然丢失。
+-  volatile-ttl 跟上面一样，除了淘汰的策略不是 LRU，而是 key 的剩余寿命 ttl 的值，ttl 越小越优先被淘汰。
+- volatile-random 跟上面一样，不过淘汰的 key 是过期 key 集合中随机的 key。
+-  allkeys-lru 区别于 volatile-lru，这个策略要淘汰的 key 对象是全体的 key 集合，而不只是过期的 key 集合。这意味着没有设置过期时间的 key 也会被淘汰。
+- allkeys-random 跟上面一样，不过淘汰的策略是随机的 key
+
 **LRU**
 
 Redis 中，LRU 算法被做了简化。
 
 - Redis 在决定淘汰的数据时，第一次会随机选出 N 个数据，把它们作为候选集合。
-
 - Redis 会比较这 N 个数据的 lru 字段，把 lru 字段值最小的数据从缓存中淘汰出去。
 - 再次淘汰数据时，Redis 需要挑选数据进入第一次淘汰时创建的候选集合。能进入候选集合的数据的 lru 字段值必须小于候选集合中最小的 lru 值
 
