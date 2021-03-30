@@ -73,3 +73,62 @@ $> bin/kafka-server-start.sh config/server.properties
 Swap：设置成一个比较小的值，当开始使用 swap 空间时，能够观测到 Broker 性能开始出现急剧下降，避免直接OOM，从而给你进一步调优和诊断问题的时间。
 
 提交时间（Flush 落盘时间）：适当地增加提交间隔来降低物理磁盘的写操作
+
+## 动态 Broker 参数配置
+
+**配置的类别**
+
+read-only。只有重启 Broker，才能令修改生效。
+
+per-broker。修改它之后，只会在对应的 Broker 上生效。
+
+cluster-wide。被修改它之后，会在整个集群范围内生效。
+
+**使用场景**
+
+- 动态调整 Broker 端各种线程池大小，实时应对突发流量。
+- 动态调整 Broker 端连接信息或安全配置信息。
+- 动态更新 SSL Keystore 有效期。
+- 动态调整 Broker 端 Compact 操作性能。
+- 实时变更 JMX 指标收集器 (JMX Metrics Reporter)。
+
+**实现**
+
+Kafka 将动态 Broker 参数保存在 ZooKeeper 中，具体的 znode 路径如下图所示。
+
+[](atoconfig.png)
+
+changes 是用来实时监测动态参数变更的；
+
+topics 是用来保存 Kafka 主题级别参数的。不属于动态 Broker 端参数，但支持动态变更的。
+
+users 和 clients 则是用于动态调整客户端配额（Quota）的 znode 节点。连入集群的客户端的吞吐量或者是限定它们使用的 CPU 资源。
+
+/config/brokers znode 才是保存动态 Broker 参数。第一类子节点< default >，保存 cluster-wide 动态参数；另一类则以 broker.id 为名，保存 Broker 的 per-broker 范围参数。
+
+**设置**
+
+```shell
+# 设置 cluster-wide 范围值,entity-default
+$ bin/kafka-configs.sh --bootstrap-server kafka-host:port --entity-type brokers --entity-default --alter --add-config unclean.leader.election.enable=true
+# 查看设置
+$ bin/kafka-configs.sh --bootstrap-server kafka-host:port --entity-type brokers --entity-default --describe
+# 设置ID 为 1 的 Broker
+$ bin/kafka-configs.sh --bootstrap-server kafka-host:port --entity-type brokers --entity-name 1 --alter --add-config unclean.leader.election.enable=false
+# 查看设置
+$ bin/kafka-configs.sh --bootstrap-server kafka-host:port --entity-type brokers --entity-name 1 --describe
+
+
+# 删除cluster-wide范围参数，删除动态参数要指定 delete-config
+$ bin/kafka-configs.sh --bootstrap-server kafka-host:port --entity-type brokers --entity-default --alter --delete-config unclean.leader.election.enable
+
+# 删除per-broker范围参数，删除动态参数要指定 delete-config
+$ bin/kafka-configs.sh --bootstrap-server kafka-host:port --entity-type brokers --entity-name 1 --alter --delete-config unclean.leader.election.enable
+```
+
+**常用动态参数**
+
+- log.retention.ms：日志留存时间
+- num.io.threads 和 num.network.threads:Broker 端请求处理能力经常要按需扩容。
+- num.replica.fetchers：执行 Follower 副本向 Leader 副本的拉取。
+
