@@ -25,15 +25,15 @@ Broker 在启动时，会尝试去 ZooKeeper 中创建 /controller 节点。Kafk
 
 - 主题管理（创建、删除、增加分区）
 - 分区重分配
-- Preferred 领导者选举
+- Preferred 领导者选举：Preferred 领导者选举主要是 Kafka 为了避免部分 Broker 负载过重而提供的一种换 Leader 的方案
 - 集群成员管理（新增 Broker、Broker 主动关闭、Broker 宕机）：利用 Watch 机制检测变更。
-- 数据服务
+- 数据服务：保存了最全的集群元数据信息
 
-[](data.jpg)
+![](data.jpg)
 
 ## **控制器故障转移**
 
 故障转移指的是，当运行中的控制器突然宕机或意外终止时，Kafka 能够快速地感知到，并立即启用备用控制器来代替之前失败的控制器。这个过程就被称为 Failover，该过程是自动完成的，无需你手动干预。
 
-[](Failover.jpg)
+![](Failover.jpg)
 

@@ -22,17 +22,15 @@ categories:
 - 定义消息可见性，即用来标识分区下的哪些消息是可以被消费者消费的。
 - 帮助 Kafka 完成副本同步。
 
-**LEO(Log End Offset)**
-
-表示副本写入下一条消息的位移值。
+**LEO（Log End Offset）**表示副本写入下一条消息的位移值。
 
 ## 高水位更新机制
 
-[](water.jpg)
+![](water.jpg)
 
-[](watertime.jpg)
+![](watertime.jpg)
 
-**Leader 副本**
+### **Leader 副本高水位**
 
 **处理生产者请求**的逻辑如下：
 
@@ -44,7 +42,7 @@ i. 获取 Leader 副本所在 Broker 端保存的所有远程副本 LEO 值（LE
 
 ii. 获取 Leader 副本高水位值：currentHW。
 
-iii. 更新 **currentHW = max{currentHW, min（LEO-1, LEO-2, ……，LEO-n）}**。
+iii. 更新 `currentHW = max{currentHW, min（LEO-1, LEO-2, ……，LEO-n）}`。
 
 **处理 Follower 副本拉取消息**的逻辑如下：
 
@@ -54,7 +52,7 @@ iii. 更新 **currentHW = max{currentHW, min（LEO-1, LEO-2, ……，LEO-n）}*
 
 3、更新分区高水位值（具体步骤与处理生产者请求的步骤相同）。
 
-**Follower 副本**
+### **Follower 副本高水位**
 
 **从 Leader 拉取消息的处理逻辑**如下：
 
@@ -68,7 +66,7 @@ i. 获取 Leader 发送的高水位值：currentHW。
 
 ii. 获取步骤 2 中更新过的 LEO 值：currentLEO。
 
-iii. 更新高水位为 min(currentHW, currentLEO)。
+iii. 更新高水位为 `min(currentHW, currentLEO)`。
 
 ## Leader Epoch
 

@@ -21,29 +21,27 @@ Kafka 拦截器分为生产者拦截器和消费者拦截器。
 
 **使用**
 
-当前 Kafka 拦截器的设置方法是通过参数配置完成的。生产者和消费者两端有一个相同的参数，名字叫 interceptor.classes，它指定的是一组类的列表，每个类就是特定逻辑的拦截器实现类。
+当前 Kafka 拦截器的设置方法是通过参数配置完成的。生产者和消费者两端有一个相同的参数，名字叫` interceptor.classes`，它指定的是一组类的列表，每个类就是特定逻辑的拦截器实现类。
 
 ```java
-
 Properties props = new Properties();
 List<String> interceptors = new ArrayList<>();
 interceptors.add("com.yourcompany.kafkaproject.interceptors.AddTimestampInterceptor"); // 拦截器1
 interceptors.add("com.yourcompany.kafkaproject.interceptors.UpdateCounterInterceptor"); // 拦截器2
 props.put(ProducerConfig.INTERCEPTOR_CLASSES_CONFIG, interceptors);
-……
 ```
 
-AddTimeStampInterceptor 和 UpdateCounterInterceptor 这两个类以及你自己编写的所有 Producer 端拦截器实现类都要继承 org.apache.kafka.clients.producer.ProducerInterceptor 接口。该接口是 Kafka 提供的，里面有两个核心的方法。
+`AddTimeStampInterceptor` 和 `UpdateCounterInterceptor `这两个类以及你自己编写的所有 Producer 端拦截器实现类都要继承 `org.apache.kafka.clients.producer.ProducerInterceptor `接口。该接口是 Kafka 提供的，里面有两个核心的方法。
 
-- onSend：该方法会在消息发送之前被调用。如果你想在发送之前对消息“美美容”。
-- onAcknowledgement：该方法会在消息成功提交或发送失败之后被调用。onAcknowledgement 的调用要早于 callback 的调用。
+- `onSend`：该方法会在消息发送之前被调用。如果你想在发送之前对消息“美美容”。
+- `onAcknowledgement`：该方法会在消息成功提交或发送失败之后被调用。onAcknowledgement 的调用要早于 callback 的调用。
 
 
 
-消费者拦截器具体的实现类要实现 org.apache.kafka.clients.consumer.ConsumerInterceptor 接口，这里面也有两个核心方法。
+消费者拦截器具体的实现类要实现 `org.apache.kafka.clients.consumer.ConsumerInterceptor` 接口，这里面也有两个核心方法。
 
-- onConsume：该方法在消息返回给 Consumer 程序之前调用。也就是说在开始正式处理消息之前，拦截器会先拦一道，搞一些事情，之后再返回给你。
-- onCommit：Consumer 在提交位移之后调用该方法。通常你可以在该方法中做一些记账类的动作，比如打日志等。
+- `onConsume`：该方法在消息返回给 Consumer 程序之前调用。也就是说在开始正式处理消息之前，拦截器会先拦一道，搞一些事情，之后再返回给你。
+- `onCommit`：Consumer 在提交位移之后调用该方法。通常你可以在该方法中做一些记账类的动作，比如打日志等。
 
 **场景**
 
@@ -114,5 +112,7 @@ public class AvgLatencyConsumerInterceptor implements ConsumerInterceptor<String
 
     @Override
     public void configure(Map<String, ?> configs) {
+    }
+}
 ```
 
