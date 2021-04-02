@@ -96,7 +96,7 @@ bin/kafka-console-consumer.sh --bootstrap-server kafka_host:port --topic __consu
 
 第 3 步，在 ZooKeeper 中执行 rmr  /controller，触发 Controller 重选举，刷新 Controller 缓存。--非必须，可能造成大面积的分区 Leader 重选举
 
-### _consumer_offsets 占用太多的磁盘
+### __consumer_offsets 占用太多的磁盘
 
  jstack 命令查看一下 kafka-log-cleaner-thread 前缀的线程状态。通常情况下，这都是因为该线程挂掉了，无法及时清理此内部主题。
 

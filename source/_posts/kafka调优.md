@@ -50,9 +50,9 @@ categories:
 
 ### 调优吞吐量
 
-1、broker 端参数 num.replica.fetchers 表示的是 Follower 副本用多少个线程来拉取消息，默认使用 1 个线程。如果你的 Broker 端 CPU 资源很充足，不妨适当调大该参数值，加快 Follower 副本的同步速度。
+1、broker 端参数 `num.replica.fetchers `表示的是 Follower 副本用多少个线程来拉取消息，默认使用 1 个线程。如果你的 Broker 端 CPU 资源很充足，不妨适当调大该参数值，加快 Follower 副本的同步速度。
 
-2、在 Producer 端，如果要改善吞吐量，通常的标配是增加消息批次的大小以及批次缓存时间，即 batch.size 和 linger.ms。
+2、在 Producer 端，如果要改善吞吐量，通常的标配是增加消息批次的大小以及批次缓存时间，即 `batch.size` 和 `linger.ms`。
 
 3、压缩算法也配置上，以减少网络 I/O 传输量，从而间接提升吞吐量。当前，和 Kafka 适配最好的两个压缩算法是 LZ4 和 zstd
 
@@ -60,8 +60,8 @@ categories:
 
 ### 调优延时
 
-1、在 Broker 端，我们依然要增加 num.replica.fetchers 值以加快 Follower 副本的拉取速度，减少整个消息处理的延时
+1、在 Broker 端，我们依然要增加 `num.replica.fetchers` 值以加快 Follower 副本的拉取速度，减少整个消息处理的延时
 
-2、设置 linger.ms=0，同时不要启用压缩。因为压缩操作本身要消耗 CPU 时间。
+2、设置 `linger.ms=0`，同时不要启用压缩。因为压缩操作本身要消耗 CPU 时间。
 
-3、Consumer 端，我们保持 fetch.min.bytes=1 即可，也就是说，只要 Broker 端有能返回的数据，立即令其返回给 Consumer，缩短 Consumer 消费延时。
+3、Consumer 端，我们保持` fetch.min.bytes=1` 即可，也就是说，只要 Broker 端有能返回的数据，立即令其返回给 Consumer，缩短 Consumer 消费延时。
