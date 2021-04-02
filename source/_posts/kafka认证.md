@@ -39,5 +39,5 @@ Delegation Token：补充现有 SASL 机制的轻量级认证机制，是在 1.1
 
 可以使用 SSL 来做通信加密，使用 SASL 来做 Kafka 的认证实现。
 
-[](compare.jpg)
+![](compare.jpg)
 

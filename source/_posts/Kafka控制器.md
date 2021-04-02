@@ -15,7 +15,7 @@ categories:
 
 控制器组件（Controller），是 Apache Kafka 的核心组件。它的主要作用是在 Apache ZooKeeper 的帮助下管理和协调整个 Kafka 集群。每个正常运转的 Kafka 集群，在任意时刻都有且只有一个控制器。
 
-[](zookeeper.jpg)
+![](zookeeper.jpg)
 
 ## **控制器选举**
 
