@@ -31,6 +31,8 @@ Rabbitmq是生产者与消费者模型，负责接收、存储、转发消息。
 
 **Broker：服务节点**
 
+**Virtual host：**虚拟主机，用于逻辑隔离，最上层消息的路由。一个Virtual host可以若干个Exchange和Queue，同一个Virtual host不能有同名的Exchange或Queue
+
 **Queue：队列**，RabbitMQ的内部对象，用于存储信息。多个消费可以订阅同一个队列，但消息会被平均分摊，而不是每个消费者都会受到所有的消息。
 
 **Exchange：交换器**，生产者将消息发送到交换器，交换器将消息路由到一个或者多个队列中
