@@ -8,9 +8,11 @@ date: 2021-04-05 20:05:22
 password:
 summary:
 tags:
-- rabbitmq, 面试
+- rabbitmq
+- 面试
 categories:
-- rabbitmq, 面试
+- rabbitmq
+- 面试
 ---
 
 ## MQ的优缺点
