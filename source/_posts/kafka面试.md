@@ -9,10 +9,10 @@ password:
 summary:
 tags:
 - kafka
-- 面试
+- interview
 categories:
 - kafka
-- 面试
+- interview
 ---
 
 

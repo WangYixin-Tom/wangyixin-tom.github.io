@@ -9,10 +9,10 @@ password:
 summary:
 tags:
 - rabbitmq
-- 面试
+- interview
 categories:
 - rabbitmq
-- 面试
+- interview
 ---
 
 ## MQ的优缺点

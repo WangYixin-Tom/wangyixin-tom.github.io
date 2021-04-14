@@ -9,10 +9,10 @@ password:
 summary:
 tags:
 - mysql
-- 面试
+- interview
 categories:
 - mysql
-- 面试
+- interview
 ---
 
 ## 架构
