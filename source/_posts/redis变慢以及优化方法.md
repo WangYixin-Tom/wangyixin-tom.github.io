@@ -33,4 +33,4 @@ categories:
 
 2.如果一批 key 的确是同时过期，你还可以在 EXPIREAT 和 EXPIRE 的过期时间参数上，加上一个一定大小范围内的随机数
 
-3.获取整个实例的所有key，建议使用SCAN命令代替。客户端通过执行SCAN $cursor COUNT $count可以得到一批key以及下一个游标$cursor，然后把这个$cursor当作SCAN的参数，再次执行，以此往复，直到返回的$cursor为0时，就把整个实例中的所有key遍历出来了。
+3.获取整个实例的所有key，建议使用SCAN命令代替。客户端通过执行`SCAN $cursor COUNT $count`可以得到一批key以及下一个游标`$cursor`，然后把这个`$cursor`当作SCAN的参数，再次执行，以此往复，直到返回的`$cursor`为0时，就把整个实例中的所有key遍历出来了。

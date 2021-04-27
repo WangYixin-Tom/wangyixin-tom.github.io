@@ -33,15 +33,15 @@ redis中的键值对采用哈希表，哈希表就是一个数组，数组的每
 
 ```c
 struct RedisObject {
-    int4 type; // 4bits
-    int4 encoding; // 4bits
-    int24 lru; // 24bits
-    int32 refcount; // 4bytes
-    void *ptr; // 8bytes，64-bit system
+    int4 type; // 4bits，类型
+    int4 encoding; // 4bits，存储形式
+    int24 lru; // 24bits，LRU 信息
+    int32 refcount; // 4bytes，引用计数
+    void *ptr; // 8bytes，对象内容的具体存储位置
 } robj;
 ```
 
-不同的对象具有不同的类型 type(4bit)，同一个类型的 type 会有不同的存储形式 encoding(4bit)，为了记录对象的 LRU 信息，使用了 24 个 bit 来记录 LRU 信息。每个对象都有个引用计数，当引用计数为零时，对象就会被销毁，内存被回收。ptr 指针将指向对象内容 (body) 的具体存储位置。这样一个 RedisObject 对象头需要占据 16 字节的存储空间。
+ RedisObject 对象头需要占据 16 字节的存储空间。
 
 ## 字符串
 

@@ -15,7 +15,7 @@ categories:
 
 ## 分布式锁
 
-实现：set lock:codehole true ex5 nx
+实现：`set lock:codehole true ex 5 nx`
 
 注意：不要用于较长任务，可能超时释放
 

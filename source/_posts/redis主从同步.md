@@ -42,7 +42,7 @@ psync 命令包含了主库的 runID 和复制进度 offset 两个参数。
 主库执行 bgsave 命令，生成 RDB 文件，接着将文件发给从库。
 从库接收到 RDB 文件后，会先清空当前数据库（避免之前数据的影响），然后加载 RDB 文件。
 
-3、主库会把第二阶段执行过程中新收到的写命令(replication buffer中的修改操作)，再发送给从库。
+3、主库会把第二阶段执行过程中新收到的写命令（replication buffer中的修改操作），再发送给从库。
 主库会在内存中使用 replication buffer，记录 RDB 文件生成后收到的所有写操作。
 
 ![主从第一次同步](zhucongtongbu.jpg)

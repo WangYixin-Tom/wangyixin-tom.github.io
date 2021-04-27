@@ -39,7 +39,7 @@ key 不存在， key 会被创建。执行完业务逻辑后，使用 DEL 命令
   - 操作共享数据时发生了异常，结果一直没有执行最后的 DEL 命令释放锁。
   - 客户端 A 执行了 SETNX 命令加锁后，客户端 B 执行了 DEL 命令释放锁，客户端 A 的锁就被误释放
 
-+ SET key value [EX seconds | PX milliseconds]  [NX]
++ `SET key value [EX seconds | PX milliseconds]  [NX]`
 
 ### 多个 Redis 节点的高可靠分布式锁
 
