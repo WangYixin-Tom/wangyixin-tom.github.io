@@ -89,6 +89,6 @@ baseOffset: 15 lastOffset: 29 count: 15 baseSequence: -1 lastSequence: -1 produc
 ## 查看消费者组位移
 
 ```shell
-bin/kafka-consumer-groups.sh --bootstrap-server kafka-host:port --describe--group test-group
+bin/kafka-consumer-groups.sh --bootstrap-server kafka-host:port --describe --group test-group
 ```
 

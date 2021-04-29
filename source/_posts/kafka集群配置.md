@@ -78,11 +78,11 @@ Swap：设置成一个比较小的值，当开始使用 swap 空间时，能够�
 
 **配置的类别**
 
-read-only。只有重启 Broker，才能令修改生效。
+read-only。只有重启 Broker，才能修改生效。
 
-per-broker。修改它之后，只会在对应的 Broker 上生效。
+per-broker。修改后，只会在对应的 Broker 上生效。
 
-cluster-wide。被修改它之后，会在整个集群范围内生效。
+cluster-wide。修改后，会在整个集群范围内生效。
 
 **使用场景**
 
@@ -90,19 +90,19 @@ cluster-wide。被修改它之后，会在整个集群范围内生效。
 - 动态调整 Broker 端连接信息或安全配置信息。
 - 动态更新 SSL Keystore 有效期。
 - 动态调整 Broker 端 Compact 操作性能。
-- 实时变更 JMX 指标收集器 (JMX Metrics Reporter)。
+- 实时变更 JMX 指标收集器 。
 
 **实现**
 
 Kafka 将动态 Broker 参数保存在 ZooKeeper 中，具体的 znode 路径如下图所示。
 
-[](atoconfig.png)
+![](atoconfig.png)
 
 changes 是用来实时监测动态参数变更的；
 
 topics 是用来保存 Kafka 主题级别参数的。不属于动态 Broker 端参数，但支持动态变更的。
 
-users 和 clients 则是用于动态调整客户端配额（Quota）的 znode 节点。连入集群的客户端的吞吐量或者是限定它们使用的 CPU 资源。
+users 和 clients 则是用于动态调整客户端配额的 znode 节点。连入集群的客户端的吞吐量或者是限定它们使用的 CPU 资源。
 
 /config/brokers znode 才是保存动态 Broker 参数。第一类子节点< default >，保存 cluster-wide 动态参数；另一类则以 broker.id 为名，保存 Broker 的 per-broker 范围参数。
 
