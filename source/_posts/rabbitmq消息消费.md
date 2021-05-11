@@ -13,11 +13,7 @@ categories:
 - rabbitmq
 ---
 
-
-
 ## 消费方法
-
-------------
 
 ### **Basic.Get**
 
@@ -43,7 +39,7 @@ with rabbitpy.Connection() as connection:
                     break
 ```
 
-###**Basic.Consume**
+### **Basic.Consume**
 
 - 消费者可用时，异步方式发送消息
 - 应用程序自动接收消息，直到Basic.Cancel
@@ -81,12 +77,7 @@ with rabbitpy.Connection() as connection:
 ### **对比**
 Consume吞吐量更大。Get包含了每条消息的同步通信开销。
 
-
----------------
-
 ## 消费性能优化
-
-----------------
 
 ### 1、no-ack
 
@@ -143,11 +134,7 @@ with rabbitpy.Connection() as connection:
 
 事务允许消费者应用程序提交和回滚批量操作。不适用QoS时，可以获得轻微的性能提升。
 
----------
-
 ## 拒绝消息
-
---------
 
 ### Basic.Reject
 
@@ -186,11 +173,7 @@ with rabbitpy.Connection() as connection:
 
 ```
 
----------
-
 ## 控制队列
-
-----------
 
 ### 临时队列
 
@@ -247,6 +230,7 @@ with rabbitpy.Connection() as connection:
 **队列持久性**
 服务器重启后队列仍然存在。
 示例程序：持久队列
+
 ```
 import rabbitpy
 
@@ -274,7 +258,9 @@ with rabbitpy.Connection() as connection:
 ```
 
 **最大队列长度**
-一旦达到最大值，添加新消息时，删除队列前端的消息。声明队列时，如果指定死信交换器，前端移除的消息将成为死信。
+一旦达到最大值，添加新消息时，删除队列前端的消息。
+
+声明队列时，如果指定死信交换器，前端移除的消息将成为死信。
 
 示例程序：最大长度队列
 ```

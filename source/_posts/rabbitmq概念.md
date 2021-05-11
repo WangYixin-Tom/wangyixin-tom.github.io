@@ -43,7 +43,7 @@ Rabbitmq是生产者与消费者模型，负责接收、存储、转发消息。
 
 **Connection：连接**，生产者或消费者和Broker之间的一条TCP连接
 
-**Channel：信道**，建立在Connection上的虚拟连接，每条AMQP指令都通过信道完成交换器类型
+**Channel：信道**，建立在Connection上的虚拟连接，每条AMQP指令都通过信道完成
 
 **交换器类型**
 

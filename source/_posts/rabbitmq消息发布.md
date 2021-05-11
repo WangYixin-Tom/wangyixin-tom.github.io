@@ -67,7 +67,7 @@ except rabbitpy.exceptions.MessageReturnedException as error:
 
 ### 发布者确认
 
-发布者发送给RabbitMQ的每条消息，服务器发送一个确认(Basic.Ack)或者否认相应（Basic.Nack）。
+发布者发送给RabbitMQ的每条消息，服务器发送一个确认（Basic.Ack）或者否认响应（Basic.Nack）。
 
 示例程序：发布者确认
 ```python

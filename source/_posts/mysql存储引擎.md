@@ -28,7 +28,7 @@ categories:
 | 外键            | 不支持                                                       | 支持                                                         |
 | 事务            | 不支持                                                       | 支持                                                         |
 | 锁支持          | 表级锁定                                                     | 行级锁定、表级锁定，锁定力度小并发能力高                     |
-| select count(*) | myisam更快，myisam内部维护了计数器，。                       |                                                              |
+| select count(*) | myisam更快，myisam内部维护了计数器。                         |                                                              |
 | 索引的实现方式  | B+树索引                                                     | B+树索引                                                     |
 
 ### MyISAM索引与InnoDB索引的区别
