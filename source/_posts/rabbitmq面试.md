@@ -8,10 +8,8 @@ date: 2021-04-05 20:05:22
 password:
 summary:
 tags:
-- rabbitmq
 - interview
 categories:
-- rabbitmq
 - interview
 ---
 

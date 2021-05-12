@@ -8,10 +8,8 @@ date: 2021-04-22 20:23:24
 password:
 summary:
 tags:
-- python
 - interview
 categories:
-- python
 - interview
 ---
 
@@ -37,30 +35,31 @@ categories:
 > 该方法最终返回的`response(environ, start_response)`中的response 是`werkzueg.response` 类的一个实例，是可调用的对象，负责生成最终的可遍历的响应体，并调用 `start_response` 形成响应头
 
 -  `wsgi_app`方法中 调用 `request_context(environ)`函数建立了一个 `RequestContext` **请求上下文对象**
-   
    -   `RequestContext`初始化根据传入的 `environ` 创建一个 `werkzeug.Request` 的实例
+   
 -  把请求上下文 `RequestContext`，调用`push`，压入`_request_ctx_stack` 栈。（这些操作是为了 flask 在处理多个请求的时候不会混淆）。
    
    -  `_request_ctx_stack` 是一个 `LocalStack` 类的实例，通过**Local实现线程隔离**，隔离是使用了`get_ident`,属性被保存到每个线程id对应的字典中了。
-- `wsgi_app`方法中 调用  `full_dispatch_request`方法**请求分发**，开始实际的请求处理过程，这个过程中会生成 `response`对象来返回给服务器。
-- 调用 `try_trigger_before_first_request_functions` 方法尝试调用 `before_first_request` 列表中的函数，只会执行一次
-  	- 调用 `preprocess_request` 方法，调用 `before_request_funcs` 列表中所有的方法。
+   
+-  `wsgi_app`方法中 调用  `full_dispatch_request`方法**请求分发**，开始实际的请求处理过程，这个过程中会生成 `response`对象来返回给服务器。
 
-  > 可以检测用户是否登录，未登录使用`abort`返回错误，则后续不会分发
-
-+ - 调用 `dispatch_request` 方法进行业务请求分发。
-    - `_request_ctx_stack.top.request`获取请求上下文
-    - 获取请求上下文在的`rule`
-    - 调用 `view_functions` 中相应的**视图函数**（`rule.endpoint` 作为键值）并把参数值传入（`**req.view_args`），视图函数就是开发人员写的API接口了。视图函数的返回值或者错误处理视图函数的返回值会作为`rv`返回给`full_dispatch_request`。
-  - 调用`finalize_request`根据 `rv` 生成响应
-    - 调用`make_response` 方法会查看 rv 是否是要求的返回值类型，否则生成正确的返回类型。
-    -  调用`process_response` 方法，实现`after_request`方法的调用
-    - 返回`response`
+   -  调用 `try_trigger_before_first_request_functions` 方法尝试调用 `before_first_request` 列表中的函数，只会执行一次
+   -  调用 `preprocess_request` 方法，调用 `before_request_funcs` 列表中所有的方法。（可以检测用户是否登录，未登录使用`abort`返回错误，则后续不会分发）
+   -  调用 `dispatch_request` 方法进行业务请求分发。
+   
+        -  `_request_ctx_stack.top.request`获取请求上下文
+        -  获取请求上下文在的`rule`
+        -  调用 `view_functions` 中相应的**视图函数**（`rule.endpoint` 作为键值）并把参数值传入（`**req.view_args`），视图函数就是开发人员写的API接口了。视图函数的返回值或者错误处理视图函数的返回值会作为`rv`返回给`full_dispatch_request`。
+   
+     -  调用`finalize_request`根据 `rv` 生成响应
+       - 调用`make_response` 方法会查看 rv 是否是要求的返回值类型，否则生成正确的返回类型。
+       -  调用`process_response` 方法，实现`after_request`方法的调用
+       - 返回`response`
 
 
 - 如果当中出错，就生成相应的错误信息。
 
-- Flask 都会把**请求上下文**出栈。
+- 把**请求上下文**出栈。
 
 ## 视图函数注册
 
@@ -97,7 +96,7 @@ Flask 和 werkzeug 是强耦合的，一些非常细节的工作，其实都是 
 
 - 封装 Response 和 Request 类型供 Flask 使用，在实际开发中，我们在请求和响应对象上的操作，调用的其实是 werkzeug 的方法。
 
-- 实现 URL到视图函数的映射，并且能把 URL中的参数传给该视图函数。我们看到了 Flask 的 url_map 属性并且看到了它如何绑定视图函数和错误处理函数，但是具体的映射规则的实现，和在响应过程中的 UR- 解析，都是由 werkzeug 完成的。
+- 实现 URL到视图函数的映射，并且能把 URL中的参数传给该视图函数。我们看到了 Flask 的 url_map 属性并且看到了它如何绑定视图函数和错误处理函数，但是具体的映射规则的实现，和在响应过程中的 URL解析，都是由 werkzeug 完成的。
 
 - 通过 _request_ctx_stack 对 Flask 实现线程保护。
 
@@ -207,7 +206,7 @@ werkzeug.local.Local和threading.local**区别**如下：
 
 #### **为什么造轮子**
 
-WSGI不保证每个请求必须由一个线程来处理，如果WSGI服务器不是每个线程派发一个请求，而是每个协程派发一个请求，所以如果使用thread local变量可能会造成请求间数据相互干扰，因为一个线程中存在多个请求。所以werkzeug给出了自己的解决方案：werkzeug.local模块。
+WSGI不保证每个请求必须由一个线程来处理，如果WSGI服务器不是每个线程派发一个请求，而是每个协程派发一个请求，thread local变量可能会造成请求间数据相互干扰，因为一个线程中存在多个请求。
 
 #### 除 了Local 
 
@@ -249,7 +248,7 @@ WSGI 规定每个 python 程序（Application）必须是一个可调用的对�
 
 ## Werkzeug
 
-werkzeug 的定位并不是一个 web 框架，而是 HTTP 和 WSGI 相关的工具集，可以用来编写 web 框架，也可以直接使用它提供的一些帮助函数。
+HTTP 和 WSGI 相关的工具集，可以用来编写 web 框架，可以直接使用它提供的一些帮助函数。
 
 werkzeug 提供了 python web WSGI 开发相关的功能：
 

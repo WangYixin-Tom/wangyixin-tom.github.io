@@ -8,10 +8,8 @@ date: 2021-04-08 19:55:21
 password:
 summary:
 tags:
-- kafka
 - interview
 categories:
-- kafka
 - interview
 ---
 

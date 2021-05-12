@@ -8,10 +8,8 @@ date: 2021-04-13 19:58:48
 password:
 summary:
 tags:
-- python
 - interview
 categories:
-- python
 - interview
 ---
 

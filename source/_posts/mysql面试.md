@@ -8,10 +8,8 @@ date: 2021-04-10 18:45:14
 password:
 summary:
 tags:
-- mysql
 - interview
 categories:
-- mysql
 - interview
 ---
 
