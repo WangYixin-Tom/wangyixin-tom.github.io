@@ -45,12 +45,12 @@ Kafka 主要有两大应用场景：
 
 ## Producer、Consumer、Broker、Topic、Partition、Record？
 
-1. **Producer（生产者）** : 产生消息的一方。
-2. **Consumer（消费者）** : 消费消息的一方。
+1. **Producer（生产者）** ： 产生消息的一方。
+2. **Consumer（消费者）**：消费消息的一方。
 3. **Broker（代理）** : 可以看作是一个独立的 Kafka 实例。多个 Kafka Broker 组成一个 Kafka Cluster。
 
-- **Topic（主题）** : kafka 通过不同的主题区分不同的业务类型的消息记录。Producer 将消息发送到特定的主题，Consumer 通过订阅特定的 主题来消费消息。
-- **Partition（分区）** : Partition 属于 Topic 的一部分。一个 Topic 可以有多个 Partition ，并且同一 Topic 下的 Partition 可以分布在不同的 Broker 上。
+- **Topic（主题）** : kafka 通过不同的主题区分不同的业务类型的消息记录。Producer 将消息发送到特定的主题，Consumer 通过订阅特定的主题来消费消息。
+- **Partition（分区）**： Partition属于Topic 的一部分。一个 Topic 可以有多个 Partition ，并且同一 Topic 下的 Partition 可以分布在不同的 Broker 上。
 - **记录（Record）：**实际写入到kafka集群并且可以被消费者读取的数据。每条记录包含一个键、值和时间戳。
 
 ## 什么是消费者组？
@@ -58,15 +58,16 @@ Kafka 主要有两大应用场景：
 可扩展且具有容错性的消费者机制。
 
 - Kafka允许你将同一份消息广播到多个消费者组里。
-- 一个消费者组中可以包含多个消费者，他们共同消费该topic的数据。有助于消费能力的动态调整。
-- 同一个消费者组下的消费者都配置有相同的组ID，被分配不同的订阅分区。当某个消费者挂掉的时候，其他实例会自动地承担起它负责消费的分区。 
+- 一个消费者组中可以包含多个消费者，他们共同消费该主题的数据。
+- 同一个消费者组下的消费者有相同的组ID，他们被分配不同的订阅分区。
+- 当某个消费者挂掉的时候，其他消费者会自动地承担起它负责消费的分区。 
 
 ## LEO、LSO、AR、ISR、HW？
 
 - LEO（Log End Offset）：日志末端位移值或末端偏移量，表示日志下一条待插入消息的位移值。
 - LSO（Log Stable Offset）：该值控制了事务型消费者能够看到的消息范围。
-- AR（Assigned Replicas）：主题被创建后，创建时分区被分配的副本集合，副本个数由副本因子决定。
-- ISR（In-Sync Replicas）：AR中那些与Leader保持同步的副本集合。Leader副本天然就包含在ISR中。
+- AR（Assigned Replicas）：主题被创建后，创建的副本集合，副本个数由副本因子决定。
+- ISR（In-Sync Replicas）：AR中与Leader保持同步的副本集合。Leader副本天然在ISR中。
 - HW（High watermark）：高水位值，这是控制消费者可读取消息范围。一个普通消费者只能看到Leader副本上介于Log Start Offset和HW（不含）之间的所有消息。
 
 ## 位移的作用
@@ -85,29 +86,29 @@ Kafka 主要有两大应用场景：
 
 ## __consumer_offsets 作用？
 
-- 内部主题，主要用于存储将 Consumer 的位移数据
-- 保存 Consumer Group 相关信息的消息
-- 用于删除 Group 过期位移、删除 Group 的消息。tombstone 消息，即墓碑消息
+- 内部主题，存储消费者的位移数据
+- 保存消费者组相关的消息
+- 用于删除消费者组过期位移、删除消费者组的消息。tombstone 消息，即墓碑消息
 
 ## 多副本机制？好处？
 
 - Kafka副本当前分为领导者副本和追随者副本。每个分区在创建时都要选举一个副本，称为领导者副本，其余的副本自动称为追随者副本。
 - 只有Leader副本才能对外提供读写服务。
 - Follower副本只是采用拉的方式，同步Leader副本中的数据
-- 在Leader副本所在的Broker宕机后，Kafka 依托于 ZooKeeper 提供的监控功能能够实时感知到，并立即开启新一轮的领导者选举，从追随者副本中选一个作为新的领导者。
+- 在Leader副本所在的Broker宕机后，Kafka 依托于 ZooKeeper 提供的监控，实时感知到，并立即开启新一轮的领导者选举，从追随者副本中选一个作为新的领导者。
 
 **多分区多副本好处？**
 
 1. Kafka 通过给特定 Topic 指定多个 Partition， 而各个 Partition 可以分布在不同的 Broker 上， 这样便能提供比较好的并发能力（负载均衡）。
 2. 多副本提高了消息存储的安全性，提高了容灾能力，不过也相应的增加了所需要的存储空间。
-3. 方便实现“Read-your-writes”：
+3. 方便实现“Read-your-writes”
 4. 方便实现单调读：在多次消费消息时，它不会看到某条消息一会儿存在一会儿不存在
 
 ## Zookeeper 的作用？
 
-- 存放元数据：主题分区的所有数据都保存在 ZooKeeper 中，且以它保存的数据为权威。
+- 存放元数据：主题分区的相关数据都保存在 ZooKeeper 中，且以它保存的数据为权威。
 - 成员管理：Broker 节点的注册、注销以及属性变更。
-- Controller 选举：选举集群 Controller
+- Controller 选举：选举集群 Controller节点
 - 其他管理类任务：包括但不限于主题删除、参数配置等。
 
 ##  如何保证消息的消费顺序？
