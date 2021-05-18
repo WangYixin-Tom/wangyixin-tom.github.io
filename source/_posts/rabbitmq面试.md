@@ -121,7 +121,7 @@ RabbitMQ是一款开源的，Erlang编写的，基于AMQP协议的消息中间�
 
 若该队列至少有一个消费者订阅，消息将以循环（round-robin）的方式发送给消费者。每条消息只会分发给一个订阅的消费者。通过路由可实现多消费的功能
 
-## **消息怎么路由？**
+## 消息怎么路由？
 
 消息将拥有一个路由键（routing key），在消息创建时设定。通
 
@@ -151,7 +151,7 @@ exchange 以 binding_key key_A 绑定了 queue queue_A，但向该 exchange 发�
 
 ## 如何防止出现blackholed问题？
 
-如果在执行Basic.Publish时设置mandatory=true，则在遇到 可能出现blackholed情况时，服务器会通过返回Basic.Return告之当前 message无法被正确投递。
+如果在执行Basic.Publish时设置`mandatory=true`，则在遇到 可能出现blackholed情况时，服务器会通过返回Basic.Return告之当前 message无法被正确投递。
 
 ## Basic.Reject的用法是什么？
 
@@ -237,7 +237,7 @@ RabbitMQ 对集群的停止的顺序是有要求的,应该先关闭内存节点,
 
 ## rabbitmq 集群有什么用?
 
-- 高可用: 某个服务器出现问题,整个 RabbitMQ 还可以继续使用;
+- 高可用: 某个服务器出现问题，整个 RabbitMQ 还可以继续使用;
 - 高容量: 集群可以承载更多的消息量.
 
 ## RAM node 和 disk node 的区别？

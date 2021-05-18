@@ -135,7 +135,6 @@ Kafka 只能为我们保证分区中的消息有序，而不能保证 主题中�
 
 ### Kafka 弄丢消息
 
-- 所有副本都要接收到该消息之后该消息才算真正成功被发送。**设置 replication.factor >= 3**
 - 设置 `replication.factor >= 3`。防止消息丢失的主要机制就是冗余，最好将消息多保存几份。
 - 设置 `min.insync.replicas > 1`。消息至少要被写入到多少个副本才算是“已提交”。设置成大于 1 可以提升消息持久性。
 - 设置 `unclean.leader.election.enable = false`。如果一个 Broker 落后原先的 Leader 太多，那么它一旦成为新的 Leader，必然会造成消息的丢失。故一般设置成 false。
