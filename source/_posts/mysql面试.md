@@ -101,8 +101,6 @@ categories:
 
 InnoDB 的刷盘速度参考两个因素：一个是脏页比例，一个是 redo log 写盘速度
 
-
-
 ## MyISAM索引与InnoDB索引的区别
 
 InnoDB索引是**聚簇索引**，MyISAM索引是**非聚簇索引**。
@@ -119,7 +117,7 @@ InnoDB非主键索引的叶子节点存储的是主键和其他带索引的列�
 - InnoDB中不保存表的行数，如`select count(*) from table`时，InnoDB需要扫描一遍整个表来计算有多少行，但是MyISAM只要简单的读出保存好的行数即可。注意的是，当`count(*)`语句包含where条件时MyISAM也需要扫描整个表
 - 对于自增长的字段，InnoDB中必须包含只有该字段的索引，但是在MyISAM表中可以和其他字段一起建立联合索引
 - 清空整个表时，InnoDB是一行一行的删除，效率非常慢。MyISAM则会重建表
-- **InnoDB支持行锁**（某些情况下还是锁整表，如 **update table set a=1 where user like '%lee%'**
+- **InnoDB支持行锁**（某些情况下还是锁整表，如 `update table set a=1 where user like '%lee%'`
 
 ## 索引
 
@@ -428,9 +426,9 @@ host权限表：配合db权限表对给定主机上数据库级操作权限作�
 
 当数据库有并发事务的时候，可能会产生数据的不一致，这时候需要一些机制来保证访问的次序，锁机制就是这样的一个机制。
 
-### 按照锁的粒度分数据库锁有哪些？
+### 锁分类
 
-在关系型数据库中，可以按照锁的粒度把数据库锁分为行级锁(INNODB引擎)、表级锁(MYISAM引擎)和页级锁(BDB引擎 )。
+按照锁的粒度把数据库锁分为行级锁(INNODB引擎)、表级锁(MYISAM引擎)和页级锁(BDB引擎 )。
 
 **行级锁** 行级锁是Mysql中锁定粒度最细的一种锁，表示只针对当前操作的行进行加锁。行级锁能大大减少数据库操作的冲突。其加锁粒度最小，但加锁的开销也最大。行级锁分为共享锁 和 排他锁。
 
@@ -744,7 +742,7 @@ LIMIT 子句可以被用于强制 SELECT 语句返回指定的记录数。LIMIT 
 
 配置项：slow_query_log
 
-可以使用show variables like ‘slov_query_log’查看是否开启，如果状态值为OFF，可以使用set GLOBAL slow_query_log = on来开启，它会在datadir下产生一个xxx-slow.log的文件。
+可以使用`show variables like ‘slow_query_log’`查看是否开启，如果状态值为OFF，可以使用`set GLOBAL slow_query_log = on`来开启，它会在datadir下产生一个xxx-slow.log的文件。
 
 **设置临界时间**
 
