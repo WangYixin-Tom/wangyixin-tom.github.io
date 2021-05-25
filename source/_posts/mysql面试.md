@@ -636,11 +636,9 @@ Before Insert、After Insert、Before Update、After Update、Before Delete、Af
 
 mysql中的in语句是**把外表和内表作hash 连接**，而**exists语句是对外表作loop循环，每次loop循环再对内表进行查询**。一直大家都认为exists比in语句的效率要高，这种说法其实是不准确的。这个是要区分环境的。
 
-1、如果查询的两个表大小相当，那么用in和exists差别不大。
+- IN适合于外表大而子查询表小的情况。
 
-2、如果两个表中一个表大，另一个是表小，那么IN适合于外表大而子查询表小的情况。
-
-3、如果两个表中一个表大，另一个是表小，EXISTS适合于外表小而子查询表大的情况。
+- EXISTS适合于外表小而子查询表大的情况。
 
 not in 和not exists：如果查询语句使用了not in，那么内外表都进行全表扫描，没有用到索引；
 
@@ -740,7 +738,7 @@ eq_ref 在join查询中使用PRIMARY KEYorUNIQUE NOT NULL索引关联。
 
 - 数据库层面,类似于**select \* from table where age > 20 limit 1000000,10**这种查询其实也是有可以优化的余地的. 这条语句需要load1000000数据然后基本上全部丢弃,只取10条当然比较慢. 当时我们可以修改为`select * from table where id in (select id from table where age > 20 limit 1000000,10)`.**这样虽然也load了一百万的数据,但是由于**索引覆盖**,要查询的所有字段都在索引中,所以速度会很快. 同时如果ID连续的好,我们还可以**`select * from table where id > 1000000 limit 10`效率也是不错的,优化的可能性有许多种,但是核心思想都一样,就是减少load的数据.
 
-- 从需求的角度减少这种请求…主要是不做类似的需求(直接跳转到几百万页之后的具体某一页.只允许逐页查看或者按照给定的路线走,这样可预测,可缓存)以及防止ID泄漏且连续被人恶意攻击.
+- 从需求的角度减少这种请求…主要是不做类似的需求（直接跳转到几百万页之后的具体某一页，只允许逐页查看或者按照给定的路线走，这样可预测、可缓存）以及防止ID泄漏且连续被人恶意攻击.
 
 ### mysql 分页
 
@@ -848,3 +846,14 @@ Where 是一个约束声明，使用Where约束来自数据库的数据，Where�
 Having是一个过滤声明，是在查询返回结果集以后对查询结果进行的过滤操作，在Having中可以使用聚合函数。
 
 在查询过程中聚合语句(sum,min,max,avg,count)要比having子句优先执行。而where子句在查询过程中执行优先级高于聚合语句。
+
+```mysql
+select 列 from
+表名
+where [查询条件]
+group by [分组表达式]
+having [分组过滤条件]
+order by [排序条件]
+limit [offset,] count;
+```
+
