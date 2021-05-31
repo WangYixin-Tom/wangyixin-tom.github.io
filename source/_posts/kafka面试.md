@@ -76,6 +76,12 @@ Kafka 主要有两大应用场景：
 
 一旦消息被写入到分区日志，它的位移值将不能被修改。
 
+## Kafka数据索引如何实现
+
+- kafka解决查询效率的手段之一是将数据文件分段存储。每一个段单独放在一个.log的文件中，数据文件命名是20个字符的长度，以每一个分段文件开始的最下offset来命名，其他位置用0填充。
+- 每一个log文件的大小默认是1GB，每一个log文件就会对应一个index文件，是和log文件的命名相同的。
+- index文件中并没有为每一条message建立索引。而是采用了稀疏存储的方式，每隔一定字节的数据建立一条索引，避免了索引文件占用过多的空间和资源，从而可以将索引文件保留到内存中。缺点是没有建立索引的数据在查询的过程中需要小范围内的顺序扫描操作。
+
 ## 磁盘容量规划考虑因素？
 
   - 新增消息数
@@ -143,6 +149,16 @@ Kafka 只能为我们保证分区中的消息有序，而不能保证 主题中�
 
 去重：将消息的唯一标识保存到外部介质中，每次消费处理时判断是否处理过。
 
+## 怎么增加消费的能力？
+
+1、broker 端参数 `num.replica.fetchers `表示的是 Follower 副本用多少个线程来拉取消息，默认使用 1 个线程。如果你的 Broker 端 CPU 资源很充足，不妨适当调大该参数值，加快 Follower 副本的同步速度。
+
+2、在 Producer 端，如果要改善吞吐量，通常的标配是增加消息批次的大小以及批次缓存时间，即 `batch.size` 和 `linger.ms`。
+
+3、压缩算法也配置上，以减少网络 I/O 传输量，从而间接提升吞吐量。当前，和 Kafka 适配最好的两个压缩算法是 LZ4 和 zstd
+
+4、Consumer端使用多线程方案
+
 ## 为什么性能好
 
 ### 顺序写
@@ -194,6 +210,15 @@ Java Consumer是双线程的设计。用户主线程，负责获取消息；心�
 
 Leader和Follower的HW值更新时机是不同的，Follower的HW更新永远落后于Leader的HW。这种时间上的错配是造成各种不一致的原因。
 
+### 怎么保证同步成功？？？
+
+leader Epoch 由两部分数据组成。
+
+- Epoch。一个单调增加的版本号。每当副本领导权发生变更时，都会增加该版本号。小版本号的 Leader 被认为是过期 Leader，不能再行使 Leader 权力。
+- 起始位移（Start Offset）。Leader 副本在该 Epoch 值上写入的首条消息的位移。
+
+Kafka Broker 会在内存中为每个分区都缓存 Leader Epoch 数据，同时它还会定期地将这些信息持久化到一个 checkpoint 文件中。当 Leader 副本写入消息到磁盘时，Broker 会尝试更新这部分缓存。如果该 Leader 是首次写入消息，那么 Broker 会向缓存中增加一个 Leader Epoch 条目。
+
 ## Leader总是-1，怎么破？
 
 通常情况下就是Controller不工作了，导致无法分配leader。
@@ -208,6 +233,12 @@ Leader和Follower的HW值更新时机是不同的，Follower的HW更新永远落
 
 - Broker端参数：`message.max.bytes`，`max.message.bytes`（topic级别），`replica.fetch.max.bytes`
 - Consumer端参数：`fetch.message.max.bytes`
+
+### Kafka如何保证高可用
+Kafka 的副本机制：
+- Kafka 集群由多个 Broker组成。一个Broker可以容纳多个Topic，也就是一台服务器可以传输多个 Topic 数据。Kafka 为了实现可扩展性，将一个 Topic 分散到多个 Partition 中。
+- Kafka 中同一个分区下的不同副本，分为 Leader和 Follower。Leader 负责处理所有 读写的请求，Follower 作为数据备份，拉取 Leader 副本的数据进行同步。
+- 如果某个 Broker 挂掉，Kafka 会从 ISR 列表中选择一个分区作为新的 Leader 副本。
 
 ## Kafka能手动删除消息吗？
 

@@ -53,10 +53,16 @@ struct RedisObject {
 
 Redis 的字符串叫着「SDS」，也就是Simple Dynamic String。它的结构是一个带长度信息的字节数组。
 
+优点：
+
+1. 相比C语言字符串，使获取字符串长度时间复杂度降为`O(1)`
+2. **杜绝缓冲区溢出**：当SDS API需要对SDS进行修改时，API会先检查SDS当前剩余空间是否满足修改之后所需的空间，如果不满足的话API会自动将SDS的空间扩展至修改之后所需空间大小，然后再执行实际的修改操作，所以SDS不会出现缓冲区溢出问题。
+3. 减少修改字符串时带来的内存重分配次数： 在SDS中通过未使用空间解除了字符串长度和底层数组长度之间的关联，在SDS中，buf数组长度不一定是字符串长度加1，数组中可能包含未使用的字节，这些字节的数量就是由SDS的free属性记录。通过未使用空间，SDS实现了空间预分配和惰性空间释放两种优化策略。
+
 ```c
 struct SDS<T> {
     T capacity; // 数组容量
-    T len; // 数组长度
+    T len; 		// 数组长度，已经使用的容量
     byte flags; // 特殊标识位，不理睬它
     byte[] content; // 数组内容
 }
@@ -72,10 +78,23 @@ struct SDS {
 - embstr ：将 RedisObject 对象头和 SDS 对象连续存在一起，使用 malloc 方法一次分配。
 - raw ：需要两次 malloc，两个对象头在内存地址上一般是不连续的。
 
-### 扩容策略
+### 空间预分配策略
 
 - 字符串在长度小于 1M 之前，扩容空间采用加倍策略。
 - 当长度超过 1M 之后，为了避免加倍后导致浪费，多分配 1M 大小的冗余空间。
+
+### 惰性空间释放
+
+用于优化SDS的字符串收缩操作，当字符串收缩时，程序不会立即执行内存重分配来回收收缩后内存多出来的空间，而是使用free属性记录下来，以备将来使用。
+
+## List
+
+redis list数据结构底层采用压缩列表ziplist或双向列表两种数据结构进行存储，首先以ziplist进行存储，在不满足ziplist的存储要求后转换为双向列表。
+
+**当列表对象同时满足以下两个条件时，列表对象使用ziplist进行存储，否则用双向列表存储。**
+
+- 列表对象保存的所有字符串元素的长度小于64字节
+- 列表对象保存的元素数量小于512个。
 
 ## 字典
 
@@ -97,26 +116,42 @@ struct SDS {
 ```c
 struct dict {
     ...
-    dictht ht[2];
+    dictht ht[2];		//哈希表
 }
 struct dictht {
-    dictEntry** table; // 二维
-    long size; // 第一维数组的长度
-    long used; // hash 表中的元素个数
+    dictEntry** table; 	// 二维
+    long size; 			// 第一维数组的长度
+    long used; 			// hash 表中的元素个数
     ...
 }
 struct dictEntry {
     void* key;
     void* val;
-    dictEntry* next; // 链接下一个 entry
+    dictEntry* next; 	// 链接下一个 entry
 }
 ```
+
+### hash表扩容机制
+
+1、redis字典（hash表）底层有两个数组，还有一个rehashidx用来控制rehash
+
+2、初始默认hash长度为4，当元素个数与hash表长度一致时，就发生扩容，hash长度变为原来的二倍
+
+3、**redis中的hash则是执行的单步rehash的过程**：每次的增删改查，rehashidx+1，然后执行对应原hash表rehashidx索引位置的rehash
 
 ### 渐进式rehash
 
 大字典的扩容是比较耗时间的，需要重新申请新的数组，然后将旧字典所有链表中的元素重新挂接到新的数组下面，`O(n)`级别的操作。
 
 Redis还会在定时任务中对字典进行主动搬迁。
+
+1. 为ht[1]分配空间，让字典同时持有ht[0]和ht[1]两个哈希表
+
+2. 将rehashindex的值设置为0，表示rehash工作正式开始
+
+3. 在rehash期间，每次对字典执行增删改查操作是，程序除了执行指定的操作以外，还会顺带将ht[0]哈希表在rehashindex索引上的所有键值对rehash到ht[1]，当rehash工作完成以后，rehashindex的值+1
+
+4. 随着字典操作的不断执行，最终会在某一时间段上ht[0]的所有键值对都会被rehash到ht[1]，这时将rehashindex的值设置为-1，表示rehash操作结束
 
 ### 扩容条件
 
