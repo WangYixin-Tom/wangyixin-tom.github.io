@@ -32,6 +32,7 @@ categories:
 - Python 2 map函数返回list，Python 3 map函数返回迭代器。
 - python2中的raw_input函数，python3中改名为input函数
 - 在Pyhon3，新增了关键字 nonlcoal，支持嵌套函数中，变量声明为非局部变量。
+- python3提供注解，但是解释器**并不会**因为这些注解而提供额外的校验，没有任何的类型检查工作。也就是说，这些类型注解加不加，对你的代码来说**没有任何影响**，好处是易懂。
 
 ## Python基础
 
@@ -55,13 +56,13 @@ categories:
 
 函数作用域的LEGB顺序
 
-L： local ，局部作用域；
+L：local ，局部作用域；
 
-E： enclosing，嵌套的父级函数的局部作用域；
+E：enclosing，嵌套的父级函数的局部作用域；
 
 G：global ，全局变量；
 
-B： build-in， 系统固定模块里面的变量。
+B：build-in， 系统固定模块里面的变量。
 
 Python除了def/class/lambda 外，其他如: if/elif/else/ try/except for/while并不能改变其作用域。
 
@@ -685,7 +686,7 @@ Pickle 协议和 JSON 间有着本质的**不同**：
 
 ### 说一下`namedtuple`的用法和作用
 
-只有属性没有方法的类，用于组织数据，称为数据类。
+只有属性没有方法的类，用于组织数据，称为**数据类**。
 
 在Python中可以用`namedtuple`（命名元组）来替代这种类。
 
@@ -699,13 +700,13 @@ print(f'{card1.suite}{card1.face}')
 print(f'{card2.suite}{card2.face}')
 ```
 
-命名元组与普通元组一样是不可变容器，一旦将数据存储在`namedtuple`的顶层属性中，数据就不能再修改了，
+**命名元组与普通元组一样是不可变容器，**一旦将数据存储在`namedtuple`的顶层属性中，数据就不能再修改了，
 
 对象上的所有属性都遵循“一次写入，多次读取”的原则。
 
-和普通元组不同的是，命名元组中的数据有访问名称，可以通过名称而不是索引来获取保存的数据
+和普通元组不同的是，命名元组中的数据有访问名称，可以**通过名称而不是索引来获取保存的数据****
 
-命名元组的本质就是一个类，所以它还可以作为父类创建子类。
+**命名元组的本质就是一个类，所以它还可以作为父类创建子类。**
 
 除此之外，命名元组内置了一系列的方法，例如，可以通过`_asdict`方法将命名元组处理成字典，也可以通过`_replace`方法创建命名元组对象的浅拷贝。
 
@@ -1284,9 +1285,9 @@ Python 2.x 的代码执行是基于 opcode 数量的调度方式，简单来说�
 
 ### 为什么会有GIL
 
-Python 设计者在设计解释器时，可能没有想到 CPU 的性能提升会这么快转为多核心方向发展，所以在当时的场景下，设计一个全局锁是那个时代保护多线程资源一致性最简单经济的设计方案。
+Python 设计者在设计解释器时，可能没有想到 CPU 的性能提升会这么快转为多核心方向发展，所以在当时的场景下，设计一个全局锁是**那个时代保护多线程资源一致性最简单经济的设计方案**。
 
-多核心时代来临，当大家试图去拆分和去除 GIL 的时候，发现大量库的代码和开发者已经重度依赖 GIL（默认认为 Pythonn内部对象是线程安全的，无需在开发时额外加锁），所以这个去除 GIL 的任务变得复杂且难以实现。
+多核心时代来临，当大家试图去拆分和去除 GIL 的时候，发现大量库的代码和开发者已经重度依赖 GIL（默认认为 Python内部对象是线程安全的，无需在开发时额外加锁），所以这个去除 GIL 的任务变得复杂且难以实现。
 
 ## 性能分析
 
@@ -1355,6 +1356,46 @@ foo2 = Foo()
 print(foo1 is foo2) # True
 ```
 
+### 用装饰器实现同步锁
+
+```python
+def make_synchronized(func):
+    import threading
+    func.__lock__ = threading.Lock()
+    
+    def synced_func(*args, **kwargs):
+        with func.__lock__:
+            return func(*args, **kwargs)
+    
+    return synced_func
+
+class Singleton(object):
+    __instance = None
+    @make_synchronized
+    def __new__(cls, *args, **kwargs):
+        if not cls.__instance:
+            cls.__instance = object.__new__(cls)
+        return cls.__instance
+```
+
+### 双重检查线程安全单例模式
+
+```python
+class SingletonSample(object):
+    _instanceLock = threading.Lock()
+ 
+    @classmethod
+    def get_instance(cls):
+        # 初次检查，避免锁竞争
+        if not hasattr(cls, "_instance"):
+            with cls._instanceLock:
+                # 获取到锁后再次判断，避免重复创建
+                if not hasattr(cls, "_instance"):
+                    cls._instance = super(SingletonSample, cls).__new__(cls)
+                    print cls._instance
+        return cls._instance
+```
+
 ### classmethod
 
 ```python
@@ -1371,8 +1412,6 @@ class Singleton(object):
                 Singleton._instance = Singleton(*args, **kwargs)
             return Singleton._instance
 ```
-
-
 
 ### 元类
 
@@ -1394,28 +1433,7 @@ class Foo(object):
 ### **线程安全装饰器**
 
  ```python
-def make_synchronized(func):
-    import threading
-    func.__lock__ = threading.Lock()
 
-    # 用装饰器实现同步锁
-    def synced_func(*args, **kwargs):
-        with func.__lock__:
-            return func(*args, **kwargs)
-
-    return synced_func
-
-class Singleton(object):
-    __instance = None
-
-    @make_synchronized
-    def __new__(cls, *args, **kwargs):
-        if not cls.__instance:
-            cls.__instance = object.__new__(cls)
-        return cls.__instance
-
-    def __init__(self):
-        self.blog = "blog"
  ```
 
 ### **线程安全--元类**
