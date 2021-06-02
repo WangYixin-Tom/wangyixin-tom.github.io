@@ -92,3 +92,29 @@ epoll底层，水平，边缘
 详细介绍一下分段锁技术
 文件描述符有没有听过？软链接和硬链接？
 怎么在文件夹中找到最大的文件？
+
+
+# 实战
+python对象周期
+mysql 数据备份
+mysql优化方法
+分库分表的场景
+redis为什么性能优异
+kafka和rabbitmq区别，怎么选择
+kafka优势在哪里
+kafka流处理机制
+rabbitmq遇到什么问题
+包管理和docker区别
+缓存不一致
+redis和zookeeper分布式锁的区别
+rabbitmq使用过程中的问题
+协程的实现原理
+回收之后内存怎么处理
+docker容器的问题
+redis为什么快
+galera的原理
+docker镜像制作的命令
+红黑树
+平衡树怎么插入节点？
+innodb插入节点？
+websocket怎么实现？
