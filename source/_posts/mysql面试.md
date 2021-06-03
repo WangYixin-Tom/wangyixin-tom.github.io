@@ -920,6 +920,22 @@ null值会占用更多的字节，且会在程序中造成很多与预期不符�
 - 选择合适的表引擎，参数上的优化; 
 - 进行架构级别的缓存，静态化和分布式
 
+## left join 原理
+
+**Simple Nested-Loop Join**
+
+双层for 循环 ，通过循环外层表的行数据，逐个与内层表的所有行数据进行比较来获取结果
+
+**Index Nested-Loop Join**
+
+ 通过外层表匹配条件 直接与内层表索引进行匹配，避免和内层表的每条记录去进行比较， 这样极大的减少了对内层表的匹配次数，从原来的匹配次数=外层表行数 * 内层表行数,变成了 外层表的行数 * 内层表索引的高度，极大的提升了 join的性能。
+
+**Block Nested-Loop Join**
+
+通过一次性缓存外层表的多条数据，以此来减少内层表的扫表次数，从而达到提升性能的目的。如果无法使用**Index Nested-Loop Join**的时候，数据库是默认使用的是**Block Nested-Loop Join算法的**
+
+基于后两者的时间复杂度，考虑小表驱动大表。SNLJ没有时间上的差异。
+
 ## 集群
 
 ### 主从复制
@@ -966,6 +982,20 @@ Galera采用的是多主同步复制。
 
 64bit整数，41bit时间戳+10bit机器id+12bit序列号
 
+## 备份
+
+**mysqldump工具备份**
+
+mysqldump由于是mysql自带的备份工具，所以也是最常用的mysql数据库的备份工具。支持基于InnoDB的热备份。但由于是逻辑备份，所以速度不是很快，适合备份数据量比较小的场景。
+
+mysqldump完全备份+二进制日志 —>实现时间点恢复
+
+如果使用的是InnoDB引擎，就不必进行对数据库加锁的操作，加一个选项既可以进行热备份：--single-transaction
+
+**使用percona提供的xtrabackup（推荐）**
+
+支持InnoDB的物理热备份，支持完全备份，增量备份，而且速度非常快，而且支持InnoDB引擎的数据在不同数据库迁移
+
 ## sql语句中where与having的区别
 
 Where 是一个约束声明，使用Where约束来自数据库的数据，Where是在结果返回之前起作用的，Where中不能使用聚合函数。
@@ -992,7 +1022,7 @@ limit [offset,] count;
 > 　　2. ON: 对vt1表应用ON筛选器只有满足 join_condition 为真的行才被插入vt2
 > 　　3. OUTER（join）：如果指定了 OUTER JOIN保留表中未找到的行将行作为外部行添加到vt2，生成t3，如果from包含两个以上表，则对上一个联结生成的结果表和下一个表重复执行步骤和步骤直接结束。
 > 　　4. WHERE：对vt3应用 WHERE 筛选器只有使 where_condition 为true的行才被插入vt4
->   　　5. GROUP BY：按GROUP BY子句中的列列表对vt4中的行分组生成vt5
+>     　　5. GROUP BY：按GROUP BY子句中的列列表对vt4中的行分组生成vt5
 > 　　7. HAVING：对vt6应用HAVING筛选器只有使 having_condition 为true的组才插入vt7
 > 　　8. SELECT：处理select列表产生vt8
 > 　　9. DISTINCT：将重复的行从vt8中去除产生vt9
