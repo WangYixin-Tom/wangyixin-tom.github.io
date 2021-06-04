@@ -3,10 +3,10 @@
 ## Source: https://github.com/hexojs/hexo/
 
 # Site
-title: wangyixin-tom的博客
-subtitle: 知识分享
-description: python
-keywords: "Python rabbitmq redis flask"
+title: 好好学习
+subtitle: 知识梳理、总结、分享
+description: 业精于勤荒于嬉，行成于思毁于随
+keywords: "python rabbitmq redis flask kafka"
 author: wangyixin-tom
 language: zh-CN
 timezone:
