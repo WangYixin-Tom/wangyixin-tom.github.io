@@ -26,17 +26,36 @@ AVL树深度差不能超过多少？红黑树时间复杂度？
 排序算法有哪些？冒泡排序与快速排序的时间复杂度是多少？是否O(n^一定要比O(nlong)差？
 讲一讲归并排序和他的时间复杂度。
 为什么归并排序的时间复杂度为nlogn
-快排怎么实现
-.排序是稳定的吗
+
+分治和贪心的概念以及具体应用
+排序是稳定的吗
 堆排序建堆及排序过程
 堆调整的时间复杂度
 手推快排的时间复杂度
 算法 令牌桶
 快排：时空复杂度、稳定性、影响快排效率的因素？
 
+## 网络
+
+16.如何理解http 和websocket 的区别
+
+18.http 是[客户端](https://www.nowcoder.com/jump/super-jump/word?word=客户端)发起请求，服务器端应答请求，[客户端](https://www.nowcoder.com/jump/super-jump/word?word=客户端)主动，服务器端被动
+
+19.websocket 服务器端和[客户端](https://www.nowcoder.com/jump/super-jump/word?word=客户端)都能主动发起交易
+
+21.重要的数据可以放cookie 吗
+
+7.加解密有了解吗，md5 碰撞的概率
+
+Unicode编码 utf-8 utf-8和utf-16的区别
+
+ http中传输图片是怎么传输的  什么情况下用http，什么情况下用https
+
+304状态码中除了if modified还可以使用什么？
+
 
 # 场景题
-怎么实现一个线程池
+**怎么实现一个线程池**
 
 
 # 实战
