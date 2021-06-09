@@ -1,10 +1,3 @@
-堆和栈的区别
-密码为什么加盐
-盐bai 被称作“Salt 值”，这个值是du由系统随机生成的，并且只有系统知道。即zhi便两个
-用户使dao用了同一个密码，由于系统为它们生成的salt值不同，散列值也是不同的。
-MD法：生成一个散列值。
-目的：防止反向查询密码，多次尝试破解。
-
 # 数据结构
 树结构的好处是什么，平时有用到哪些
 平衡二叉树是什么？能否用数组来实现，你会怎么实现？bst 和 avl 树有什么区别
@@ -37,30 +30,12 @@ AVL树深度差不能超过多少？红黑树时间复杂度？
 
 ## 网络
 
-16.如何理解http 和websocket 的区别
-
-18.http 是[客户端](https://www.nowcoder.com/jump/super-jump/word?word=客户端)发起请求，服务器端应答请求，[客户端](https://www.nowcoder.com/jump/super-jump/word?word=客户端)主动，服务器端被动
-
-19.websocket 服务器端和[客户端](https://www.nowcoder.com/jump/super-jump/word?word=客户端)都能主动发起交易
-
-21.重要的数据可以放cookie 吗
-
-7.加解密有了解吗，md5 碰撞的概率
-
-Unicode编码 utf-8 utf-8和utf-16的区别
-
- http中传输图片是怎么传输的  什么情况下用http，什么情况下用https
-
-304状态码中除了if modified还可以使用什么？
-
+7.加解密有了解吗，md5碰撞的概率
 
 # 场景题
 **怎么实现一个线程池**
 
 
 # 实战
-python对象周期
-包管理和docker区别
+
 协程的实现原理
-docker容器的问题
-websocket怎么实现？
