@@ -91,7 +91,7 @@ mv的话 inode会+1么
 
 怎么创建一个进程
 
-epoll为什么高效? ([红黑树](https://www.nowcoder.com/jump/super-jump/word?word=红黑树) 通过回调实现 时间就绪到添加到就绪列表的时间复杂度是O(1)))
+epoll为什么高效? 红黑树通过回调实现 时间就绪到添加到就绪列表的时间复杂度是O(1)))
 
 fork、exec
 
@@ -116,20 +116,9 @@ Ping的过程以及原理
 
 token用的是jwt对吗 ？为什么安全性得到保证
 
-http里header中content-type用途，cookie用途
-
-小端字节序和大端字节序，这个对什么产生影响，做什么事情会出现问题，
-传一个字符串，定义为大端和小端一样吗？如果传一个数字有影响吗？
-
-TCP窗口过大会引发问题，能详细解释一下吗？哪个传输节点会出现问题？
-
 UDP可以实现可靠吗？
 
 ICMP协议是干什么的
-
-路由地址你了解多少
-
-怎么解析http报文 
 
 sessionId 如何维护（cookie 里带有 sessionId)
 
@@ -139,20 +128,10 @@ sessionId 如何维护（cookie 里带有 sessionId)
 讲一下JWT（Json Web Token）→怎么提取JWT的值？ → SSO? Auth2? (不会)
 
 token的结构、[项目](https://www.nowcoder.com/jump/super-jump/word?word=项目)中登录的逻辑（简述）、token有什么问题、其他保持状态的方式
-
-16.traceroute命令用处
 DNS怎么保证最短路径
-
-为什么网络中会发生丢包？（接收到的分组校验出错、分组在网络中超出最大存活时间、路由器接收分组数量达到上限后，会丢弃多余分组）
-
-为什么会发生网络卡顿现象？（网络拥塞）
-
-大小端，常用的系统是大端还是小端
 
 IP是怎么寻址的
 IP包是怎么发的（路由器转发）路由器怎么转发
-
-设计一个 TCP 上的应用层协议，怎么拆包：答的首部长度字段，不太确定
 
 # kafka
 
@@ -308,10 +287,7 @@ Unicode UTF-8 ASCII编码方式有什么区别
 7. epoll需要拷贝文件描述符吗？ 	
 
 怎么保证又快又安全呢？把TCP和UDP的优点结合。（不懂的人快去看QUIC）
-17.cookie是怎么被种到浏览器里的
-18.cookie包含哪几项内容(格式)
-19.cookie有一个字段叫做http only(好像是这么拼来着(大概发这个音)有去了解过吗
-20.禁用cookie的话后怎么处理, 在url中添加cookie id是怎么样的传输过程
+
 文件描述符是什么
 线程池的核心线程数大小如何确定（计算密集型为N+1，IO密集型为2N）
 红黑树说一下，跳表说一下，那你知道什么地方用了红黑树和跳表吗
@@ -319,8 +295,7 @@ Unicode UTF-8 ASCII编码方式有什么区别
 
 linux中统计软中断调用的命令是啥？
 MySQL里的锁底层是怎么实现的
-keep-alive在HTTP请求的哪个部分
-浏览器禁用cookie怎么办
+
 mmap和direct_IO的区别？
 python中的多进程，知道是怎么一回事么？
 讲一下二叉树，排序二叉树，平衡二叉树，红黑树，B类树（我讲的很详细，大概讲了15分钟）
@@ -348,10 +323,13 @@ jwt是对称加密，它是分成三部分了，一个是hash算法，一个是�
 刷过堆排序吗？（我：没有）面试官：那更好
 堆排序的heap_insert函数
 了解Docker的资源隔离原理吗（只知道是用了Linux的某个特性） 
+
+docker的隔离性 ？namespace技术。docker为啥要分层？
+
 十万（一亿）广东考生分数，找出其中中位数。
 说一下AMQP协议是怎么定义一个MQ的
 
-docker的隔离性 ？namespace技术。docker为啥要分层？
+
 
 
 # python
