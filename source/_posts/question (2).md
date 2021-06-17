@@ -112,26 +112,14 @@ fork之后的父子进程同时读取一个文件，有什么结果？
 
 # 网络
 
-Ping的过程以及原理
-
-token用的是jwt对吗 ？为什么安全性得到保证
-
-UDP可以实现可靠吗？
-
-ICMP协议是干什么的
-
-sessionId 如何维护（cookie 里带有 sessionId)
-
 
 如果token被其他人拦截了，拦截者是否可以直接通过token来访问服务器呢？
 
 讲一下JWT（Json Web Token）→怎么提取JWT的值？ → SSO? Auth2? (不会)
 
-token的结构、[项目](https://www.nowcoder.com/jump/super-jump/word?word=项目)中登录的逻辑（简述）、token有什么问题、其他保持状态的方式
-DNS怎么保证最短路径
+token的结构、登录的逻辑（简述）、token有什么问题、其他保持状态的方式
 
-IP是怎么寻址的
-IP包是怎么发的（路由器转发）路由器怎么转发
+token用的是jwt对吗 ？为什么安全性得到保证
 
 # kafka
 
@@ -154,7 +142,7 @@ IP包是怎么发的（路由器转发）路由器怎么转发
 
  怎么避免哈希冲突
 
-**.两个球，100层楼，每个球在一定高度扔下去会碎，怎么用最少的次数判断几层楼会把球摔碎？** 
+**两个球，100层楼，每个球在一定高度扔下去会碎，怎么用最少的次数判断几层楼会把球摔碎？** 
 
   一开始答的100/x+x-1的最小值，面试官提示还可以优化，纸笔算了一会得出了14次的答案（1+2+……+14>100），面试官说这是动规的思想，让给出状态转移方程，这里卡了大概5分钟面试官给了个提示才做出来
 
@@ -170,41 +158,6 @@ OAuth2 和 JWT 的区别和作用？
 
 **怎么实现一个线程池**
 
-# mysql
-
-mysql分片知道吗？有实际应用吗？具体说一下？
-
-b+树的叶子节点之间是单链还是双链，页与页之间，页内部呢。（后两个没弄过，说了一下自己理解）
-
-binlog、redolog，两阶段提交、宕机数据恢复流程
-
-# redis
-
-[redis](https://www.nowcoder.com/jump/super-jump/word?word=redis) 的跳表底层实现复杂度等等
-
-redis为何用跳表而不用[红黑树](https://www.nowcoder.com/jump/super-jump/word?word=红黑树)
-
-[redis](https://www.nowcoder.com/jump/super-jump/word?word=redis)里面的zset，跳表怎么实现，怎么增删，
-
-[mget和pipeline区别](https://jzwdsb.github.io/2019/02/redis_pipeline_mget/)
-
-- mget和pipeline都是多命令一起执行，只有一次往返的网络IO
-- mget在集群下可以并行去获取，pipeline还是串行
-
- [redis](https://www.nowcoder.com/jump/super-jump/word?word=redis)数据类型 除了说的五种还有吗 还能做些什么
-
-使用Redis进行数据统计，在高并发的情况下会不会有问题？
-
-[redis](https://www.nowcoder.com/jump/super-jump/word?word=redis)的主键怎么生成，用什么方法。
-
-雪花[算法](https://www.nowcoder.com/jump/super-jump/word?word=算法)的原理。一秒内有一万个请求，能不能生成。
-
-做一个排行榜，用什么数据结构
-
-2. redis怎么实现分布式锁，防止超买？redis操作是原子的，DECR操作原子操作 
-3. DECR怎么实现多线程不出错？CAS原子操作 
-4. redis的big key问题, 如何优化
-
 # 实战
 协程的实现原理
 
@@ -216,15 +169,13 @@ redis为何用跳表而不用[红黑树](https://www.nowcoder.com/jump/super-jum
 
 kuberntes在[项目](https://www.nowcoder.com/jump/super-jump/word?word=项目)中的作用有哪方面，kuberntes中的可靠性如何保证 master挂了怎么办 etcd的安全怎么保证
 
-，docker和虚拟机的区别
+docker和虚拟机的区别
 
 **多线程：两个线程交替打印1-10**
 
 三个线程同时启动，优先级相同，分别打印A、B、C，问如何保证打印顺序为ABC。没答好，三个信号量，初始时刻 Sa=1,Sb=0,Sc=0
 
 线程池是什么，讲讲里面具体的参数，线程池分什么种类，如何自己实现一个线程池
-
-说get把参数放url里，是http协议这么规定的吗？(答错了，不是这么规定的)
 
 如果当前面试界面崩溃了，如何排查问题
 
@@ -237,10 +188,6 @@ kuberntes在[项目](https://www.nowcoder.com/jump/super-jump/word?word=项目)�
 用户可以关注其他用户
 用户可以发微博
 用户可以在主页中看到关注用户的动态
-
-python字典原理，实现一个能排序的字典如何实现，从数据结构出发
-
-Python yield关键字讲一下
 
 断点续传的原理是什么
 
@@ -257,12 +204,8 @@ Python yield关键字讲一下
 
 
 CA证书是啥，干啥用的 
-系统介绍一下数据库中的索引
-什么是索引 -> 索引的作用 -> MySQL 有哪些索引及其适用场景和优缺点 -> 索引的底层数据结构 B+ 树 -> InnoDB 和 MyISAM 索引的区别 -> 最左匹配原则 -> 建索引注意点 -> 索引调优思路。
 
 系统调用也算中断吗，也要保存东西吗？
-
-mysql 如何保持一致性
 操作系统？调度算法，抢占式非抢占式时间片轮转的区别
 操作系统里避免死锁的办法
 docker镜像的结构是什么样子的？
@@ -270,39 +213,35 @@ docker镜像的结构是什么样子的？
 
 3.地址映射有哪些算法
 线程同步有哪些方式，临界区算法了解哪些，信号量模型了解哪些
-场景题，怎么保存用户最近浏览记录（答了两方面，本地缓存（用带头尾指针的链表），服务端用redis（zset）） 
 
 什么是跨域问题?如何解决?
-
-从A地往B运送3000L汽油，两地相距1000KM，一辆汽车最多可装载1000L汽油，每行驶1KM耗油1L，请问从B地最多可以得到多少L汽油？ 
-（汽油可以在中途放下且只有一辆车） 
-算了二十分钟只给了个250L的错误答案，最后问面试官说是533L，具体过程有很多方法解，本渣到现在还没算出来。 
 
 Unicode UTF-8 ASCII编码方式有什么区别 
 一个汉字占ASCII多少字节  UTF-8中呢 
 
-计算机系统为什么64位之后就没有128位了（不是很懂）
+epoll使用场景?select具体性能消耗在哪? 
 
-6. epoll使用场景?select具体性能消耗在哪? 
-7. epoll需要拷贝文件描述符吗？ 	
+epoll需要拷贝文件描述符吗？ 	
 
 怎么保证又快又安全呢？把TCP和UDP的优点结合。（不懂的人快去看QUIC）
 
 文件描述符是什么
 线程池的核心线程数大小如何确定（计算密集型为N+1，IO密集型为2N）
 红黑树说一下，跳表说一下，那你知道什么地方用了红黑树和跳表吗
-4、用cookie和session实现用户登录的过程是咋样的，大概说下
+用cookie和session实现用户登录的过程是咋样的，大概说下
 
 linux中统计软中断调用的命令是啥？
-MySQL里的锁底层是怎么实现的
 
 mmap和direct_IO的区别？
-python中的多进程，知道是怎么一回事么？
 讲一下二叉树，排序二叉树，平衡二叉树，红黑树，B类树（我讲的很详细，大概讲了15分钟）
 
 Docker的四种网络模式和实现
 Kubernetes 的优雅启动和优雅停止
 对Kubernetes和Docker的理解
+
+了解Docker的资源隔离原理吗（只知道是用了Linux的某个特性） 
+
+docker的隔离性 ？namespace技术。docker为啥要分层？
 
 1，进程的调度如何实现，如何使用红黑树的，
 2，关于内存管理怎么跟红黑树有关系
@@ -322,19 +261,16 @@ jwt是对称加密，它是分成三部分了，一个是hash算法，一个是�
 
 刷过堆排序吗？（我：没有）面试官：那更好
 堆排序的heap_insert函数
-了解Docker的资源隔离原理吗（只知道是用了Linux的某个特性） 
-
-docker的隔离性 ？namespace技术。docker为啥要分层？
 
 十万（一亿）广东考生分数，找出其中中位数。
 说一下AMQP协议是怎么定义一个MQ的
 
-
+多线程中线程崩溃会产生什么影响？
 
 
 # python
 
-8.python字典原理，实现一个能[排序](https://www.nowcoder.com/jump/super-jump/word?word=排序)的字典如何实现，从数据结构出发
+Python yield关键字讲一下
 
-多线程中线程崩溃会产生什么影响？
+实现一个能排序的字典如何实现
 
