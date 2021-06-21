@@ -3,7 +3,7 @@
 堆结构是什么，是如何去调整堆结构的
 .虚拟内存是什么，逻辑地址是怎么映射到物理地址的
 
-BST Trie树 [红黑树](https://www.nowcoder.com/jump/super-jump/word?word=红黑树)的了解
+BST Trie树 红黑树的了解
 
 
 
@@ -63,6 +63,14 @@ aof 和 rdb 哪个效率好 为什么
 
 redis 字典结构，hash 冲突怎么办，rehash，负载因子
 
+3.消息中间件推和拉模式的区别
+
+4.[redis](https://www.nowcoder.com/jump/super-jump/word?word=redis)集群模式。主挂了，从节点切上去，未同步的数据怎么处理
+
+# 网络
+
+用post可以发get的请求吗
+
 # 场景题
 
 超买超卖问题
@@ -121,6 +129,7 @@ Unicode UTF-8 ASCII编码方式有什么区别
 
 1，进程的调度如何实现，如何使用红黑树的，
 2，关于内存管理怎么跟红黑树有关系
+
 3. 网卡数据，
 在以上这些场景，如何使用红黑树的？
 
