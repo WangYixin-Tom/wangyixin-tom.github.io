@@ -35,12 +35,12 @@ categories:
 
 ### redo log（重做日志）
 
-1. InnoDB引擎的日志，redo log 保证数据库异常重启之前提交的记录不会丢失（crash-safe），确保事务的持久性。
-2. 在一条更新语句进行执行的时候，InnoDB引擎会把更新记录写到 redo log 日志中，然后更新内存（buffer pool），此时算是语句执行完了，然后在空闲的时候或者是按照设定的更新策略将 redo log 中的内容更新到磁盘中，这里涉及到WAL即Write Ahead logging技术（先写日志再写磁盘）
+1. InnoDB引擎的日志，redo log 保证数据库异常重启之前提交的记录不会丢失（crash-safe），**确保事务的持久性**。
+2. 在一条更新语句进行执行的时候，InnoDB引擎会把更新记录写到 redo log 日志中，然后更新内存（buffer pool），此时算是语句执行完了，然后在空闲的时候或者是按照设定的更新策略**将 redo log 中的内容更新到磁盘中**，这里涉及到WAL即Write Ahead logging技术（先写日志再写磁盘）
 3. redo log 是物理日志，记录的是在某个数据页上做了什么修改
 4. redo log是循环写，空间固定会用完
 
-> 出现 MySQL 宕机或者断电时，如果有缓存页的数据还没来得及刷入磁盘，那么当 MySQL 重新启动时，可以根据 redo log 日志文件，进行数据重做，将数据恢复到宕机或者断电前的状态
+> 出现 MySQL 宕机或者断电时，如果有缓存页的数据还没来得及刷入磁盘，当 MySQL 重新启动时，可以根据 redo log 日志文件，进行数据重做，将数据恢复到宕机或者断电前的状态
 >
 > redo log 日志文件是持久化在磁盘上的，磁盘上可以有多个 redo log 文件，MySQL 默认有 2 个 redo log 文件，每个文件大小为 48M
 >
@@ -88,6 +88,15 @@ categories:
 
 MySQL 重启后，进行数据重做时，在 redo log 日志中由于该事务的 redo log 日志没有 commit 标识，那么就不会进行数据重做，磁盘上数据还是原来的数据，也就是事务没有提交。
 
+### 如何来保证数据不丢失的
+
+1. MySQL Server 层的执行器调用 InnoDB 存储引擎的数据更新接口；
+2. 存储引擎更新 Buffer Pool 中的缓存页，
+3. 同时存储引擎记录一条 redo log 到 redo log buffer 中，并将该条 redo log 的状态标记为 prepare 状态；
+4. 接着存储引擎告诉执行器，可以提交事务了。执行器接到通知后，会写 binlog 日志，然后提交事务；
+5. 存储引擎接到提交事务的通知后，将 redo log 的日志状态标记为 commit 状态；
+6. 接着根据 innodb_flush_log_at_commit 参数的配置，决定是否将 redo log buffer 中的日志刷入到磁盘（真正的事务提交）。
+
 ### undo log
 
 1. undo log是逻辑日志，可以认为当delete一条记录时，undo log中会记录一条对应的insert记录，反之亦然，当update一条记录时，它记录一条对应相反的update记录
@@ -107,7 +116,7 @@ MySQL 重启后，进行数据重做时，在 redo log 日志中由于该事务�
 
 4.分析redo log，标识出未提交事务
 
-5.顺序执行redo
+5.顺序执行redo，读取到buffer pool中
 
 6.rollback未提交的事务
 
@@ -140,7 +149,7 @@ InnoDB非主键索引的叶子节点存储的是主键和其他带索引的列�
 
 2）InnoDB寻址要映射到块，再到行，MyISAM记录的直接是文件的OFFSET，定位比InnoDB要快
 
-3）InnoDB还需要维护MVCC一致； 虽然你的场景没有，但他还是需要去检查和维护MVCC (Multi-Version Concurrency Control)多版本并发控制 。
+3）InnoDB还需要维护MVCC一致； 虽然你的场景没有，但他还是需要去检查和维护MVCC 。
 
 ### b+树为什么能三层能存2000多万个，计算过程。
 
