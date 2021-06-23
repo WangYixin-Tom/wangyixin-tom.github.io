@@ -137,15 +137,16 @@ topic：可以使来自不同源头的消息能够到达同一个队列。 使�
 
 ## 消息基于什么传输？
 
-由于 TCP 连接的创建和销毁开销较大，且并发数受系统资源限制，会造成性能瓶颈。RabbitMQ 使用信道的方式来传输数据。信道是建立在真实的 TCP 连接内的虚拟连接，且每条 TCP 连接上的信道数量没有限制。
+由于 TCP 连接的创建和销毁开销较大，且并发数受系统资源限制，会造成性能瓶颈。
+
+RabbitMQ 使用信道的方式来传输数据。信道是建立在**真实的 TCP 连接内的虚拟连接**，且每条 TCP 连接上的信道数量没有限制。
 
 ## 什么情况下会出现blackholed问题？
 
 blackholed问题是指，向exchange投递了 message，而由于各种原因导 致该message丢失，但发送者却不知道。可导致blackholed的情况：
 
-向未绑定 queue 的 exchange 发送 message；
-
-exchange 以 binding_key key_A 绑定了 queue queue_A，但向该 exchange 发送 message 使用的 routing_key却是 key_B。
+- 向未绑定 queue 的 exchange 发送 message；
+- exchange 以 binding_key key_A 绑定了 queue queue_A，但向该 exchange 发送 message 使用的 routing_key却是 key_B。
 
 ## 如何防止出现blackholed问题？
 
@@ -157,7 +158,7 @@ exchange 以 binding_key key_A 绑定了 queue queue_A，但向该 exchange 发�
 
 若在该信令中设 置`requeue=true`，则当RabbitMQ server收到该拒绝信令后，会将该 message重新发送到下一个consumer处（理论上仍 可能将该消息发送给当前consumer）。
 
-若设置`requeue=false`，则 RabbitMQ server在收到拒绝信令后，将直接将该message从queue中移 除。
+若设置`requeue=false`，则 RabbitMQ server在收到拒绝信令后，将直接将该message从queue中移除。
 
 
 ## 如何保证消息不被重复消费？
@@ -174,9 +175,9 @@ exchange 以 binding_key key_A 绑定了 queue queue_A，但向该 exchange 发�
 
 将信道设置成 confirm 模式（发送方确认模式），则所有在信道上发布的消息都会被指派一个唯一的 ID。
 
-一旦消息被投递到目的队列后，或者消息被写入磁盘后（可持久化的消息），信道会发送一个确认给生产者（包含消息唯一 ID）。
+一旦消息被投递到目的队列后，或者消息被写入磁盘后（可持久化的消息），信道会**发送一个确认给生产者**（包含消息唯一 ID）。
 
-如果 RabbitMQ 发生内部错误从而导致消息丢失，会发送一条 nack（notacknowledged，未确认）消息。
+如果 RabbitMQ 发生内部错误从而导致消息丢失，会发送一条 **nack**（notacknowledged，未确认）消息。
 
 发送方确认模式是异步的，生产者应用程序在等待确认的同时，可以继续发送消息。当确认消息到达生产者应用程序，生产者应用程序的回调方法就会被触发来处理确认消息。
 
@@ -211,7 +212,7 @@ confirm模式用的居多：一旦channel进入confirm模式，所有在该信�
 
 如果这时处理消息失败，就会丢失该消息；
 
-解决方案：处理消息成功后，手动回复确认消息。
+解决方案：处理消息成功后，**手动回复确认消息**。
 
 ## 为什么不应该对所有的 message 都使用持久化机制？
 
@@ -223,7 +224,7 @@ confirm模式用的居多：一旦channel进入confirm模式，所有在该信�
 
 普通集群模式，在多台机器上启动多个 RabbitMQ 实例。 **queue，只会放在一个 RabbitMQ 实例上，但是每个实例都同步 queue 的元数据。**消费的时候，实际上如果连接到了另外一个实例，那么那个实例会从 queue 所在实例上拉取数据过来。这方案主要是提高吞吐量的，就是说让集群中多个节点来服务某个 queue 的读写操作。
 
-镜像集群模式： RabbitMQ 的高可用模式。在镜像集群模式下，你创建的 queue，**无论元数据还是 queue 里的消息都会存在于多个实例上**，就是说，每个 RabbitMQ 节点都有这个 queue 的一个完整镜像，包含 queue 的全部数据的。然后每次你写消息到 queue 的时候，都会自动把消息同步到多个实例的 queue 上。
+**镜像集群模式**： RabbitMQ 的高可用模式。在镜像集群模式下，你创建的 queue，**无论元数据还是 queue 里的消息都会存在于多个实例上**，就是说，每个 RabbitMQ 节点都有这个 queue 的一个完整镜像，包含 queue 的全部数据的。然后每次你写消息到 queue 的时候，都会自动把消息同步到多个实例的 queue 上。
 
 好处在于，任何一个机器宕机了，其它机器还包含了这个 queue 的完整数据，别的 consumer 都可以到其它节点上去消费数据。
 
@@ -231,12 +232,12 @@ confirm模式用的居多：一旦channel进入confirm模式，所有在该信�
 
 ## rabbitmq 对集群节点停止顺序有要求吗?
 
-RabbitMQ 对集群的停止的顺序是有要求的,应该先关闭内存节点,最后再关闭磁盘节点.如果顺序恰好相反的话,可能会造成消息的丢失
+RabbitMQ 对集群的停止的顺序是有要求的，应该先关闭内存节点，最后再关闭磁盘节点.如果顺序恰好相反的话，可能会造成消息的丢失
 
 ## rabbitmq 集群有什么用?
 
-- 高可用: 某个服务器出现问题，整个 RabbitMQ 还可以继续使用;
-- 高容量: 集群可以承载更多的消息量.
+- 高可用: 某个服务器出现问题，整个 RabbitMQ 还可以继续使用
+- 高容量: 集群可以承载更多的消息量
 
 ## RAM node 和 disk node 的区别？
 
