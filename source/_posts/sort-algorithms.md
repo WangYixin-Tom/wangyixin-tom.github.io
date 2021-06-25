@@ -19,8 +19,6 @@ categories:
 
 ## 性质汇总
 
-> 如果发现表中有错误，请留言告知。
-
 |   算法  |   最好  |  最坏   |  平均   |  空间   |  稳定性   | 是否基于比较
 | --- | --- | --- | --- | --- | :---: | :---: |
 |  冒泡排序   |  $O(n)$   |   $O(n^2)$  |  $O(n^2)$   |  $O(1)$   | $\checkmark$  | $\checkmark$ |
@@ -34,53 +32,27 @@ categories:
 |  桶排序   |   $O(n)$  |   $O(n)$  |   $O(n)$  |  $O(n+m)$   |  $\checkmark$   | $\times$ |
 |  堆排序   |  $O(n\log n)$   |   $O(n\log n)$  |  $O(n\log n)$   |   $O(1)$  |  $\times$   | $\checkmark$ |
 
-我觉得还是英文维基百科讲的比较详细、严谨。如果大家看的比较累的话，可以自己百度搜索相应的教程。
 
-**冒泡排序**  
-[https://en.wikipedia.org/wiki/Bubble_sort](https://en.wikipedia.org/wiki/Bubble_sort)
-
-**选择排序**  
-[https://en.wikipedia.org/wiki/Selection_sort](https://en.wikipedia.org/wiki/Selection_sort)
-
-**插入排序**  
-[https://en.wikipedia.org/wiki/Insertion_sort](https://en.wikipedia.org/wiki/Insertion_sort)
-
-**快速排序**  
-[https://en.wikipedia.org/wiki/Quicksort](https://en.wikipedia.org/wiki/Quicksort)
-
-**归并排序**  
-[https://en.wikipedia.org/wiki/Merge_sort](https://en.wikipedia.org/wiki/Merge_sort)
-
-**希尔排序**  
-[https://en.wikipedia.org/wiki/Shellsort](https://en.wikipedia.org/wiki/Shellsort)
-
-**计数排序**  
-[https://en.wikipedia.org/wiki/Counting_sort](https://en.wikipedia.org/wiki/Counting_sort)
-
-**基数排序**  
-[https://en.wikipedia.org/wiki/Radix_sort](https://en.wikipedia.org/wiki/Radix_sort)
-
-**桶排序**  
-[https://en.wikipedia.org/wiki/Bucket_sort](https://en.wikipedia.org/wiki/Bucket_sort)
-
-**堆排序**  
-[https://en.wikipedia.org/wiki/Heapsort](https://en.wikipedia.org/wiki/Heapsort)
 
 ## 代码实现
 
-**主流排序算法**
+### **主流排序算法**
+
+#### 冒泡排序
+比较前一个数和后一个数，如果前比后大，对换他们的位置；从左往右冒泡泡
 
 ```python
-# 冒泡排序
-# 比较前一个数和后一个数，如果前比后大，对换他们的位置；从左往右冒泡泡
 def bubbleSort(l):
     for i in range(1, len(l)):
         for j in range(len(l) - i):
             if l[j] > l[j + 1]:
                 l[j], l[j + 1] = l[j + 1], l[j]
+```
 
-# 选择排序
-# 在未排序序列中找到最小（大）元素，存放到排序序列的起始位置。
+#### 选择排序
+在未排序序列中找到最小元素，存放到排序序列的起始位置。
+
+```python
 def select_sort(l):  
     for i in range(len(l)):  
         small_index = i  
@@ -88,21 +60,43 @@ def select_sort(l):
             if l[small_index] > l[j]:  
                 small_index = j  
         l[i], l[small_index] = l[small_index], l[i]  
+```
 
+#### 插入排序
+1. 从第一个元素开始，该元素可以认为已经被排序  
+2. 取出下一个元素，在已经排序的元素序列中从后向前扫描  
+3. 如果被扫描的元素（已排序）大于新元素，将该元素后移一位
 
-# 插入排序（超时）
-# 从第一个元素开始，该元素可以认为已经被排序  
-# 取出下一个元素，在已经排序的元素序列中从后向前扫描  
-# 如果被扫描的元素（已排序）大于新元素，将该元素后移一位
+```python
 def insertSort(l):
     for i in range(1, len(l)):
         for j in range(i,0,-1):
             if l[j] < l[j-1]:
                 l[j], l[j-1] = l[j-1], l[j]
-                
+```
 
-# 从数列中挑出一个元素作为基准数。  
-#分区过程，将比基准数大的放到右边，小于或等于它的数都放到左边。  
+#### 快排
+
+- 从数列中挑出一个元素作为基准数。  
+- 分区过程，将比基准数大的放到右边，小于或等于它的数都放到左边。  
+
+**优化**
+
+1、三数取中作基准
+
+2、当待排序序列的长度分割到一定大小后，使用插入排序：对于很小和部分有序的数组，快排不如插排好。当待排序序列的长度分割到一定大小后，继续分割的效率比插入排序要差，此时可以使用插排而不是快排
+
+3、在一次分割结束后，可以把与pivot相等的元素聚在一起，继续下次分割时，不用再对与pivot相等元素分割：实现的时候先放2边，然后调整到中间。
+
+**复杂度分析**
+
+https://zhuanlan.zhihu.com/p/341201904
+
+**应用**
+
+TOPK问题，可基于划分得到。
+
+```python
 class Solution:
     def randomized_partition(self, nums, l, r):
         pivot = random.randint(l, r)
@@ -126,89 +120,72 @@ class Solution:
     def sortArray(self, nums: List[int]) -> List[int]:
         self.randomized_quicksort(nums, 0, len(nums) - 1)
         return nums
-
-    // 堆排序（32 ms）
-    void adjust(vector<int>& nums, int p, int s) {
-        while (2*p+1 < s) {
-            int c1 = 2*p+1;
-            int c2 = 2*p+2;
-            int c = (c2<s && nums[c2]>nums[c1]) ? c2 : c1;
-            if (nums[c] > nums[p]) swap(nums[c], nums[p]);
-            else break;
-            p = c;
-        }
-    }
-
-    vector<int> heapSort(vector<int>& nums) {
-        int n = nums.size();
-        for (int i = n/2-1; i >= 0; --i) {
-            adjust(nums, i, n);
-        }
-        for (int i = n-1; i > 0; --i) {
-            swap(nums[0], nums[i]);
-            adjust(nums, 0, i);
-        }
-        return nums;
-    }
-    
-    // 归并排序（192 ms）
-    vector<int> mSort(vector<int>& nums, int l, int r) {
-        if (l >= r) return {nums[l]};
-        int m = l+(r-l)/2;
-        vector<int> lnums = mSort(nums, l, m);
-        vector<int> rnums = mSort(nums, m+1, r);
-        vector<int> res;
-        int i = 0, j = 0;
-        while (i <= m-l && j <= r-m-1) {
-            if (lnums[i] < rnums[j]) {
-                res.push_back(lnums[i++]);
-            } else {
-                res.push_back(rnums[j++]);
-            }
-        }
-        while (i <= m-l) {
-            res.push_back(lnums[i++]);
-        }
-        while (j <= r-m-1) {
-            res.push_back(rnums[j++]);
-        }
-        return res;
-    }
-
-    vector<int> mergeSort(vector<int>& nums) {
-        int n = nums.size();
-        nums = mSort(nums, 0, n-1);
-        return nums;
-    }
-
-def merge_sort(arr):
-    # divide to two
-    if len(arr) < 2:
-        return arr
-    mid = int(len(arr)/2)
-    left = merge_sort(arr[:mid])
-    right = merge_sort(arr[mid:])
-    return merge(left, right)
-
-def merge(left, right):
-    result = []
-    j = 0
-    i = 0
-    while i < len(left) and j < len(right):
-        if left[i] < right[j]:
-            result.append(left[i])
-            i += 1
-        else:
-            result.append(right[j])
-            j += 1
-    # add the larger part both left and right
-    result += left[i:]
-    result += right[j:]
-    return result
-
 ```
 
-**其他排序算法**
+#### 堆排序
+1. 先将待排序的序列建成大根堆，使得每个父节点的元素大于等于它的子节点。
+2. 此时整个序列最大值即为堆顶元素，我们将其与末尾元素交换，使末尾元素为最大值，然后再调整堆顶元素使得剩下的 n-1个元素仍为大根堆
+
+```python
+class Solution:
+    def max_heapify(self, heap, root, heap_len):
+        p = root
+        while p * 2 + 1 < heap_len:
+            l, r = p * 2 + 1, p * 2 + 2
+            if heap_len <= r or heap[r] < heap[l]:
+                nex = l
+            else:
+                nex = r
+            if heap[p] < heap[nex]:
+                heap[p], heap[nex] = heap[nex], heap[p]
+                p = nex
+            else:
+                break
+        
+    def build_heap(self, heap):
+        for i in range(len(heap) - 1, -1, -1):
+            self.max_heapify(heap, i, len(heap))
+
+    def heap_sort(self, nums):
+        self.build_heap(nums)
+        for i in range(len(nums) - 1, -1, -1):
+            nums[i], nums[0] = nums[0], nums[i]
+            self.max_heapify(nums, 0, i)
+            
+    def sortArray(self, nums: List[int]) -> List[int]:
+        self.heap_sort(nums)
+        return nums
+```
+
+#### 归并排序
+1. 分治的思想来对序列进行排序。对一个长为 n 的待排序的序列，我们将其分解成两个长度为n/2的子序列。
+2. 每次先递归调用函数使两个子序列有序，然后我们再线性合并两个有序的子序列使整个序列有序。
+
+```python
+class Solution:
+    def merge_sort(self, nums, l, r):
+        if l == r:
+            return
+        mid = (l + r) // 2
+        self.merge_sort(nums, l, mid)
+        self.merge_sort(nums, mid + 1, r)
+        tmp = []
+        i, j = l, mid + 1
+        while i <= mid or j <= r:
+            if i > mid or (j <= r and nums[j] < nums[i]):
+                tmp.append(nums[j])
+                j += 1
+            else:
+                tmp.append(nums[i])
+                i += 1
+        nums[l: r + 1] = tmp
+
+    def sortArray(self, nums: List[int]) -> List[int]:
+        self.merge_sort(nums, 0, len(nums) - 1)
+        return nums
+```
+
+### **其他排序算法**
 
     // 希尔排序（40 ms）
     vector<int> shellSort(vector<int>& nums) {
