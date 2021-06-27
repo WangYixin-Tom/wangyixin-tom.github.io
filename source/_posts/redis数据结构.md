@@ -119,7 +119,7 @@ struct dict {
     dictht ht[2];		//哈希表
 }
 struct dictht {
-    dictEntry** table; 	// 二维
+    dictEntry **table; 	// 二维
     long size; 			// 第一维数组的长度
     long used; 			// hash 表中的元素个数
     ...
