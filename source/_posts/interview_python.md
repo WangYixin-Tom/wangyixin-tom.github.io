@@ -29,21 +29,23 @@ categories:
 
 
 
-- 在Python3，新增了关键字 nonlcoal，支持嵌套函数中，变量声明为非局部变量。
+- Python3，新增了关键字 nonlcoal，支持嵌套函数中，变量声明为非局部变量。
 - python3提供注解，但是解释器**并不会**因为这些注解而提供额外的校验，没有任何的类型检查工作。也就是说，这些类型注解加不加，对你的代码来说**没有任何影响**，好处是易懂。
 
 
 
-- 在Python2 中，字符串有两个类型， unicode和 str，前者表示文本字符串，后者表示字节序列，不过两者并没有明显的界限；Python3  str 表示字符串，byte 表示字节序列。
+- 在Python2 中，字符串有两个类型， unicode和 str，前者表示文本字符串，后者表示字节序列，python2 会自动将字符串转换为合适编码的字节字符串（utf-8/gbk...），`decode('utf-8')`之后转换为unicode，可以显示指定字符串类型为unicode类型；Python3  str 表示字符串，byte 表示字节序列，字符串默认是Unicode，不能显示指定u"xx"，转换字节序列需要`encode('utf-8')`。
 - True 和 False 在 Python2 中是全局变量，分别对应 1 和 0，可以指向其它对象。 Python3  True 和 False 变为关键字，不允许再被重新赋值。
-- 在Python2中，3/2是整数，在Python 3中，浮点数。
+- 在Python2中，3/2是整数，在Python 3中浮点数，如果相除还想得到整数，就需要改成//相除。
+- 原来在py2里，4字节以内的整数类型为int，超过就是long，而py3里没有long类型，只有int，而带来的问题是，大量整数计算时，py3要比py2占用更多内存，计算也明显更慢。
+- py3里dict没有`has_key()`方法，统一使用in表达式
 
 
 
 - Python 2中print/exec是特殊语句，Python 3中print/exec是函数，需要加上括号。
 - python2 range返回列表，python3 range中返回可迭代对象，节约内存。
-- Python 2 map函数返回list，Python 3 map函数返回迭代器。
-- python2中的raw_input函数，python3中改名为input函数
+- Python 2 map、zip、filter函数返回list，Python3返回迭代器。
+- python2中的raw_input/input函数，python3中改名为input函数，危险的input被删掉了
 
 ## python2和3代码如何兼容
 
@@ -83,7 +85,19 @@ categories:
 
 可变数据类型：list和dict；
 
-不可变数据类型：int、型float、string和tuple。
+不可变数据类型：int、float、string和tuple、bytes。
+
+### array 与内置list 有什么区别
+
+array 是数组, 数组是只能够保存一种类型, 初始化的时候就决定了数据类型.
+
+而list 里面 几乎可以放任意类型
+
+### 扁平序列
+
+存放的都是原子级元素，此时存放的是值而不会是引用。
+
+常见的扁平序列包括：str，bytes，bytearray, memoryview, array.array等。
 
 ### python2中xrange和range的区别
 
@@ -222,6 +236,9 @@ timsort是结合了合并排序和插入排序而得出的排序算法。该算�
 
 `__new__`实例化对象调用的第一个方法，用来创造一个类的实例的，取下cls参数，把其他参数传给`__init__`.
 
+`__slot__`:让解释器在元组中存储实例属性，而不用字典，告诉解释器：“这个类中的所有
+实例属性都在这儿了！”
+
 `__call__`让一个类的实例像函数一样被调用
 
 `__getitem__`定义获取容器中指定元素的行为，相当于`self[key]`
@@ -234,7 +251,7 @@ timsort是结合了合并排序和插入排序而得出的排序算法。该算�
 
 `__del__`删除对象执行的方法
 
-`__str__`强调可读性，面向用户；而`__repr__`强调标准性，面向机器
+`__str__`强调可读性，面向用户，在`print()`或者`str()`函数调用的时候才会被调用；而`__repr__`强调标准性，面向开发者。
 
 %s调用`__str__`方法，而%r调用`__repr__`方法
 
@@ -250,6 +267,15 @@ func = Callable()
 result = func(2, 3) # 像函数一样调用
 print(result)
 ```
+
+### 读取obj.field时, 发生了什么?
+
+1. 如果定义了`__getattribute__`，访问该方法获取属性值。逐级查找父类的`__getattribute__`
+2. 对应描述符`__get__()`方法
+3. 如果obj 实例有这个属性, 返回. 
+4. 非数据描述符`__get__()`
+5. 如果obj 的class 有这个属性, 返回. 逐级查找父类的属性
+6. 执行`obj.__getattr__`方法.逐级查找父类的`__getattr__`方法
 
 ### new & init区别
 
@@ -438,33 +464,11 @@ def bar():
 bar()
 ```
 
-### property
+### 动态属性property
 
-让方法像属性一样使用
+让方法像属性一样使用.
 
-```python
-property([fget[, fset[, fdel[, doc]]]])
-fdel = property(lambda self: object(), lambda self, v: None, lambda self: None) # default
-fget = property(lambda self: object(), lambda self, v: None, lambda self: None) # default
-fset = property(lambda self: object(), lambda self, v: None, lambda self: None) # default
-
-class C(object):
-  def __init__(self):
-     self._x = None
- 
-  def getx(self):
-    return self._x
-
-  def setx(self, value):
-    self._x = value
-
-  def delx(self):
-    del self._x
-
-  x = property(getx, setx, delx, "I'm the 'x' property.")
-```
-
-property 的 getter,setter 和 deleter 方法同样可以用作装饰器：
+大量的@property修饰的方法在同一个类，这是不符合设计原则的，代码的分离性和可读性大大降低。建议使用属性描述符。
 
 ```python
 class C(object):
@@ -479,7 +483,8 @@ class C(object):
 
   @x.setter
   def x(self, value):
-     self._x = value
+     if isinstance(value,numbers.Integral):
+     	self._x = value
 
   @x.deleter
   def x(self):
@@ -893,9 +898,9 @@ class Operate_database(metaclass=ABCMeta):    # 接口类2
 
 ### 描述符
 
-**一个实现了描述符协议的类就是一个描述符。**
-
-**描述符协议：实现了` __get__()`、`__set__()`、`__delete__() `其中至少一个方法的类，就是一个描述符。**
+- 一个实现了`__get__()`、`__set__()`、`__delete__() `其中至少一个方法的类就是一个描述符。
+- 只实现了`__get__()`的称作非数据描述符
+- 实现了`__get__()`和`__set__()`方法的称作数据描述符。
 
 `__get__`： 用于访问属性。它返回属性的值，若属性不存在、不合法等都可以抛出对应的异常。
 
@@ -1388,6 +1393,10 @@ Python 2.x 的代码执行是基于 opcode 数量的调度方式，简单来说�
 python2.x和3.x都是在执行IO操作的时候，强制释放GIL，使其他线程有机会执行程序。
 
 ## 性能优化
+
+### lru_cache装饰器
+
+为函数提供缓存功能。在下次以相同参数调用时直接返回上一次的结果，要求参数可hash。
 
 ### 性能分析
 
