@@ -534,6 +534,12 @@ psync 命令包含了主库的 runID 和复制进度 offset 两个参数。
 
 min-slaves-max-lag、min-slaves-to-write：要求至少有1个slave，数据复制和同步延迟不能超过10秒；如果说一旦所有的slave，数据复制和同步的延迟都超过了10秒钟，那么master就会拒绝接收任何请求。
 
+### 集群模式下key怎么保证在一个节点上？
+
+分布在一个节点上，可能是需要对这些key做聚合处理。
+
+基于redis cluster分片机制，key 进行规划和使用 hash tag 特性。。在开源 Redis 中，花括号{}表示 hash tag，这个两个花括号中间的字符才会进行 CRC16 散列计算。Crc16 散列函数返回的是一个 14bit 的整数，当中间字符只有数字的时候，CRC16计算的位置就可控了。
+
 ## 分区
 
 ### Redis是单线程的，如何提高多核CPU的利用率？
