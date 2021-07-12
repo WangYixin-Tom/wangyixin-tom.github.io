@@ -99,6 +99,13 @@ RabbitMQ是一款开源的，Erlang编写的，基于AMQP协议的消息中间�
 
 **Channel：信道**，建立在Connection上的虚拟连接，每条AMQP指令都通过信道完成交换器类型
 
+**channel、exchange 和 queue 这些是逻辑概念，还是对应着进程实体？**
+
+- queue有自己的erlang进程;
+- exchange保存binding关系的查找表;
+- channel是实际进行路由工作的实体，根据routing_key将消息投递给queue。channel是在tcp连接上的虚拟链接，amqp命令通过channel发送，
+  一个线程允许使用多个channel，多线程共享同一个socket。
+
 ## RabbitMQ的工作模式
 
 **简单模式**：它包含一个生产者、一个消费者和一个队列。生产者向队列里发送消息，消费者从队列中获取消息并消费。
@@ -248,7 +255,9 @@ confirm模式用的居多：一旦channel进入confirm模式，所有在该信�
 
 其次，message 的持久化机制用在 RabbitMQ 的内置 cluster 方案时会出现“坑爹”问题。
 
-## 如何保证高可用的？RabbitMQ 的集群
+## 集群
+
+### 如何保证高可用的？RabbitMQ 的集群
 
 普通集群模式，在多台机器上启动多个 RabbitMQ 实例。 **queue，只会放在一个 RabbitMQ 实例上，但是每个实例都同步 queue 的元数据。**消费的时候，实际上如果连接到了另外一个实例，那么那个实例会从 queue 所在实例上拉取数据过来。这方案主要是提高吞吐量的，就是说让集群中多个节点来服务某个 queue 的读写操作。
 
@@ -258,27 +267,31 @@ confirm模式用的居多：一旦channel进入confirm模式，所有在该信�
 
 坏处在于，这个性能开销大，消息需要同步到所有机器上，导致网络带宽压力和消耗很重。
 
-## rabbitmq 对集群节点停止顺序有要求吗?
+### rabbitmq 对集群节点停止顺序有要求吗?
 
 RabbitMQ 对集群的停止的顺序是有要求的，应该先关闭内存节点，最后再关闭磁盘节点.如果顺序恰好相反的话，可能会造成消息的丢失
 
-## rabbitmq 集群有什么用?
+### rabbitmq 集群有什么用?
 
 - 高可用: 某个服务器出现问题，整个 RabbitMQ 还可以继续使用
 - 高容量: 集群可以承载更多的消息量
 
-## RAM node 和 disk node 的区别？
+### RAM node 和 disk node 的区别？
 
-RAM node 仅将相关元数据保存到内存中，但disk node会在内存和磁盘中均进行存储。要求在RabbitMQ cluster中至少存在一个disk node。
+RAM node 仅将相关元数据保存到内存中，
 
-## **rabbitmq 每个节点是其他节点的完整拷贝吗？为什么？**
+disk node会在内存和磁盘中均进行存储。
+
+要求在RabbitMQ cluster中至少存在一个disk node。
+
+### **rabbitmq 每个节点是其他节点的完整拷贝吗？为什么？**
 
 不是，原因有以下两个：
 
 1. 存储空间的考虑：如果每个节点都拥有所有队列的完全拷贝，这样新增节点不但没有新增存储空间，反而增加了更多的冗余数据；
 2. 性能的考虑：如果每条消息都需要完整拷贝到每一个集群节点，那新增节点并没有提升处理消息的能力，反而可能更糟。
 
-## **rabbitmq 集群中唯一一个磁盘节点崩溃了会发生什么情况？**
+### **rabbitmq 集群中唯一一个磁盘节点崩溃了会发生什么情况？**
 
 如果唯一磁盘的磁盘节点崩溃了，不能进行以下操作：
 
@@ -295,3 +308,8 @@ RAM node 仅将相关元数据保存到内存中，但disk node会在内存和�
 不能添加和删除集群节点
 
 唯一磁盘节点崩溃了，集群是可以保持运行的，但你不能更改任何东西。
+
+### 元数据
+
+- 非 cluster 模式下，元数据主要分为 Queue 元数据（queue 名字和属性等）、Exchange 元数据（exchange 名字、类型和属性等）、Binding 元数据（存放路由关系的查找表）、Vhost 元数据（vhost 范围内针对前三者的名字空间约束和安全属性设置）。
+- cluster 模式下，还包括 cluster 中 node 位置信息和 node 关系信息。元数据按照 erlang node 的类型确定是仅保存于 RAM 中，还是同时保存在 RAM 和 disk 上。元数据在cluster 中是全 node 分布的。

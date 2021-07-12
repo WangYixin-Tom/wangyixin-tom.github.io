@@ -167,6 +167,12 @@ Chrome 最多允许对同一个 Host 建立六个 TCP 连接，不同的浏览�
 
 HTTP/1.1 默认开启持久连接，一个TCP连接是支持多个http请求的。
 
+### HTTP缓存机制
+
+- HTTP缓存主要分强制缓存和对比缓存
+- 强制缓存的HTTP相关头部Cache-Control，Exipres（HTTP1.0）,浏览器直接读本地缓存，不会再跟服务器端交互，状态码200。
+- 对比缓存的HTTP相关头部Last-Modified / If-Modified-Since， Etag / If-None-Match (优先级比Last-Modified / If-Modified-Since高)，每次请求需要让服务器判断一下资源是否更新过，从而决定浏览器是否使用缓存，如果是，则返回304，否则重新完整响应。
+
 ## HTTPS
 
 ### 什么是 https
