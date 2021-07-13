@@ -17,7 +17,7 @@ categories:
 
 解决了一致性问题。
 
-> 在一个分布式系统中，有一组的 process，每个 process 都可以提出一个 value，consensus 算法就是用来从这些 values 里选定一个最终 value。如果没有 value 被提出来，那么就没有 value 被选中；如果有1个 value 被选中，那么所有的 process 都应该被通知到。
+> 在一个分布式系统中，每个 proposer都可以提出一个 value，consensus 算法就是用来从这些 values 里选定一个最终 value。如果没有 value 被提出来，那么就没有 value 被选中；如果有1个 value 被选中，那么所有的 process 都应该被通知到。
 
 ###  Paxos 例子说明
 
