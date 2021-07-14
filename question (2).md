@@ -35,3 +35,11 @@ JWT的结构，JWT存储信息的长度收什么限制（HTTP头的长
 CAS和ABA问题
 
 Reactor与proactor的区别？
+
+
+
+**Redis的哈希环最多有16384个槽，为什么是16384？**
+
+**说一下Raft和Paxos协议的区别**
+
+mysql中的utf-8和mb4的区别：mb4:most bytes 4。mysql的utf8只能拿出3个字节来保存字符，因为要为char类型数据保留足够的长度，所以只能保存大多数字符，如少量汉字、emoji表情，而mb4就有4个字节可以用来保存汉字，能覆盖所有的字符。
