@@ -805,7 +805,7 @@ InnoDB 行锁是通过给索引项加锁来实现的。
 
 - 获取锁可以通过，在select语句后增加`for update`，数据库会在查询过程中给数据库表增加排他锁。当某条记录被加上排他锁之后，其他线程无法再在该行记录上增加排他锁，我们可以认为获得排它锁的线程即可获得分布式锁；
 - 其余实现与使用唯一索引相同；
-- 释放锁通过`connection.commit();`操作，提交事务来实现。
+- 释放锁通过`connection.commit()`操作，提交事务来实现。
 
 **优点**
 
@@ -880,7 +880,7 @@ Before Insert、After Insert、Before Update、After Update、Before Delete、Af
 
 ### 主键 超键 候选键 外键
 
-- 主键：**存储数据对象予以唯一和完整标识**的数据列或属性的组合。一个数据列只能有一个主键，且主键的取值不能缺失，即不能为空值
+- 主键：**存储数据对象予以唯一和完整标识**的数据列或属性的组合。只能有一个主键，且主键的取值不能缺失，不能为空值
 
 - 外键：在一个表中存在**的另一个表的主键称此表的外键**。
 
@@ -890,37 +890,39 @@ Before Insert、After Insert、Before Update、After Update、Before Delete、Af
 
 ### SQL 约束
 
-**NOT NULL**： 用于控制字段的内容一定不能为空。
+**NOT NULL**： 字段的内容一定不能为空。
 
-**UNIQUE**： 控件字段内容不能重复，一个表允许有多个 Unique 约束。
+**UNIQUE**： 字段内容不能重复，一个表允许有多个 Unique 约束。
 
-**PRIMARY KEY**： 也是用于控件字段内容不能重复，但它在一个表只允许出现一个。
+**PRIMARY KEY**： 设置主键。主键的取值不能缺失，不能为空值
 
-**FOREIGN KEY：** 用于预防破坏表之间连接的动作，也能防止非法数据插入外键列，因为它必须是它指向的那个表中的值之一。
+**FOREIGN KEY：** 预防破坏表之间连接的动作，也能防止非法数据插入外键列。
 
 **CHECK**： 用于控制字段的值范围。
 
 ### 关联查询
 
-**交叉连接**（CROSS JOIN）
+**交叉连接**
 
-**内连接分为三类**
+**内连接**
 
-等值连接：ON A.id=B.id
+- 等值连接：ON A.id=B.id
 
-不等值连接：ON A.id > B.id
+- 不等值连接：ON A.id > B.id
 
-自连接：SELECT * FROM A T1 INNER JOIN A T2 ON T1.id=T2.pid
+- 自连接：SELECT * FROM A T1 INNER JOIN A T2 ON T1.id=T2.pid
 
-**外连接（LEFT JOIN/RIGHT JOIN）**
 
-左外连接：以左表为主，先查询出左表，按照ON后的关联条件匹配右表，没有匹配到的用NULL填充，可以简写成LEFT JOIN
+**外连接**
 
-右外连接： 以右表为主，先查询出右表，按照ON后的关联条件匹配左表，没有匹配到的用NULL填充，可以简写成RIGHT JOIN
+- 左外连接：以左表为主，先查询出左表，按照ON后的关联条件匹配右表，没有匹配到的用NULL填充，可以简写成LEFT JOIN
+
+- 右外连接： 以右表为主，先查询出右表，按照ON后的关联条件匹配左表，没有匹配到的用NULL填充，可以简写成RIGHT JOIN
+
 
 **联合查询（UNION与UNION ALL**）
 
-就是把多个结果集集中在一起，UNION前的结果为基准，需要注意的是联合查询的列数要相等，相同的记录行会合并
+把多个结果集集中在一起，UNION前的结果为基准，需要注意的是联合查询的列数要相等，相同的记录行会合并
 
 如果使用UNION ALL，不会合并重复的记录行，效率 UNION ALL 高于 UNION
 
@@ -942,9 +944,9 @@ mysql中的in语句是把外表和内表作hash 连接，而exists语句是对�
 
 - IN适合于外表大而子查询表小的情况。
 
-- EXISTS适合于外表小而子查询表大的情况。
+- EXISTS适合于外表小而子查询表大的情况（？？）。
 
-### drop,delete与truncate
+### drop、delete、truncate
 
 drop直接删掉表，truncate、delete删除表中数据。
 
