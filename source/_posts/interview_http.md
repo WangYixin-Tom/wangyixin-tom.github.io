@@ -131,15 +131,13 @@ http协议只定义了应用层的东西，需要基于TCP实现消息可靠性
 
 Chrome 最多允许对同一个 Host 建立六个 TCP 连接，不同的浏览器有一些区别。
 
-### http层的keep-alive
-
-用于客户端告诉服务端，这个连接我还会继续使用，在使用完之后不要关闭。减少了TCP的三次握手和四次挥手
-
 ### HTTP如何保持长连接？
 
 - 浏览器发起请求，HTTP版本号为1.1。
-- Web Server收到请求，在响应的头中也增加keep-alive。同时不会关闭已建立的tcp连接。
-- 浏览器收到Web Server的响应头中包含keep-alive，不close tcp连接。并用该tcp连接再发送request。
+- 服务器收到请求，在响应的头中也增加keep-alive。同时不会关闭已建立的tcp连接。
+- 浏览器收到服务器的响应头中包含keep-alive，不关闭tcp连接。并用该tcp连接再发送请求。
+
+减少了TCP的三次握手和四次挥手
 
 ### HTTP缓存机制
 
