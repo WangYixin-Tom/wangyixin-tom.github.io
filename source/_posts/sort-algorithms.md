@@ -42,24 +42,28 @@ categories:
 比较前一个数和后一个数，如果前比后大，对换他们的位置；从左往右冒泡泡
 
 ```python
-def bubbleSort(l):
-    for i in range(1, len(l)):
-        for j in range(len(l) - i):
-            if l[j] > l[j + 1]:
-                l[j], l[j + 1] = l[j + 1], l[j]
+def bubble_sort(a):
+    n = len(a)
+    for i in range(n-1, 0, -1):
+        for j in range(i):
+            # j [0,n-1)... [0,2), [0,1)
+            if a[j] > a[j+1]:
+                a[j+1], a[j] = a[j], a[j+1]
 ```
 
 #### 选择排序
 在未排序序列中找到最小元素，存放到排序序列的起始位置。
 
 ```python
-def select_sort(l):  
-    for i in range(len(l)):  
-        small_index = i  
-        for j in range(i, len(l)):  
-            if l[small_index] > l[j]:  
-                small_index = j  
-        l[i], l[small_index] = l[small_index], l[i]  
+def sel_sort(a):
+    n = len(a)
+    for i in range(n):
+        # [0, n), [1, n)...
+        minindex = i
+        for j in range(i+1, n):
+            if a[j] < a[minindex]:
+                minindex = j
+        a[i], a[minindex] = a[minindex],a[i]
 ```
 
 #### 插入排序
@@ -132,26 +136,32 @@ class Solution:
         p = root
         while p * 2 + 1 < heap_len:
             l, r = p * 2 + 1, p * 2 + 2
+            # 两个子节点取较大值，或者无右节点时取左节点
             if heap_len <= r or heap[r] < heap[l]:
                 nex = l
             else:
                 nex = r
+            # 交换父节点和子节点较大值，并向下处理（一般下面已经完成有序处理）
             if heap[p] < heap[nex]:
                 heap[p], heap[nex] = heap[nex], heap[p]
                 p = nex
             else:
+            # 不需要处理
                 break
-        
+
     def build_heap(self, heap):
+    	# 倒序调整堆
         for i in range(len(heap) - 1, -1, -1):
             self.max_heapify(heap, i, len(heap))
 
     def heap_sort(self, nums):
+    	# 先将待排序的序列建成大根堆，使得每个父节点的元素大于等于它的子节点
         self.build_heap(nums)
         for i in range(len(nums) - 1, -1, -1):
+        # 将其与末尾元素交换，使末尾元素为最大值，然后再调整堆顶元素使得剩下的 n-1个元素仍为大根堆
             nums[i], nums[0] = nums[0], nums[i]
             self.max_heapify(nums, 0, i)
-            
+
     def sortArray(self, nums: List[int]) -> List[int]:
         self.heap_sort(nums)
         return nums
