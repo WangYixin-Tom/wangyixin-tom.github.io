@@ -1,5 +1,5 @@
 ---
-title: 数据结构基础
+title: 数据结构必知必会
 top: false
 cover: false
 toc: true

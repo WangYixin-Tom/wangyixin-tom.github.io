@@ -1,5 +1,5 @@
 ---
-title: mysql面试
+title: mysql必知必会
 top: false
 cover: false
 toc: true

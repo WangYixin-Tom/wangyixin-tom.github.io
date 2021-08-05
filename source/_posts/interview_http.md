@@ -283,7 +283,7 @@ cookie生命周期默认为浏览器会话期间，驻留内存，关闭浏览�
 
 **URL重写**
 
-判断前端是否禁用了cookie，如果禁用了cookie，在url后带上jsessioonid。
+判断前端是否禁用了cookie，如果禁用了cookie，在url后带上jsessionid。
 
 ### cookie包含哪几项内容
 

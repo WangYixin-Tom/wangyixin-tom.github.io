@@ -1,5 +1,5 @@
 ---
-title: 常见场景题
+title: 场景头脑风暴
 top: false
 cover: false
 toc: true

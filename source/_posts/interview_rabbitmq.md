@@ -1,5 +1,5 @@
 ---
-title: rabbitmq面试
+title: rabbitmq必知必会
 top: false
 cover: false
 toc: true
