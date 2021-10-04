@@ -1,0 +1,1922 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="utf-8">
+    <meta name="keywords" content="网络必知必会, python rabbitmq redis flask kafka">
+    <meta name="baidu-site-verification" content="code-KoKq36g1n2">
+    <meta name="google-site-verification" content="yCy2azpds5XSuGZvis6OuA-XIGF5GuGpYRAaGfD6o48">
+    <meta name="360-site-verification" content="b7c11a830ef90fd1464ad6206bb7b6e7">
+    <meta name="description" content="计算机网络体系结构
+
+OSI 7层物理层：通过网线、光缆等这种物理方式将电脑连接起来。发送高低电平（电信号）
+数据链路层：定义了电信号的分组方式。MAC地址的封装和解封装。
+网路层：引入网络地址用来区分不同的广播域/子网，ip的封装和解封装">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>网络必知必会 | 好好学习</title>
+    <link rel="icon" type="image/png" href="/favicon.png">
+
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/css/my.css">
+    <style type="text/css">
+        
+    </style>
+
+    <script src="/libs/jquery/jquery-2.2.0.min.js"></script>
+    <script src="https://sdk.jinrishici.com/v2/browser/jinrishici.js" charset="utf-8"></script>
+    <script>
+        var _hmt = _hmt || [];
+        (function () {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?46e79e71af0709a5b9106bf20cecc493";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+
+    
+        <script>
+            (function(){
+                var bp = document.createElement('script');
+                var curProtocol = window.location.protocol.split(':')[0];
+                if (curProtocol === 'https') {
+                    bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+                }
+                else {
+                    bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+                }
+                var s = document.getElementsByTagName("script")[0];
+                s.parentNode.insertBefore(bp, s);
+            })();
+        </script>
+    
+
+    <script>
+        (function(){
+        var src = "https://jspassport.ssl.qhimg.com/11.0.1.js?d182b3f28525f2db83acfaaf6e696dba";
+        document.write('<script src="' + src + '" id="sozz"><\/script>');
+        })();
+    </script>
+
+<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css">
+<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"></head>
+
+<body>
+
+    <header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="/medias/logo.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">好好学习</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fa fa-navicon"></i></a>
+<ul class="right">
+    
+    <li class="hide-on-med-and-down">
+        <a href="/" class="waves-effect waves-light">
+            
+            <i class="fa fa-home"></i>
+            
+            <span>首页</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/tags" class="waves-effect waves-light">
+            
+            <i class="fa fa-tags"></i>
+            
+            <span>标签</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/categories" class="waves-effect waves-light">
+            
+            <i class="fa fa-bookmark"></i>
+            
+            <span>分类</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/archives" class="waves-effect waves-light">
+            
+            <i class="fa fa-archive"></i>
+            
+            <span>归档</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/about" class="waves-effect waves-light">
+            
+            <i class="fa fa-user-circle-o"></i>
+            
+            <span>关于</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/friends" class="waves-effect waves-light">
+            
+            <i class="fa fa-address-book"></i>
+            
+            <span>友情链接</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/contact" class="waves-effect waves-light">
+            
+            <i class="fa fa-comments"></i>
+            
+            <span>留言板</span>
+        </a>
+    </li>
+    
+    <li>
+        <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+            <i id="searchIcon" class="fa fa-search" title="搜索"></i>
+        </a>
+    </li>
+</ul>
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/logo.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">好好学习</div>
+        <div class="logo-desc">
+            
+            业精于勤荒于嬉，行成于思毁于随
+            
+        </div>
+    </div>
+
+    
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li>
+            <a href="/" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-home"></i>
+                
+                首页
+            </a>
+        </li>
+        
+        <li>
+            <a href="/tags" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-tags"></i>
+                
+                标签
+            </a>
+        </li>
+        
+        <li>
+            <a href="/categories" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-bookmark"></i>
+                
+                分类
+            </a>
+        </li>
+        
+        <li>
+            <a href="/archives" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-archive"></i>
+                
+                归档
+            </a>
+        </li>
+        
+        <li>
+            <a href="/about" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-user-circle-o"></i>
+                
+                关于
+            </a>
+        </li>
+        
+        <li>
+            <a href="/friends" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-address-book"></i>
+                
+                友情链接
+            </a>
+        </li>
+        
+        <li>
+            <a href="/contact" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-comments"></i>
+                
+                留言板
+            </a>
+        </li>
+        
+        
+    </ul>
+</div>
+
+        </div>
+
+        
+    </nav>
+
+</header>
+
+    
+<script src="/libs/cryptojs/crypto-js.min.js"></script>
+<script>
+    (function() {
+        let pwd = '';
+        if (pwd && pwd.length > 0) {
+            if (pwd !== CryptoJS.SHA256(prompt('请输入访问本文章的密码')).toString(CryptoJS.enc.Hex)) {
+                alert('密码错误，将返回主页！');
+                location.href = '/';
+            }
+        }
+    })();
+</script>
+
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/25.jpg')">
+    <div class="container">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <div class="description center-align post-title">
+                        网络必知必会
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<main class="post-container content">
+
+    
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+<style>
+    #articleContent h1::before,
+    #articleContent h2::before,
+    #articleContent h3::before,
+    #articleContent h4::before,
+    #articleContent h5::before,
+    #articleContent h6::before {
+        display: block;
+        content: " ";
+        height: 100px;
+        margin-top: -100px;
+        visibility: hidden;
+    }
+
+    #articleContent :focus {
+        outline: none;
+    }
+
+    .toc-fixed {
+        position: fixed;
+        top: 64px;
+    }
+
+    .toc-widget {
+        padding-left: 20px;
+    }
+
+    .toc-widget .toc-title {
+        margin: 35px 0 15px 0;
+        padding-left: 17px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    .toc-widget ol {
+        padding: 0;
+        list-style: none;
+    }
+
+    #toc-content ol {
+        padding-left: 10px;
+    }
+
+    #toc-content ol li {
+        padding-left: 10px;
+    }
+
+    #toc-content .toc-link:hover {
+        color: #42b983;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    #toc-content .toc-link::before {
+        background-color: transparent;
+        max-height: 25px;
+    }
+
+    #toc-content .is-active-link {
+        color: #42b983;
+    }
+
+    #toc-content .is-active-link::before {
+        background-color: #42b983;
+    }
+
+    #floating-toc-btn {
+        position: fixed;
+        right: 20px;
+        bottom: 76px;
+        padding-top: 15px;
+        margin-bottom: 0;
+        z-index: 998;
+    }
+
+    #floating-toc-btn .btn-floating {
+        width: 48px;
+        height: 48px;
+    }
+
+    #floating-toc-btn .btn-floating i {
+        line-height: 48px;
+        font-size: 1.4rem;
+    }
+</style>
+<div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        
+                        <a href="/tags/interview/" target="_blank">
+                            <span class="chip bg-color">interview</span>
+                        </a>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fa fa-bookmark fa-fw icon-category"></i>
+                        
+                        <a href="/categories/interview/" class="post-category" target="_blank">
+                            interview
+                        </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                <div class="post-date info-break-policy">
+                    <i class="fa fa-calendar-minus-o fa-fw"></i>发布日期:&nbsp;&nbsp;
+                    2021-05-20
+                </div>
+
+                <div class="post-author info-break-policy">
+                    <i class="fa fa-user-o fa-fw"></i>作者:&nbsp;&nbsp;
+                    
+                    wangyixin-tom
+                    
+                </div>
+
+                
+                
+                <div class="info-break-policy">
+                    <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
+                    13.7k
+                </div>
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="fa fa-clock-o fa-fw"></i>阅读时长:&nbsp;&nbsp;
+                    48 分
+                </div>
+                
+                
+
+                
+            </div>
+        </div>
+        <hr class="clearfix">
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <h2 id="计算机网络体系结构"><a href="#计算机网络体系结构" class="headerlink" title="计算机网络体系结构"></a>计算机网络体系结构</h2><p><img src="stru.png" alt></p>
+<p><img src="mode.png" alt></p>
+<h3 id="OSI-7层"><a href="#OSI-7层" class="headerlink" title="OSI 7层"></a>OSI 7层</h3><p>物理层：通过网线、光缆等这种物理方式将电脑连接起来。发送高低电平（电信号）</p>
+<p>数据链路层：定义了电信号的分组方式。MAC地址的封装和解封装。</p>
+<p>网路层：引入网络地址用来区分不同的广播域/子网，ip的封装和解封装</p>
+<p>传输层：建立端口到端口的通信，接受到的数据进行分段处理，再进行组装</p>
+<p>会话层：建立和断开客户端与服务端连接</p>
+<p>表示层：数据格式转换。如编码、数据格式转换、加密解密、压缩解压</p>
+<p>应用层：规定应用程序的数据格式</p>
+<h3 id="四层网络"><a href="#四层网络" class="headerlink" title="四层网络"></a>四层网络</h3><ul>
+<li>链路层：负责封装和解封装MAC地址，发送和接受ARP/RARP报文等。</li>
+<li>网络层：负责路由以及把分组报文发送给目标网络或主机。</li>
+<li>传输层：负责对报文进行分组和重组，并以TCP或UDP协议格式封装报文。</li>
+<li>应用层：负责向用户提供应用程序，比如HTTP、FTP、Telnet、DNS、SMTP等。</li>
+</ul>
+<h3 id="为什么要分层？"><a href="#为什么要分层？" class="headerlink" title="为什么要分层？"></a>为什么要分层？</h3><p>1、易于实现、标准化、各层独立，就可以把大问题分割成多个小问题，利于实现；</p>
+<p>2、灵活性好：如果某一层发生变化，只要接口不变，不会影响其他层；</p>
+<p>3、分层后，用户只关心用到的应用层，其他层用户可以复用；</p>
+<ul>
+<li>应用层：常见协议：<ul>
+<li>FTP（21端口）：文件传输协议</li>
+<li>SSH（22端口）：远程登陆</li>
+<li>TELNET（23端口）：远程登录</li>
+<li>SMTP（25端口）：发送邮件</li>
+<li>POP3（110端口）：接收邮件</li>
+<li>HTTP（80端口）：超文本传输协议</li>
+<li>DNS（53端口）：运行在UDP上，域名解析服务</li>
+<li>DHCP</li>
+</ul>
+</li>
+<li>传输层：TCP/UDP</li>
+<li>网络层：IP、NAT、RIP、ICMP</li>
+<li>链路层：VLAN、STP</li>
+</ul>
+<h3 id="为什么需要IP？MAC？"><a href="#为什么需要IP？MAC？" class="headerlink" title="为什么需要IP？MAC？"></a>为什么需要IP？MAC？</h3><p><strong>需要 IP 地址</strong></p>
+<p>如果我们只用 MAC 地址，路由器需要记住每个 MAC 地址所在的子网是哪一个，因此需要极大的内存</p>
+<p><strong>需要Mac地址</strong></p>
+<p>需要用 MAC 地址来区分不同的设备。</p>
+<h3 id="TCP和IP的区别"><a href="#TCP和IP的区别" class="headerlink" title="TCP和IP的区别"></a>TCP和IP的区别</h3><p>IP协议：规定了数据传输时的基本单元和格式，定义了数据包的递交办法和路由选择。</p>
+<p>TCP协议：提供了可靠的数据流传输服务。</p>
+<h3 id="负载均衡"><a href="#负载均衡" class="headerlink" title="负载均衡"></a>负载均衡</h3><h4 id="四层负载均衡"><a href="#四层负载均衡" class="headerlink" title="四层负载均衡"></a><strong>四层负载均衡</strong></h4><p>工作于OSI模型的传输层，它主要处理消息的传递，而不管消息的内容。<strong>四层负载均衡只针对由上游服务发送和接收的网络包，而并不检查包内的具体内容是什么。</strong></p>
+<p>通过报文中的<strong>目标地址和端口</strong>，再加上负载均衡模式，选择内部服务器，即<strong>转发</strong>，只需要一个连接。</p>
+<h4 id="七层负载均衡"><a href="#七层负载均衡" class="headerlink" title="七层负载均衡"></a><strong>七层负载均衡</strong></h4><p>通过报文中的应用层内容（比如url、参数、cookie、header等），再加上负载均衡模式，选择内部服务器。</p>
+<p>主作于OSI模型的应用层，终止网络传输并读取消息中的内容。它可以基于消息中内容（比如URL或者cookie中的信息）来做出负载均衡的决定。七层负载均衡器建立一个新的TCP连接来选择上游服务（或者再利用一个已经存在的TCP连接，通过 HTTP keepalives 的方式）并向这个服务发出请求</p>
+<h4 id="https怎么实现负载均衡"><a href="#https怎么实现负载均衡" class="headerlink" title="https怎么实现负载均衡"></a><strong>https怎么实现负载均衡</strong></h4><p>7层：nginx安装ssl证书，用户请求 –https–&gt; nginx –http–&gt; 应用</p>
+<p>4层：用户请求–https-&gt; 4层负载 –https-&gt; 应用</p>
+<h4 id="应用场景"><a href="#应用场景" class="headerlink" title="应用场景"></a><strong>应用场景</strong></h4><ul>
+<li>四层负载均衡SYN攻击（DOS/DDOS攻击）都会被转发到后端的服务器上；七层负载均衡SYN攻击在负载均衡设备上截止，不会影响后台服务器的正常运行</li>
+<li>七层负载均衡，主要应用于HTTP协议，即网站。</li>
+</ul>
+<h4 id="优缺点"><a href="#优缺点" class="headerlink" title="优缺点"></a>优缺点</h4><p>性能：4层要比7层快，因为7层代理需要解析数据包的具体内容，需要消耗额外的cpu</p>
+<p>灵活性：4层代理不知道请求的具体内容。 7层代理可以根据请求内容（url，参数，cookie，请求头）实现动态代理、风控、审计</p>
+<h4 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h4><p>现代机器cpu性能都很好，4层代理并没有明显的性能优势，而7层代理在业务层面优势明显，所以一般直接选择7层代理</p>
+<h4 id="nginx的轮询算法"><a href="#nginx的轮询算法" class="headerlink" title="nginx的轮询算法"></a>nginx的轮询算法</h4><ul>
+<li>轮询算法</li>
+<li>权重轮询</li>
+<li>随机均衡</li>
+<li>响应速度均衡：负载均衡向后端服务器发出一个探测请求，那个回应速度最快就使用哪个</li>
+<li>最少连接数</li>
+<li>处理能力均衡：把请求分配给处理负荷最轻的服务器，适用于第七层负载均衡</li>
+</ul>
+<h2 id="网络设备"><a href="#网络设备" class="headerlink" title="网络设备"></a>网络设备</h2><h3 id="集线器"><a href="#集线器" class="headerlink" title="集线器"></a>集线器</h3><p>工作在OSI物理层，集线器的基本功能是信息分发，它把一个port接收的全部信号向全部port分发出去。</p>
+<h3 id="交换机的工作原理"><a href="#交换机的工作原理" class="headerlink" title="交换机的工作原理"></a>交换机的工作原理</h3><p>工作在OSI数据链路层，依据MAC地址进行数据转发。</p>
+<ul>
+<li>取得目标MAC地址后，查找交换机中存储的地址对比表（MAC地址相应的port），将数据包送到相应port。</li>
+<li>目的MAC若不存在，广播到全部的port。接收port回应后，把新的MAC地址加入入内部地址表中。  </li>
+</ul>
+<h3 id="网桥"><a href="#网桥" class="headerlink" title="网桥"></a>网桥</h3><p>工作在OSI数据链路层，能够看成是一个二层路由器。</p>
+<p>网桥可有效的将两个局域网连起来，依据MAC地址来转发帧。</p>
+<h3 id="路由器的工作原理"><a href="#路由器的工作原理" class="headerlink" title="路由器的工作原理"></a>路由器的工作原理</h3><p>工作在OSI网络层。可以连接多个网络或网段，依据IP进行寻址转发数据包。</p>
+<h2 id="报文头部"><a href="#报文头部" class="headerlink" title="报文头部"></a>报文头部</h2><h3 id="网络包的格式"><a href="#网络包的格式" class="headerlink" title="网络包的格式"></a>网络包的格式</h3><p>MAC头+IP头+TCP头+HTTP头+HTTP正文</p>
+<h3 id="IP报文"><a href="#IP报文" class="headerlink" title="IP报文"></a>IP报文</h3><p><img src="ip.jpg" alt></p>
+<p>（1）版本号：IP协议的版本。<br>（2）头部长度：4位最大为0xF，注意该字段表示单位是字（4字节）<br>（3）服务类型<br>（4）总长度: 指整个IP数据报的长度，IP数据报的最大长度为65535字节。由于MTU的限制，长度超过MTU的数据报都将被分片传输。</p>
+<p><strong>下来的3个字段则描述如何实现分片:</strong><br>（5）标识：唯一地标识主机发送的每一个数据报，其初始值是随机的，每发送一个数据报其值就加1。同一个数据报的所有分片都具有相同的标识值<br>（6） 标志: 位1保留，位2表禁止分片（DF），若设置了此位，IP模块将不对数据报进行分片；位3标识更多分片（MF），除了数据报的最后一个分片，其他分片都要把它设置为1<br>（7） 位偏移：分片相对原始IP数据报数据部分的偏移。</p>
+<p>（8） 生存时间：数据报到达目的地之前允许经过的路由器跳数。<br>（9） 协议： 区分IP协议上的上层协议。ICMP为1，TCP为6，UDP为17<br>（10） 头部校验和： 由发送端填充接收端对其使用CRC算法校验，检查IP数据报头部在传输过程中是否损坏<br>（11） 源IP地址和目的IP地址：表示数据报的发送端和接收端。一般情况下这两个地址在整个数据报传递过程中保持不变。</p>
+<h3 id="TCP"><a href="#TCP" class="headerlink" title="TCP"></a>TCP</h3><p><img src="baowen.jpg" alt></p>
+<ul>
+<li>源端口号和目标端口号，各16bit</li>
+<li>包的序号（seq）：32 bits</li>
+<li>确认序号（ack）：32 bits</li>
+<li>状态位：例如 SYN 发起连接，ACK 回复，RST 重新连接，FIN 结束连接等。TCP 是面向连接的，因而双方要维护连接的状态，这些带状态位的包的发送，会引起双方的状态变更。</li>
+<li>窗口大小：接收窗口的大小，16 bits</li>
+</ul>
+<h3 id="UDP"><a href="#UDP" class="headerlink" title="UDP"></a>UDP</h3><p><img src="udp_header.png" alt="UDP头"></p>
+<ul>
+<li><p>源端口和目的端口</p>
+</li>
+<li><p>报文长度：16 bits，指示UDP报文的总长度。最小8 bytes，只有首部，没有数据。最大值为65535 bytes。</p>
+</li>
+<li><p>校验和</p>
+</li>
+</ul>
+<h3 id="TCP和UDP报文区别"><a href="#TCP和UDP报文区别" class="headerlink" title="TCP和UDP报文区别"></a>TCP和UDP报文区别</h3><p>TCP首部开销（20字节），UDP首部开销（8字节）</p>
+<p>UDP 包 <code>MTU1500 - IP头(20) - UDP头(8) = 1472(Bytes)</code><br>TCP 包 <code>MSS=MTU1500 - IP头(20) - TCP头(20) = 1460 (Bytes)</code></p>
+<blockquote>
+<p> Maximum Transmit Unit，数据链路层最大传输单元</p>
+<p>Maximum Segment Size ，网络层最大分段大小</p>
+</blockquote>
+<h3 id="TCP校验怎么实现？"><a href="#TCP校验怎么实现？" class="headerlink" title="TCP校验怎么实现？"></a>TCP校验怎么实现？</h3><ul>
+<li><p>首如果总长度为奇数个字节，则在最后增添一个位都为0的字节。</p>
+</li>
+<li><p>校验和字段置为0（否则就陷入鸡生蛋还是蛋生鸡的问题）。</p>
+</li>
+<li><p>反码相加法累加所有的16位字。</p>
+</li>
+<li><p>计算结果取反，作为TCP的校验和。</p>
+<p><strong>如果接收方比对校验和与发送方一致，数据不一定传输成功。</strong></p>
+</li>
+</ul>
+<h3 id="如果网络层不分片怎么做？"><a href="#如果网络层不分片怎么做？" class="headerlink" title="如果网络层不分片怎么做？"></a>如果网络层不分片怎么做？</h3><ul>
+<li><strong>IP头的DF置为1</strong></li>
+<li>链路上有台路由器由于各种原因MTU变小了</li>
+<li>IP消息到这台路由器了，路由器发现消息长度大于自己的MTU，且消息设置DF不让分片。就把消息丢弃，同时返回一个ICMP错误给发送端，并带上自己的MTU。</li>
+</ul>
+<h2 id="网络层"><a href="#网络层" class="headerlink" title="网络层"></a>网络层</h2><h3 id="什么是ARP协议-？"><a href="#什么是ARP协议-？" class="headerlink" title="什么是ARP协议 ？"></a>什么是ARP协议 ？</h3><p>Address Resolution Protocol</p>
+<ul>
+<li><strong>ARP协议完成了IP地址与物理地址的映射</strong>。每一个主机都设有一个 ARP 高速缓存，有所在的局域网上的各主机、路由器的 IP 地址到MAC地址的映射表。</li>
+<li>当检查自己的ARP高速缓存中有没有目的MAC地址，如果有，就直接将数据包发到这个MAC地址，如果没有，发起一个ARP请求的广播包（ARP 请求会带上源 IP 地址到MAC地址的映射）</li>
+<li>收到ARP请求的主机检查IP地址和目的主机的IP地址是否一致，如果一致，则先保存源主机的映射到自己的ARP缓存，然后给源主机发送一个ARP响应数据包。</li>
+<li>源主机收到响应数据包，添加目的主机的IP地址与MAC地址的映射，再进行数据传送。源主机没有收到响应，表示ARP查询失败。</li>
+</ul>
+<blockquote>
+<p> 如果目的主机和源主机不在同一个局域网，通过 ARP 某个路由器的MAC地址，然后把分组发送给这个路由器，让这个路由器把分组转发给下一个网络。</p>
+</blockquote>
+<h3 id="IPv4怎么缓解地址不够？"><a href="#IPv4怎么缓解地址不够？" class="headerlink" title="IPv4怎么缓解地址不够？"></a>IPv4怎么缓解地址不够？</h3><p>NAT。使用少量的公有IP地址代表较多的私有IP地址。</p>
+<h3 id="什么是NAT-？"><a href="#什么是NAT-？" class="headerlink" title="什么是NAT ？"></a>什么是NAT ？</h3><p>Network Address Translation， 网络地址转换，用于解决内网中的主机要和因特网上的主机通信。由NAT路由器将主机的本地IP地址转换为全球IP地址。</p>
+<h3 id="IPv6和IPv4区别？"><a href="#IPv6和IPv4区别？" class="headerlink" title="IPv6和IPv4区别？"></a>IPv6和IPv4区别？</h3><p><strong>地址长度不同</strong></p>
+<p>IPv4的地址是32位，而IPv6的地址是128位的。</p>
+<p><strong>地址的表示方法</strong></p>
+<p>IPv4地址是以十进制表示。 IPv6地址是以十六进制表示。</p>
+<p><strong>IPv6 相比 IPv4 的首部改进</strong>：</p>
+<ul>
+<li>取消了首部校验和字段。 因为在数据链路层和传输层都会校验，因此 IPv6 直接取消了 IP 的校验。</li>
+<li>取消了分片/重组相关字段。 分片与重组是耗时的过程， IPv6 不允许在中间路由器进行分片与重组，只能在源与目标主机分片重组，大大提高了路由器转发的速度。</li>
+<li>取消选项字段。 选项字段不再是标准 IP 首部的一部分了。</li>
+</ul>
+<h3 id="IP分片和重组"><a href="#IP分片和重组" class="headerlink" title="IP分片和重组"></a>IP分片和重组</h3><p>包长度大于链路上物理设备的mtu时，会根据一定的方式进行切割，从而使报文得以发送出去。</p>
+<p>把一份IP数据报文分片以后，只有到达IP报文传送的下一站才进行重新组装。</p>
+<p>第三位标志用于指出当前分段后面是否还有更多的分段，如果此位置0，表示当前分段是数据报的最后一个分段。 </p>
+<h3 id="IP寻址过程"><a href="#IP寻址过程" class="headerlink" title="IP寻址过程"></a>IP寻址过程</h3><p><strong>一、在同一个局域网内的两台主机</strong></p>
+<ol>
+<li>A开始只知道B的IP地址 并不知道B的mac地址，A发送ARP广播</li>
+<li>交换机收到ARP广播后，将它转发到所有端口，并记录源MAC地址</li>
+<li>B收到ARP请求，发现和自己IP匹配，发送ARP响应</li>
+<li>交换机收到B的响应，转发到A端口，同时保存B的MAC地址</li>
+<li>A收到回复后 ，得知B的mac地址 ，保存到本地ARP高速缓存，发送数据包</li>
+</ol>
+<p><strong>一、不在同一个局域网内的两台主机</strong></p>
+<ol>
+<li>先会 ARP 广播请求 网关 的 MAC 地址 </li>
+<li>A 得到网关的 MAC 地址后，以它为数据帧的目标 MAC 地址进行封装数据，并发送出去</li>
+<li>Router1 收到该帧后，检查该帧的目标 IP ，查路由表，下一跳地址是 routerB ，数据重新封装，将源地址改为router1 MAC 地址，目标 MAC 地址改为 router2  MAC 址址，并发送给 router2</li>
+<li>routerN 发现目标 IP 就在自己的直连网段，于是查看 ARP 缓存，如果找到该 IP 的 MAC 地址，则以该 MAC 地址封装数据发送出去，如果在 ARP 缓存没找到，则发出 ARP 广播，请求该 IP 的 MAC 地址，得到对应的 MAC 地址后，再发送给主机 B</li>
+</ol>
+<p>1，由于 B 的 IP 地址并没有和 A 在一个网段，所以当 A 向 B 发送数据时， A 并不会直接把数据给 B ，而是交给自己的网关，所以 A 首先会 ARP 广播请求 网关 的 MAC 地址 A 得到网关的 MAC 地址后，以它为数据帧的目标 MAC 地址进行封装数据，并发送出去</p>
+<h3 id="路由器怎么转发"><a href="#路由器怎么转发" class="headerlink" title="路由器怎么转发"></a>路由器怎么转发</h3><ul>
+<li>路由器收到一个数据包后，会检查其目的IP地址，然后依据最长匹配原则查找路由表；</li>
+<li>如果查找到匹配的路由表项之后，路由器会根据该表项所指示的出接口信息和下一跳信息将数据包转发出去；</li>
+<li>如果没有找到，会查找是否<strong>有缺省路由</strong>，找到的话会依据出接口信息和下一跳信息将数据包转发出去；</li>
+<li>如果都没有找到，<strong>数据包会被丢弃</strong>；</li>
+</ul>
+<h3 id="什么是ICMP协议，它的作用是什么？"><a href="#什么是ICMP协议，它的作用是什么？" class="headerlink" title="什么是ICMP协议，它的作用是什么？"></a>什么是ICMP协议，它的作用是什么？</h3><p><strong>互联网控制报文协议</strong>。用在主机、路由器之间传递控制消息，控制消息是指网络通不通、主机是否可达、路由是否可用等网络本身的消息。</p>
+<p>ICMP 主要的功能包括：确认 IP 包是否成功送达、 IP 包被废弃的原因等。</p>
+<p>ICMP 包头的类型字段，大致可以分为两大类：</p>
+<ul>
+<li>查询报文：用于诊断的查询消息</li>
+<li>差错报文：通知出错原因的错误消息</li>
+</ul>
+<h3 id="Ping的过程以及原理"><a href="#Ping的过程以及原理" class="headerlink" title="Ping的过程以及原理"></a>Ping的过程以及原理</h3><p> <strong>使用ICMP查询报文</strong></p>
+<ul>
+<li>源主机首先会构建一个 <strong>ICMP 回送请求消息</strong>数据包</li>
+<li>交给 IP 层。IP 层将设置目的地址，源地址，协议字段。</li>
+<li>加入 <code>MAC</code> 头。如果没有，则需要发送 <code>ARP</code> 协议查询 MAC 地址。</li>
+<li>主机 <code>B</code> 收到后，检查 MAC 地址，如符合，则接收，否则就丢弃。</li>
+<li>提取IP 层，交给 ICMP 协议。</li>
+<li>主机 <code>B</code> 构建一个 ICMP 回送响应消息数据包。</li>
+<li>源主机如果没有接到 ICMP 的应答包，则说明目标主机不可达；如果接收到了 ICMP 回送响应消息，则说明目标主机可达。</li>
+</ul>
+<h3 id="traceroute命令用处"><a href="#traceroute命令用处" class="headerlink" title="traceroute命令用处"></a>traceroute命令用处</h3><p>诊断网络问题。定位从源主机到目标主机之间经过了哪些路由器，以及到达各个路由器的耗时。</p>
+<p><strong>原理</strong></p>
+<p>从源主机向目标主机发送IP数据报，并按顺序将TTL设置为从1开始递增的数字，导致第N个节点丢弃数据报并返回出错信息。源主机根据接收到的错误信息，确定到达目标主机路径上的所有节点的IP，以及对应的耗时。</p>
+<h3 id="什么是RIP"><a href="#什么是RIP" class="headerlink" title="什么是RIP?"></a>什么是RIP?</h3><p>Routing Information Protocol， 距离矢量路由协议，每个路由器维护一张表，记录该路由器到其它网络的”跳数“。</p>
+<p>路由器到与其直接连接的网络的跳数是1，每多经过一个路由器跳数就加1；更新该表时和相邻路由器交换路由信息；路由器允许一个路径最多包含15个路由器，如果跳数为16，则不可达。</p>
+<p><strong>缺点</strong></p>
+<ul>
+<li>最大距离为15，限制了网络的规模；</li>
+<li>当网络出现故障时，要经过较长的时间才能将此信息传递到所有路由器</li>
+</ul>
+<h2 id="三次握手"><a href="#三次握手" class="headerlink" title="三次握手"></a>三次握手</h2><p><img src="woshou.jpg" alt></p>
+<ul>
+<li>一客户端和服务端都处于 CLOSED 状态。服务端主动监听某个端口，处于 LISTEN 状态。</li>
+<li>客户端主动发起连接 SYN，序列号是X，处于 SYN-SENT 状态。</li>
+<li>服务端ACK 客户端的 SYN，ack的值为X+1，并且同时发送 SYN，序列号为Y，之后处于 SYN-RCVD 状态。</li>
+<li>客户端收到服务端发送的 SYN 和 ACK 之后，发送ACK 的 ACK，处于 ESTABLISHED 状态，因为它一发一收成功了。</li>
+<li>服务端收到 ACK 后，处于 ESTABLISHED 状态，因为它也一发一收了。</li>
+</ul>
+<h3 id="客户端发送的SYN丢失"><a href="#客户端发送的SYN丢失" class="headerlink" title="客户端发送的SYN丢失"></a>客户端发送的SYN丢失</h3><p>触发<strong>重传机制</strong>，重传的次数是由 tcp_syn_retries 决定。超过重传次数会返回错误。</p>
+<h3 id="为什么不是2次"><a href="#为什么不是2次" class="headerlink" title="为什么不是2次"></a>为什么不是2次</h3><ul>
+<li><p>服务器端的应答包不知道能不能到达客户端。服务器端不能认为连接是建立好了，应答包可能会丢，会绕弯路，或者客户端已经挂了。</p>
+</li>
+<li><p>如果仅是两次连接。可能出现<strong>已失效的连接请求报文段又传到了服务器端</strong>：</p>
+<ul>
+<li>客户端发起连接，由于网络情况不好，服务器端延时很长时间后收到报文。客户端将此报文认定为失效的报文，因为中间可能已经建立连接并断开。</li>
+<li>服务器端收到报文后，会向客户端发起连接。此时两次握手完毕。</li>
+<li>服务器端会认为已经建立了连接可以通信，服务器端会一直等到客户端发送的连接请求，而客户端对失效的报文回复自然不会处理。会陷入服务器端忙等的僵局，造成资源的浪费。</li>
+</ul>
+</li>
+</ul>
+<h3 id="为什么不是4次"><a href="#为什么不是4次" class="headerlink" title="为什么不是4次"></a>为什么不是4次</h3><p>可以。但是会降低传输的效率。</p>
+<p>四次握手是指：第二次握手时服务器端只发送ACK和acknowledge number；</p>
+<p>而服务器端的SYN和初始序列号在第三次握手时发送。</p>
+<p>出于优化目的，四次握手中的二、三可以合并。</p>
+<h3 id="第三次握手中，ACK丢失会怎样？"><a href="#第三次握手中，ACK丢失会怎样？" class="headerlink" title="第三次握手中，ACK丢失会怎样？"></a>第三次握手中，ACK丢失会怎样？</h3><p>服务器：<br>由于Server没有收到ACK确认，因此会重发之前的SYN+ACK（默认重发五次，之后自动关闭连接进入CLOSED状态），Client收到后会重新传ACK给Server。</p>
+<p>客户端：  </p>
+<ol>
+<li>如果客户端向服务器发送数据，数据头部的ACK是为1的，所以服务器收到数据之后会读取 ACK number，进入 establish 状态  </li>
+<li>在服务器进入CLOSED状态之后，如果Client向服务器发送数据，服务器会以RST包应答。</li>
+</ol>
+<h3 id="初始序列号是什么？"><a href="#初始序列号是什么？" class="headerlink" title="初始序列号是什么？"></a>初始序列号是什么？</h3><p>TCP连接的一方A，随机选择一个32位的序列号作为发送数据的初始序列号，以该序列号为原点，对要传送的数据进行编号，以便另一方B可以确认什么样的数据编号是合法的；</p>
+<p>同时A还可以确认B收到的每一个字节，如果A收到了B的确认编号是2001，就说明编号为1001-2000的数据已经被B成功接受。</p>
+<h3 id="序列号是随机取的吗？为什么？"><a href="#序列号是随机取的吗？为什么？" class="headerlink" title="序列号是随机取的吗？为什么？"></a>序列号是随机取的吗？为什么？</h3><p>1）攻击维度</p>
+<p>如果TCP每次连接都使用固定初始序列号，黑客可以很方便模拟任何IP与服务器建立连接。</p>
+<p>2）TCP连接稳定维度</p>
+<p>假设客户端与服务器连接状况不好，那么之前交互的报文很可能在连接已断但是还没到server。</p>
+<p>如果初始序列号是固定的，那很可能在新连接建立后，上次连接通信的报文才到达，这就全乱了。</p>
+<h3 id="accept-connect-listen对应三次握手什么阶段"><a href="#accept-connect-listen对应三次握手什么阶段" class="headerlink" title="accept connect listen对应三次握手什么阶段"></a>accept connect listen对应三次握手什么阶段</h3><ul>
+<li>当服务端调用 listen 函数进行监听。  这个时候客户端就可以发起连接</li>
+<li>客户端可以通过 connect 函数发起连接。指明要连接的 IP 地址和端口号，三次握手。  内核会给客户端分配一个临时的端口。</li>
+<li>一旦握手成功，服务端的 accept就会返回另一个 Socket。  </li>
+</ul>
+<h2 id="四次挥手"><a href="#四次挥手" class="headerlink" title="四次挥手"></a>四次挥手</h2><p><img src="huishou.jpg" alt></p>
+<ul>
+<li><p>客户端进程发出连接释放报文FIN，序列号为seq=p，并且停止发送数据。客户端进入FIN-WAIT-1。 </p>
+</li>
+<li><p>服务器收到后，发出确认报文ACK，ack=p+1，此时，服务端就进入了CLOSE-WAIT。TCP服务器通知高层的应用进程，客户端已经没有数据要发送了，但是服务器若发送数据，客户端依然要接受。这个状态还要持续一段时间，也就是整个CLOSE-WAIT状态持续的时间。</p>
+</li>
+<li><p>客户端收到Ack后，此时，客户端就进入FIN-WAIT-2状态，等待服务器发送连接释放报文（在这之前还需要接受服务器发送的最后的数据）。</p>
+</li>
+<li><p>服务器将最后的数据发送完毕后，就向客户端发送连接释放报文FIN，ack=p+1，由于在半关闭状态，服务器很可能又发送了一些数据，假定此时的序列号为seq=q，此时，服务器就进入了LAST-ACK状态，等待客户端的确认。</p>
+</li>
+<li><p>客户端收到服务器的连接释放报文后，必须发出确认ACK，ack=q+1，此时，客户端就进入了TIME-WAIT状态。此时TCP连接还没有释放，必须经过2MSL的时间后，才进入CLOSED状态。</p>
+</li>
+<li><p>服务器只要收到了客户端发出的确认，立即进入CLOSED状态。</p>
+</li>
+</ul>
+<h3 id="服务器的ACK丢失，会怎样？"><a href="#服务器的ACK丢失，会怎样？" class="headerlink" title="服务器的ACK丢失，会怎样？"></a>服务器的ACK丢失，会怎样？</h3><p>客户端没有收到ACK确认，会重新发送FIN请求。</p>
+<h3 id="TIME-WAIT意义是什么？"><a href="#TIME-WAIT意义是什么？" class="headerlink" title="TIME_WAIT意义是什么？"></a>TIME_WAIT意义是什么？</h3><p>第四次挥手时，客户端ACK有可能丢失，TIME_WAIT状态就是用来重发可能丢失的ACK报文。如果服务器没有收到ACK，就会重发FIN，如果客户端在2*MSL的时间内收到了FIN，就会重新发送ACK并再次等待2MSL。</p>
+<p>MSL（Maximum Segment Lifetime），指一个片段在网络中最大的存活时间，2MSL就是一个发送和一个回复所需的最大时间。如果直到2MSL，Client都没有再次收到FIN，那么Client推断ACK已经被成功接收，则结束TCP连接。</p>
+<h3 id="2MSL作用"><a href="#2MSL作用" class="headerlink" title="2MSL作用"></a>2MSL作用</h3><ul>
+<li><p>确保最后一个确认报文能够到达。如果 B 没收到 A 发送来的确认报文，那么就会重新发送连接释放请求报文，A 等待一段时间就是为了处理这种情况的发生。</p>
+</li>
+<li><p>等待一段时间是为了让本连接持续时间内所产生的所有报文都从网络中消失，使得下一个新的连接不会出现旧的连接请求报文。</p>
+</li>
+</ul>
+<p>超过了 2MSL ，依然没有收到FIN 的 ACK，重发 FIN，A 发送 RST，B 就知道 A 早就跑了。</p>
+<h3 id="建立连接是三次握手，关闭连接四次挥手？"><a href="#建立连接是三次握手，关闭连接四次挥手？" class="headerlink" title="建立连接是三次握手，关闭连接四次挥手？"></a>建立连接是三次握手，关闭连接四次挥手？</h3><ul>
+<li>建立连接时， 服务器收到SYN报文后，把ACK和SYN放在一个报文里发送给客户端。</li>
+<li>关闭连接时，服务器收到对方的FIN报文时，仅仅表示对方不再发送数据，自己也未必全部数据都发送给对方了，所以需要等到数据发完之后再发FIN，断开服务器到客户端的数据传送。</li>
+</ul>
+<h3 id="如果已经建立了连接，但是客户端突然出现故障了怎么办？"><a href="#如果已经建立了连接，但是客户端突然出现故障了怎么办？" class="headerlink" title="如果已经建立了连接，但是客户端突然出现故障了怎么办？"></a>如果已经建立了连接，但是客户端突然出现故障了怎么办？</h3><ul>
+<li>TCP设有一个保活计时器。服务器每收到一次客户端的请求后都会重新复位这个计时器，时间通常是设置为2小时</li>
+<li>若两小时还没有收到客户端的任何数据，服务器就会发送一个探测报文段，以后每隔75秒发送一次。若一连发送10个探测报文仍然没反应，服务器就认为客户端出了故障，接着就关闭连接。</li>
+</ul>
+<h3 id="服务端出现大量close-wait原因"><a href="#服务端出现大量close-wait原因" class="headerlink" title="服务端出现大量close_wait原因"></a>服务端出现大量close_wait原因</h3><p>服务端程序忘记主动关闭连接，这个资源会一直被程序占着。</p>
+<p>会导致to many open files。</p>
+<h3 id="服务器保持了大量TIME-WAIT状态"><a href="#服务器保持了大量TIME-WAIT状态" class="headerlink" title="服务器保持了大量TIME_WAIT状态"></a>服务器保持了大量TIME_WAIT状态</h3><p>一些爬虫服务器或者WEB服务器上经常会遇到这个问题，在完成一个爬取任务之后，发起主动关闭连接，进入TIME_WAIT的状态，2MSL时间之后，彻底关闭回收资源。</p>
+<p>解决方法：优化系统参数</p>
+<pre><code>#表示开启重用。允许将TIME-WAIT sockets重新用于新的TCP连接，默认为0，表示关闭 
+net.ipv4.tcp_tw_reuse = 1 
+
+#表示开启TCP连接中TIME-WAIT sockets的快速回收，默认为0，表示关闭 
+net.ipv4.tcp_tw_recycle = 1 </code></pre><h2 id="流量控制"><a href="#流量控制" class="headerlink" title="流量控制"></a>流量控制</h2><h3 id="TCP如何实现流量控制？"><a href="#TCP如何实现流量控制？" class="headerlink" title="TCP如何实现流量控制？"></a>TCP如何实现流量控制？</h3><p><img src="huadong.png" alt="滑动窗口"></p>
+<p>使用滑动窗口协议实现流量控制。防止发送方发送速率太快，接收方缓存区不够导致溢出。</p>
+<ul>
+<li>接收方会维护一个接收窗口 ，接受窗口的大小是根据自己的资源情况动态调整的，在返回ACK时将接受窗口大小放在TCP报文中的窗口字段告知发送方。</li>
+<li>发送窗口的大小不能超过接受窗口的大小，只有当发送方发送并收到确认之后，才能将发送窗口右移。</li>
+<li>发送窗口的上限为接受窗口和拥塞窗口中的较小值。接受窗口表明了接收方的接收能力，拥塞窗口表明了网络的传送能力。</li>
+</ul>
+<h3 id="什么是零窗口？"><a href="#什么是零窗口？" class="headerlink" title="什么是零窗口？"></a>什么是零窗口？</h3><ul>
+<li>如果接收方没有能力接收数据，就会将接收窗口设置为0，这时发送方必须暂停发送数据。</li>
+<li>启动一个持续计时器，到期后发送一个大小为1字节的探测数据包，以查看接收窗口状态。</li>
+<li>如果接收方能够接收数据，就会在返回的报文中更新接收窗口大小，恢复数据传送。</li>
+</ul>
+<h3 id="TCP的拥塞控制是怎么实现的？"><a href="#TCP的拥塞控制是怎么实现的？" class="headerlink" title="TCP的拥塞控制是怎么实现的？"></a>TCP的拥塞控制是怎么实现的？</h3><p>拥塞控制主要由四个算法组成：<strong>慢启动、拥塞避免、快重传 、快恢复</strong></p>
+<ol>
+<li><p>慢启动：刚开始发送数据时，先把拥塞窗口设置为一个最大报文段MSS的数值，每收到一个新的确认报文之后，就把拥塞窗口加1个MSS。这样每经过一个传输轮次（或者说是每经过一个往返时间RTT），拥塞窗口的大小就会加倍</p>
+</li>
+<li><p>拥塞避免：当拥塞窗口的大小达到慢开始门限时，拥塞窗口大小不再指数增加，而是线性增加，即每经过一个传输轮次只增加1MSS.  </p>
+</li>
+</ol>
+<blockquote>
+<p>无论在慢开始阶段还是在拥塞避免阶段，只要发送方判断网络出现拥塞（其根据就是没有收到确认），就要把慢开始门限ssthresh设置为出现拥塞时的发送方窗口值的一半（但不能小于2）。然后把拥塞窗口cwnd重新设置为1，执行慢开始算法。<strong>（这是不使用快重传的情况）</strong></p>
+</blockquote>
+<ol start="3">
+<li>快重传：接收方在收到一个失序的报文段后就立即发出重复确认，而不要等到自己发送数据时捎带确认。发送方只要一连收到三个重复确认就应当立即重传对方尚未收到的报文段，而不必继续等待设置的重传计时器时间到期。</li>
+<li>快恢复：当发送方连续收到三个重复确认时，就把慢开始门限减半，然后执行拥塞避免。不执行慢开始算法的原因：因为如果网络出现拥塞的话就不会收到好几个重复的确认，所以发送方认为现在网络可能没有出现拥塞。 </li>
+</ol>
+<p><strong>为什么需要3次重复确认？</strong></p>
+<p>主要的考虑还是要区分丢包和乱序。两次duplicated ACK时一定是乱序造成的，三次duplicated ACK时很可能是丢包造成的！四次duplicated ACK更可能是丢包造成的！但是这样的响应策略太慢。丢包肯定会造成三次duplicated ACK!综上是选择收到三个重复确认时窗口减半效果最好。</p>
+<h3 id="慢启动对HTTP有什么影响？HTTP如何解决这种影响？"><a href="#慢启动对HTTP有什么影响？HTTP如何解决这种影响？" class="headerlink" title="慢启动对HTTP有什么影响？HTTP如何解决这种影响？"></a>慢启动对HTTP有什么影响？HTTP如何解决这种影响？</h3><ul>
+<li>建立TCP连接都经历慢启动。</li>
+<li>如果HTTP是短连接，有可能还没有经历完TCP慢启动，这个TCP连接就断开了。</li>
+<li>为了提升性能，我们可以开启HTTP的持久连接也就是后面要说的keepalive。</li>
+</ul>
+<h3 id="HTTP对TCP的缺点做了那些改进？"><a href="#HTTP对TCP的缺点做了那些改进？" class="headerlink" title="HTTP对TCP的缺点做了那些改进？"></a>HTTP对TCP的缺点做了那些改进？</h3><p>最常见的影响HTTP性能的包括：</p>
+<ul>
+<li>TCP连接建立，三次握手</li>
+<li>TCP慢启动</li>
+<li>TCP延迟确认</li>
+<li>Nagle算法</li>
+</ul>
+<blockquote>
+<ul>
+<li><p>HTTP的keep alive，实现连接复用</p>
+</li>
+<li><p>我们可以关闭或者调整TCP延迟确认。</p>
+</li>
+<li><p>可以在操作系统上禁用或者在HTTP程序中设置TCP_NODELAY来禁用Nagle算法</p>
+</li>
+</ul>
+</blockquote>
+<h3 id="TCP如何最大利用带宽？"><a href="#TCP如何最大利用带宽？" class="headerlink" title="TCP如何最大利用带宽？"></a>TCP如何最大利用带宽？</h3><p>TCP速率受到三个因素影响</p>
+<ul>
+<li>窗口：滑动窗口大小</li>
+<li>带宽：这里带宽是指单位时间内从发送端到接收端所能通过的“最高数据率”，是一种硬件限制。</li>
+<li>RTT：表示从发送端到接收端的一去一回需要的时间，TCP在数据传输过程中会对RTT进行采样</li>
+</ul>
+<h2 id="TCP与UDP"><a href="#TCP与UDP" class="headerlink" title="TCP与UDP"></a>TCP与UDP</h2><h3 id="TCP与UDP的区别"><a href="#TCP与UDP的区别" class="headerlink" title="TCP与UDP的区别"></a>TCP与UDP的区别</h3><ol>
+<li>TCP是面向连接的，UDP是无连接的；</li>
+<li>TCP是可靠的，UDP不可靠；</li>
+<li>TCP只支持点对点通信，UDP支持一对一、一对多、多对一、多对多；</li>
+<li>TCP是面向字节流的，UDP是面向报文的；</li>
+<li>TCP有拥塞控制机制，UDP没有。它意识到包丢弃了或者网络的环境不好了，就会根据情况调整自己的行为，看看是不是发快了，要不要发慢点。UDP 就不会，应用让我发，我就发，管它洪水滔天。</li>
+<li>TCP首部开销（20字节）比UDP首部开销（8字节）要大</li>
+</ol>
+<blockquote>
+<p>1：UDP发送数据之前不需要建立连接</p>
+<p>2：UDP接收方收到报文后，不需要给出任何确认</p>
+<p>4：面向字节流是指发送数据时以字节为单位，一个数据包可以拆分成若干组进行发送，而UDP一个报文只能一次发完。</p>
+</blockquote>
+<h3 id="什么时候选择TCP，什么时候选UDP？"><a href="#什么时候选择TCP，什么时候选UDP？" class="headerlink" title="什么时候选择TCP，什么时候选UDP？"></a>什么时候选择TCP，什么时候选UDP？</h3><p>对某些实时性要求比较高的情况，选择UDP，比如游戏，媒体通信，实时视频流（直播），即使出现传输错误也可以容忍；</p>
+<p>其它大部分情况下，HTTP都是用TCP，因为要求传输的内容可靠，不出现丢失</p>
+<h3 id="TCP报文确认机制"><a href="#TCP报文确认机制" class="headerlink" title="TCP报文确认机制"></a>TCP报文确认机制</h3><ul>
+<li>为了保证顺序性，每一个包都有一个 ID。</li>
+<li>在建立连接的时候，确定起始的 ID ，然后按照 ID 一个个发送。</li>
+<li>为了保证不丢包，对于发送的包都要进行应答。</li>
+<li>应答某个之前的 ID，表示都收到了，这种模式称为累计确认或者累计应答</li>
+</ul>
+<h3 id="TCP发数据过程中必须按顺序接收吗"><a href="#TCP发数据过程中必须按顺序接收吗" class="headerlink" title="TCP发数据过程中必须按顺序接收吗"></a>TCP发数据过程中必须按顺序接收吗</h3><p>TCP报文段作为IP数据来传输，在IP数据报的到达可能会失序，因此TCP报文段的到达也存在失序的可能。</p>
+<p>TCP将对收到的数据进行重新排列，确保顺序正确后再交给应用层。</p>
+<h3 id="TCP发送窗口过大会怎么样？"><a href="#TCP发送窗口过大会怎么样？" class="headerlink" title="TCP发送窗口过大会怎么样？"></a>TCP发送窗口过大会怎么样？</h3><p>接收端缓存溢出或者网络拥塞</p>
+<h3 id="为什么会发生网络卡顿现象？"><a href="#为什么会发生网络卡顿现象？" class="headerlink" title="为什么会发生网络卡顿现象？"></a>为什么会发生网络卡顿现象？</h3><p>丢包。需要超时重传，慢开始门限减半，然后执行拥塞避免算法。</p>
+<blockquote>
+<p>当拥塞窗口的大小达到慢开始门限时，开始执行拥塞避免算法，拥塞窗口大小不再指数增加，而是线性增加，即每经过一个传输轮次只增加1MSS. </p>
+</blockquote>
+<h3 id="TCP粘包"><a href="#TCP粘包" class="headerlink" title="TCP粘包"></a>TCP粘包</h3><h4 id="什么是TCP粘包问题？"><a href="#什么是TCP粘包问题？" class="headerlink" title="什么是TCP粘包问题？"></a>什么是TCP粘包问题？</h4><p>发送方包数据到达接收方时粘成了一包，从接收缓冲区来看，后一包数据的头紧接着前一包数据的尾。</p>
+<h4 id="造成TCP粘包的原因"><a href="#造成TCP粘包的原因" class="headerlink" title="造成TCP粘包的原因"></a>造成TCP粘包的原因</h4><p>（1）发送方原因</p>
+<p>TCP默认使用Nagle算法（主要作用：减少网络中报文段的数量），而Nagle算法主要做两件事：</p>
+<ul>
+<li><p>只有上一个分组得到确认，才会发送下一个分组</p>
+</li>
+<li><p>收集多个小分组，在一个确认到来时一起发送</p>
+</li>
+</ul>
+<p>（2）接收方原因</p>
+<p>TCP接收到数据包时，应用层并不会立即处理。</p>
+<p>数据包保存在接收缓存里，然后应用程序主动从缓存读取收到的分组。</p>
+<p>如果TCP接收数据包到缓存的速度大于应用程序从缓存中读取数据包的速度，多个包就会被缓存，应用程序就有可能读取到多个首尾相接粘到一起的包。</p>
+<h4 id="什么时候需要处理粘包现象？"><a href="#什么时候需要处理粘包现象？" class="headerlink" title="什么时候需要处理粘包现象？"></a>什么时候需要处理粘包现象？</h4><ul>
+<li>如果发送方发送的多组数据本来就是同一块数据的不同部分，比如一个文件的多个部分，不需要处理粘包</li>
+<li>如果多个分组毫不相干，甚至是并列关系，需要处理粘包</li>
+</ul>
+<h4 id="如何处理粘包现象？"><a href="#如何处理粘包现象？" class="headerlink" title="如何处理粘包现象？"></a>如何处理粘包现象？</h4><p>（1）发送方</p>
+<p>通过关闭Nagle算法来解决，使用TCP_NODELAY选项来关闭。</p>
+<p>（2）接收方应用层</p>
+<p>应用层的解决办法简单可行，不仅能解决接收方的粘包问题，还可以解决发送方的粘包问题。</p>
+<p>解决办法：循环处理，应用程序从接收缓存中读取分组时，读完一条数据，就应该循环读取下一条数据。</p>
+<h3 id="TCP-半包"><a href="#TCP-半包" class="headerlink" title="TCP 半包"></a>TCP 半包</h3><h4 id="原因"><a href="#原因" class="headerlink" title="原因"></a>原因</h4><ul>
+<li>MSS/MTU限制</li>
+<li>程序写入数据的字节大小大于套接字发送缓冲区的大小</li>
+</ul>
+<h4 id="应用层解决"><a href="#应用层解决" class="headerlink" title="应用层解决"></a>应用层解决</h4><p>（1）在包尾增加分割符，比如回车换行符进行分割。<br>（2）消息定长，例如每个报文的大小为固定长度200字节，如果不够，空位补空格<br>（3）将消息分为消息头和消息体，消息头中包含表示消息总长度（或者消息体长度）的字段。</p>
+<h4 id="UDP会不会产生粘包问题呢？"><a href="#UDP会不会产生粘包问题呢？" class="headerlink" title="UDP会不会产生粘包问题呢？"></a>UDP会不会产生粘包问题呢？</h4><p>TCP采用了基于流的传输，基于流的传输不认为消息是一条一条的，是无保护消息边界的。</p>
+<p>UDP面向消息传输的，是有保护消息边界的，接收方一次只接受一条独立的信息，所以不存在粘包问题。</p>
+<h3 id="HTTP可以使用UDP吗？"><a href="#HTTP可以使用UDP吗？" class="headerlink" title="HTTP可以使用UDP吗？"></a>HTTP可以使用UDP吗？</h3><p>不可以，HTTP需要基于可靠的传输协议，而UDP不可靠</p>
+<h3 id="UDP协议应用"><a href="#UDP协议应用" class="headerlink" title="UDP协议应用"></a>UDP协议应用</h3><ul>
+<li>DHCP。一般的获取 IP 地址都是内网请求，而且一次获取不到IP 又没事，过一会儿还有机会。</li>
+<li>PXE 可以在启动的时候自动安装操作系统，操作系统镜像的下载使用的 TFTP，这个也是基于 UDP 协议的。  </li>
+</ul>
+<h3 id="如何在应用层保证udp可靠传输"><a href="#如何在应用层保证udp可靠传输" class="headerlink" title="如何在应用层保证udp可靠传输"></a>如何在应用层保证udp可靠传输</h3><p>最简单的方式是在应用层模仿传输层TCP的可靠性传输。下面不考虑拥塞处理时：</p>
+<ul>
+<li>1、实现确认机制，确保数据发送到对端</li>
+<li>2、实现发送和接收缓冲区，主要是用户超时重传。</li>
+</ul>
+<h3 id="面向连接和无连接的区别"><a href="#面向连接和无连接的区别" class="headerlink" title="面向连接和无连接的区别"></a>面向连接和无连接的区别</h3><p>面向连接的协议会先建立连接。例如，TCP 会三次握手，而 UDP 不会。</p>
+<p>建立连接，是为了建立一定的数据结构来维护双方交互的状态。</p>
+<h3 id="TCP如何保证传输的可靠性"><a href="#TCP如何保证传输的可靠性" class="headerlink" title="TCP如何保证传输的可靠性"></a>TCP如何保证传输的可靠性</h3><ol>
+<li>数据包校验：如果接收方检测到校验和有差错，则TCP段会被直接丢弃。</li>
+<li>对失序数据包重新排序（TCP报文具有序列号）</li>
+<li>丢弃重复数据</li>
+<li>应答机制：接收方收到数据之后，会发送一个确认；</li>
+<li>超时重发：发送方发出数据之后，启动一个定时器，超时未收到接收方的确认，则重新发送这个数据；或者是快速重传；</li>
+<li>流量控制：确保接收端能够接收发送方的数据而不会缓冲区溢出</li>
+<li>拥塞控制：当网络拥塞时，减少数据的发送</li>
+</ol>
+<h3 id="TCP-keepalive实现原理"><a href="#TCP-keepalive实现原理" class="headerlink" title="TCP keepalive实现原理"></a>TCP keepalive实现原理</h3><p>可以检测死连接，TCP会在空闲了一定时间后发送数据给对方。</p>
+<ol>
+<li>如果主机可达，对方就会响应ACK应答。</li>
+<li>如果可达，但应用程序退出，对方就发RST应答，发送TCP撤消连接。</li>
+<li>如果可达，但应用程序崩溃，对方就发FIN消息。</li>
+<li>如果对方主机不响应ack/rst，继续发送直到超时，就撤消连接。默认二个小时。</li>
+</ol>
+<h3 id="TCP的延迟ACK机制？"><a href="#TCP的延迟ACK机制？" class="headerlink" title="TCP的延迟ACK机制？"></a>TCP的延迟ACK机制？</h3><p>接收方在收到数据后，并不会立即回复ACK，而是延迟一定时间。</p>
+<ul>
+<li>ACK是可以合并的，如果连续收到两个TCP包，只要回复最终的ACK就可以了，降低网络流量。</li>
+<li>如果接收方有数据要发送，在发送数据的TCP数据包里，带上ACK信息。可以避免ACK以一个单独的TCP包发送，减少网络流量。</li>
+</ul>
+<h3 id="对于tcp来说，服务端断电和进程挂掉有什么区别？"><a href="#对于tcp来说，服务端断电和进程挂掉有什么区别？" class="headerlink" title="对于tcp来说，服务端断电和进程挂掉有什么区别？"></a>对于tcp来说，服务端断电和进程挂掉有什么区别？</h3><p><strong>服务进程crash</strong>：服务端会发送RST报文</p>
+<p><strong>进程结束：</strong>服务端发送FIN报文</p>
+<p><strong>主机关机</strong>：init进程会给所有进程发送SIGTERM信号，等待一段时间，然后再给所有仍在运行的进程发送SIGKILL信号。同进程结束。</p>
+<p><strong>主机宕机</strong>：服务器始终不能应答</p>
+<p><strong>主机宕机后重启</strong>：收到不存在连接的报文，响应RST。</p>
+<h3 id="单机最大tcp连接数"><a href="#单机最大tcp连接数" class="headerlink" title="单机最大tcp连接数"></a>单机最大tcp连接数</h3><p>系统用一个4四元组来唯一标识一个TCP连接：{local ip, local port,remote ip,remote port}。</p>
+<p>client最大tcp连接数：1-65535</p>
+<p>server最大tcp连接数：客户端ip数×客户端port数。在实际环境中，受到内存和允许的文件描述符个数限制。</p>
+<h3 id="SYN泛洪攻击"><a href="#SYN泛洪攻击" class="headerlink" title="SYN泛洪攻击"></a>SYN泛洪攻击</h3><p>攻击端利用伪造的IP地址向被攻击端发出三次握手请求，而被攻击端发出的响应报文将永远发送不到目的地。</p>
+<p>被攻击端在等待关闭这个连接的过程中消耗了资源，如果有成千上万的这种连接，主机资源将被耗尽，从而达到攻击的目的。</p>
+<p><strong>解决方法</strong></p>
+<p>1、降低SYN timeout时间，使得主机尽快释放半连接的占用<br>2、采用SYN cookie设置，如果短时间内连续收到某个IP的重复SYN请求，则认为受到了该IP的攻击，丢弃来自该IP的后续请求报文<br>3、使用防火墙或者代理设备，缓冲SYN洪泛攻击</p>
+<h3 id="MSL、TTL和RTT的区别"><a href="#MSL、TTL和RTT的区别" class="headerlink" title="MSL、TTL和RTT的区别"></a>MSL、TTL和RTT的区别</h3><ul>
+<li>MSL ，Maximum Segment Lifetime，报文最大生存时间，报文在网络上存在的最长时间，超过这个时间报文将被丢弃。</li>
+<li>ip头中有一个TTL， time to live，一个ip数据报可以经过的最大路由数，每经过一个处理他的路由器此值就减1，当此值为0则数据报将被丢弃，同时发送ICMP报文通知源主机。</li>
+<li>RTT，round-trip time，客户端到服务器往返所花时间</li>
+</ul>
+<h3 id="多久没收到会丢失重传，往返时间怎么预估"><a href="#多久没收到会丢失重传，往返时间怎么预估" class="headerlink" title="多久没收到会丢失重传，往返时间怎么预估"></a>多久没收到会丢失重传，往返时间怎么预估</h3><p>每个数据包都有相应的计时器，一旦超过 RTO 而没有收到 ACK，就重发该数据包。</p>
+<ul>
+<li>估计往返时间，需要 TCP 通过采样 RTT 的时间，然后进行加权平均，算出一个值，而且这个值还是要不断变化的，因为网络状况不断的变化。除了采样 RTT，还要采样 RTT 的波动范围，计算出一个估计的超时时间。</li>
+</ul>
+<h3 id="TCP和UDP可以同时监听相同的端口吗"><a href="#TCP和UDP可以同时监听相同的端口吗" class="headerlink" title="TCP和UDP可以同时监听相同的端口吗"></a>TCP和UDP可以同时监听相同的端口吗</h3><p>可以。linux是以协议、ip、端口来绑定端口的，所以不同协议相同的ip和端口也是可以绑定成功的。</p>
+<h2 id="QUIC"><a href="#QUIC" class="headerlink" title="QUIC"></a>QUIC</h2><h3 id="自定义连接机制"><a href="#自定义连接机制" class="headerlink" title="自定义连接机制"></a>自定义连接机制</h3><p>QUIC 维护连接，不再以四元组标识，而是以一个 64 位的随机数作为 ID 来标识，而且 UDP 是无连接的，所以当 IP 或者端口变化的时候，只要 ID 不变，就不需要重新建立连接。</p>
+<p>避免了当手机信号不稳定或者在 WIFI 和移动网络切换时，导致重连，从而进行再次的三次握手。</p>
+<h3 id="自定义重传机制"><a href="#自定义重传机制" class="headerlink" title="自定义重传机制"></a>自定义重传机制</h3><p>QUIC 也有个序列号，是递增的。任何一个序列号的包只发送一次，下次就要加一了。</p>
+<p>发送的数据在这个数据流里面有个偏移量 offset，可以通过 offset 查看数据发送到了哪里，这样只要这个 offset 的包没有来，就要重发；如果来了，按照 offset 拼接，还是能够拼成一个流。</p>
+<h3 id="无阻塞的多路复用"><a href="#无阻塞的多路复用" class="headerlink" title="无阻塞的多路复用"></a>无阻塞的多路复用</h3><p>同一条 QUIC 连接上可以创建多个 stream，来发送多个 HTTP 请求。</p>
+<p>一个连接上的多个 stream 之间没有依赖。</p>
+<p>假如 stream2 丢了一个 UDP 包，后面跟着 stream3 的一个 UDP 包，虽然 stream2 的那个包需要重传，但是 stream3 的包无需等待，就可以发给用户。</p>
+<h3 id="自定义流量控制"><a href="#自定义流量控制" class="headerlink" title="自定义流量控制"></a>自定义流量控制</h3><h2 id="应用层"><a href="#应用层" class="headerlink" title="应用层"></a>应用层</h2><h3 id="DNS"><a href="#DNS" class="headerlink" title="DNS"></a>DNS</h3><h4 id="解析流程"><a href="#解析流程" class="headerlink" title="解析流程"></a>解析流程</h4><p>从客户端到本地DNS服务器属于递归查询，而DNS服务器之间是迭代查询。</p>
+<ul>
+<li>客户端会发出 DNS 请求，发给本地域名服务器。本地 DNS 由你的网络服务商，如电信、移动等自动分配。</li>
+<li>本地 DNS 收到来自客户端的请求。如果能找到 ，它直接就返回 IP 地址。如果没有，本地 DNS 请求根域名服务器。根域名服务器是最高层次的，全球共有 13 套。</li>
+<li>根 DNS 收到来自本地 DNS 的请求，发现后缀是 <strong>.com</strong>，返回对应顶级域名服务器的地址</li>
+<li>本地 DNS 请求<strong>顶级域名服务器</strong>，顶级域名服务器负责管理二级域名，比如163.com。顶级域名服务器返回对应的权威 DNS 服务器的地址</li>
+<li>本地 DNS 请求权威 DNS 服务器，权限 DNS 服务器返回 IP 地址到本地 DNS。</li>
+<li>本地 DNS 再将 IP 地址返回客户端，客户端和目标建立连接。</li>
+</ul>
+<h4 id="如果dns解析得到ip地址之后请求超时，那么会重新解析吗"><a href="#如果dns解析得到ip地址之后请求超时，那么会重新解析吗" class="headerlink" title="如果dns解析得到ip地址之后请求超时，那么会重新解析吗"></a>如果dns解析得到ip地址之后请求超时，那么会重新解析吗</h4><p>浏览器得到了域名对应的 IP 地址，并将 IP 地址缓存起来。不需要重新解析</p>
+<h4 id="DNS使用TCP协议还是UDP协议"><a href="#DNS使用TCP协议还是UDP协议" class="headerlink" title="DNS使用TCP协议还是UDP协议"></a>DNS使用TCP协议还是UDP协议</h4><p><strong>区域传送时使用TCP</strong><br>辅域名服务器会定时向主域名服务器进行查询以便了解数据是否有变动。如有变动，则会执行一次区域传送，进行数据同步。区域传送将使用TCP而不是UDP，因为数据同步传送的数据量比一个请求和应答的数据量要多得多。 TCP保证了数据的准确性。 </p>
+<p><strong>域名解析时使用UDP协议</strong><br>客户端向DNS服务器查询域名，一般返回的内容都不超过512字节，用UDP传输即可。不用经过TCP三次握手，这样DNS服务器负载更低，响应更快。</p>
+<p>DNS 查询选择 UDP 或者 TCP 两种不同协议时的主要原因：</p>
+<ul>
+<li>UDP 协议<ul>
+<li>DNS 查询的数据包较小；</li>
+<li>UDP 协议的额外开销小、有着更好的性能表现；</li>
+</ul>
+</li>
+<li>TCP 协议<ul>
+<li>导致 DNS 响应经常超过 MTU 造成数据的分片和丢失，需要依靠可靠的 TCP 协议完成数据的传输；</li>
+<li>数据不断增加，TCP 协议头以及三次握手带来的额外开销比例逐渐降低；</li>
+</ul>
+</li>
+</ul>
+<h4 id="根DNS服务器如何承受并发"><a href="#根DNS服务器如何承受并发" class="headerlink" title="根DNS服务器如何承受并发"></a>根DNS服务器如何承受并发</h4><p>先访问DNS缓存、本地DNS服务器。同时有13台根DNS服务器作负载均衡。</p>
+<p>根DNS服务器只存储一级域名的映射，实际不做域名的解析。</p>
+<h4 id="DNS劫持是什么"><a href="#DNS劫持是什么" class="headerlink" title="DNS劫持是什么"></a>DNS劫持是什么</h4><p>域名劫持，DNS重定向。DNS查询没有得到正确的解析，以致引导user访问到恶意的网站，从而窃取用户隐私，或者进行某些恶意的操作。</p>
+<h4 id="DNS的防范劫持"><a href="#DNS的防范劫持" class="headerlink" title="DNS的防范劫持"></a>DNS的防范劫持</h4><ul>
+<li>开启防火墙等，防止恶意软件，木马病毒感染计算机</li>
+<li>改变路由器默认密码，防止攻击者修改路由器的DNS配置指向恶意的DNS服务器</li>
+</ul>
+<h4 id="DNS缺点"><a href="#DNS缺点" class="headerlink" title="DNS缺点"></a>DNS缺点</h4><p> <strong>域名缓存问题</strong>：直接返回缓存数据。上次进行的缓存，不一定是这次离最近的地方，可能会绕远路。</p>
+<p><strong>解析延迟</strong>：DNS的查询过程需要递归遍历多个DNS服务器，才能获得最终结果。可能会带来一定的延时。</p>
+<p><strong>域名转发问题</strong>：如果是A运营商将解析的请求转发给B运营商，B去权威DNS服务器查询的话，权威服务器会认为你是B运营商的，就返回了B运营商的网站地址，结果每次都会跨运营商。</p>
+<p><strong>出口NAT问题</strong>：做了网络地址转化后，没法通过地址来判断客户到底是哪个运营商，极有可能误判运营商，导致跨运营商访问。</p>
+<h3 id="HTTPDNS"><a href="#HTTPDNS" class="headerlink" title="HTTPDNS"></a>HTTPDNS</h3><p>HTTPDNS使用HTTP与DNS服务器交互，代替传统的基于UDP的DNS协议，域名解析请求直接发送到HTTPDNS服务端，从而绕过运营商的Local DNS</p>
+<h4 id="特性"><a href="#特性" class="headerlink" title="特性"></a>特性</h4><p><strong>防止域名劫持</strong></p>
+<p>由于 HttpDns 是通过 IP 直接请求 HTTP 获取服务器 A 记录地址，不存在向本地运营商询问 domain 解析过程，所以从根本避免了劫持问题。</p>
+<p><strong>精准调度</strong></p>
+<p>HTTPDNS能够直接获取到用户的IP地址，从而实现精确定位与导流</p>
+<p><strong>用户连接失败率下降</strong></p>
+<p>通过算法降低以往失败率过高的服务器排序。</p>
+<h3 id="FTP"><a href="#FTP" class="headerlink" title="FTP"></a>FTP</h3><p>文件传输协议（File Transfer Protocol，FTP）是用于在网络上进行文件传输的一套标准协议， 使用 TCP 传输，为数据传输提供可靠保证。</p>
+<h4 id="Port模式"><a href="#Port模式" class="headerlink" title="Port模式"></a><strong>Port模式</strong></h4><ul>
+<li>FTP 客户端首先和服务器的TCP 21端口建立连接，用来发送命令</li>
+<li>客户端需要接收数据的时候在这个通道上发送PORT命令。告知服务端接收端口。服务器端使用TCP 20端口向客户端端口发送连接请求，建立一条数据链路来传送数据。</li>
+</ul>
+<h4 id="Passive模式"><a href="#Passive模式" class="headerlink" title="Passive模式"></a><strong>Passive模式</strong></h4><ul>
+<li>客户端向服务器的FTP端口发送连接请求，服务器接受连接，建立一条命令链路。</li>
+<li>服务器在命令链路上用PASV命令告诉客户端端口号。于是客户端向服务器的端口发送连接请求，建立一条数据链路来传送数据。</li>
+</ul>
+<h3 id="SSH"><a href="#SSH" class="headerlink" title="SSH"></a>SSH</h3><p>用于计算机之间的加密登录。采用了公钥加密。</p>
+<p>整个过程是这样的：</p>
+<p>（1）远程主机收到用户的登录请求，把自己的公钥发给用户。</p>
+<p>（2）用户使用这个公钥，将登录密码加密后，发送回来。</p>
+<p>（3）远程主机用自己的私钥，解密登录密码，如果密码正确，就同意用户登录。</p>
+<p>如果有人截获了登录请求，然后冒充远程主机，将伪造的公钥发给用户，那么用户很难辨别真伪。</p>
+<h4 id="中间人攻击"><a href="#中间人攻击" class="headerlink" title="中间人攻击"></a>中间人攻击</h4><p><strong>口令登录</strong></p>
+<p>确认host主机的真实性：首次连接确认公钥指纹。</p>
+<p><strong>公钥登录</strong></p>
+<p>不需要输入密码。</p>
+<ol>
+<li>是用户将自己的公钥储存在远程主机上。</li>
+<li>登录的时候，远程主机会向用户发送一段随机字符串，用户用自己的私钥加密后，再发回来。</li>
+<li>远程主机用事先储存的公钥进行解密，如果成功，就证明用户是可信的，直接允许登录shell。</li>
+</ol>
+<h2 id="路由协议"><a href="#路由协议" class="headerlink" title="路由协议"></a>路由协议</h2><p>路由分静态路由和动态路由，静态路由可以配置复杂的策略路由，控制转发策略；</p>
+<p>动态路由主流算法有两种，距离矢量算法和链路状态算法。BGP 协议和OSPF 协议。</p>
+<h2 id="加密算法"><a href="#加密算法" class="headerlink" title="加密算法"></a>加密算法</h2><h3 id="DES加密算法"><a href="#DES加密算法" class="headerlink" title="DES加密算法"></a>DES加密算法</h3><p>DES（Data Encryption Standard）数据加密标准算法，是对称性加密算法。</p>
+<p><strong>工作原理</strong></p>
+<p>当需要加密的时候就用key对data加密，生成密码形式的data作为输出结果</p>
+<p>解密就需要再利用key对data进行解密获得原文密码作为输出。</p>
+<h3 id="MD5加密算法"><a href="#MD5加密算法" class="headerlink" title="MD5加密算法"></a>MD5加密算法</h3><p>Message-Digest-Algorithm 信息摘要算法第五代。Hash算法一代，是一种单向加密算法，可以将输入的信息加密转换为128位固定长度的散列值，一般用于检验数据传输过程中的完整性。</p>
+<p><strong>优势：</strong></p>
+<ul>
+<li>防篡改，在传输过程中一旦被串改，那么计算出的MD5值一定不同。</li>
+<li>计算速度快。加密速度快，不需要秘钥。</li>
+</ul>
+<p><strong>缺点:</strong></p>
+<ul>
+<li>仍然存在两种不同数据会发生碰撞。</li>
+<li>MD5的安全性：直接MD5存入数据库，若数据库被破解，通过MD5反查会查到密码，需要随机盐值的配合。</li>
+</ul>
+<h3 id="SHA1加密算法"><a href="#SHA1加密算法" class="headerlink" title="SHA1加密算法"></a>SHA1加密算法</h3><p>SHA-1是一种数据加密算法，该算法的思想是取一串输入码，并把它们转化为长度较短、位数固定的输出序列即散列值的过程。</p>
+<h3 id="RSA加密算法"><a href="#RSA加密算法" class="headerlink" title="RSA加密算法"></a>RSA加密算法</h3><p>RSA是一种非对称加密算法。</p>
+<p>目前最有影响力的公钥加密算法，将两个大素数相乘十分容易，但那时想要对其乘积进行因式分解却极其困难，因此可以将乘积作为加密公钥，而两个大素数组合成私钥。 公钥加密，私钥解密。</p>
+<h3 id="为什么密码加盐"><a href="#为什么密码加盐" class="headerlink" title="为什么密码加盐"></a>为什么密码加盐</h3><p>Salt 可以是任意字母、数字、或是字母或数字的组合，但必须是随机产生的，每个用户的 Salt 都不一样，用户注册的时候，数据库中存入 MD5（明文密码 + Salt）。</p>
+<p>即便数据库泄露了，但是由于密码都是加了 Salt 之后的散列，数据字典已经无法直接匹配，明文密码被破解出来的概率也大大降低</p>
+<h2 id="为什么网络中会发生丢包？"><a href="#为什么网络中会发生丢包？" class="headerlink" title="为什么网络中会发生丢包？"></a>为什么网络中会发生丢包？</h2><p><strong>物理线路故障</strong></p>
+<p><strong>设备故障</strong>：如网卡是坏的，交换机的某个端口出现了物理故障，光模块等。接收到的分组校验出错</p>
+<p><strong>网络拥塞</strong>：分组在网络中超出最大存活时间、路由器接收分组数量达到上限后，会丢弃多余分组</p>
+<h2 id="小端和大端字节序，这个对什么产生影响，做什么事情会出现问题"><a href="#小端和大端字节序，这个对什么产生影响，做什么事情会出现问题" class="headerlink" title="小端和大端字节序，这个对什么产生影响，做什么事情会出现问题"></a>小端和大端字节序，这个对什么产生影响，做什么事情会出现问题</h2><ul>
+<li><strong>大端字节序</strong>：高位字节在前，低位字节在后，这是人类读写数值的方法。</li>
+<li><strong>小端字节序</strong>：低位字节在前，高位字节在后</li>
+</ul>
+<p>计算机一般先处理低位字节，效率比较高，因为计算都是从低位开始的。</p>
+<p>人类还是习惯大端字节序。所以，其他的场合几乎都是大端字节序，比如网络传输和文件储存。</p>
+<h2 id="传一个字符串，定义为大端和小端一样吗？如果传一个数字有影响吗？"><a href="#传一个字符串，定义为大端和小端一样吗？如果传一个数字有影响吗？" class="headerlink" title="传一个字符串，定义为大端和小端一样吗？如果传一个数字有影响吗？"></a>传一个字符串，定义为大端和小端一样吗？如果传一个数字有影响吗？</h2><p>大小端是面向多字节类型定义的，比如2字节、4字节、8字节整型、长整型、浮点型等，单字节的字符串一般不用考虑。</p>
+<h2 id="网卡接收数据流程"><a href="#网卡接收数据流程" class="headerlink" title="网卡接收数据流程"></a>网卡接收数据流程</h2><ul>
+<li><strong>1：</strong> 数据包从外面网络进入物理网卡。如果目的地址不是该网卡（且该网卡没有开启混杂模式）该包会被网卡丢弃。</li>
+<li><strong>2：</strong> 网卡将数据包通过DMA的方式写入到指定的内存地址，该地址由网卡驱动分配并初始化。</li>
+<li><strong>3：</strong> 网卡通过硬件中断通知CPU，告诉它有数据来了</li>
+<li><strong>4：</strong> CPU根据中断表，调用中断函数，中断函数会调用网卡驱动程序中相应的函数</li>
+<li><strong>5：</strong> 先禁用网卡的中断，表示驱动程序已经知道内存中有数据了，告诉网卡下次再收到数据包直接写内存就可以了，不要再通知CPU了，这样可以提高效率，避免CPU不停的被中断。</li>
+<li><strong>6：</strong> 启动软中断。硬件中断处理函数返回。（由于硬中断处理程序执行的过程中不能被中断，所以如果它执行时间过长，会导致CPU没法响应其它硬件的中断，于是内核引入软中断，耗时的部分移到软中断处理函数里面来慢慢处理。）</li>
+<li><strong>7：</strong> 内核中的ksoftirqd进程专门负责软中断的处理，读取写到内存中的数据包。</li>
+<li><strong>8：</strong> 调用协议栈相应的函数，将数据包交给协议栈处理。</li>
+<li>8.1：进入网络层，如果目的IP是本地IP，发送到传输层</li>
+<li>8.2：根据IP和端口找对应的socket，通知socket数据包已经准备好，如果没有找到相应的socket，那么该数据包将会被丢弃。</li>
+<li>8.3：应用层一般有两种方式接收数据，一种是recvfrom函数阻塞在那里等着数据来，这种情况下当socket收到通知后，recvfrom就会被唤醒，然后读取接收队列的数据；另一种是通过epoll或者select监听相应的socket，当收到通知后，再调用recvfrom函数去读取接收队列的数据。</li>
+<li><strong>9：</strong> 待内存中的所有数据包被处理完成后（即poll函数执行完成），启用网卡的硬中断，这样下次网卡再收到数据的时候就会通知CPU</li>
+</ul>
+<h2 id="WebSocket-和-HTTP-的区别"><a href="#WebSocket-和-HTTP-的区别" class="headerlink" title="WebSocket 和 HTTP 的区别"></a>WebSocket 和 HTTP 的区别</h2><ul>
+<li>http 协议必须要有客户端发起，然后服务器返回结果。</li>
+<li>为了解决客户端发起多个 http 请求轮训问题， webSocket 协议下客服端和浏览器可以同时发送信息。降低了服务器压力，减少了部分多余信息。</li>
+</ul>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a href="https://blog.csdn.net/weixin_41047704/article/details/85340311" target="_blank" rel="noopener">https://blog.csdn.net/weixin_41047704/article/details/85340311</a></p>
+<p><a href="https://blog.csdn.net/gdutxiaoxu/article/details/107393249" target="_blank" rel="noopener">https://blog.csdn.net/gdutxiaoxu/article/details/107393249</a></p>
+<p><a href="https://blog.csdn.net/weixin_38035852/article/details/81667160" target="_blank" rel="noopener">https://blog.csdn.net/weixin_38035852/article/details/81667160</a></p>
+
+            </div>
+            <hr />
+
+            
+            <style>
+    #reward {
+        margin: 40px 0;
+        text-align: center;
+    }
+
+    #reward .reward-link {
+        font-size: 1.88rem;
+    }
+
+    #reward .btn-floating:hover {
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2), 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    #rewardModal {
+        width: 320px;
+        height: 350px;
+    }
+
+    #rewardModal .reward-title {
+        margin: 15px auto;
+        padding-bottom: 5px;
+    }
+
+    #rewardModal .modal-content {
+        padding: 10px;
+    }
+
+    #rewardModal .close {
+        position: absolute;
+        right: 15px;
+        top: 15px;
+        color: rgba(0, 0, 0, 0.5);
+        font-size: 1.3rem;
+        line-height: 20px;
+        cursor: pointer;
+    }
+
+    #rewardModal .close:hover {
+        color: #ef5350;
+        transform: scale(1.3);
+        -moz-transform:scale(1.3);
+        -webkit-transform:scale(1.3);
+        -o-transform:scale(1.3);
+    }
+
+    #rewardModal .reward-tabs {
+        margin: 0 auto;
+        width: 210px;
+    }
+
+    .reward-tabs .tabs {
+        height: 38px;
+        margin: 10px auto;
+        padding-left: 0;
+    }
+
+    .reward-content ul {
+        padding-left: 0 !important;
+    }
+
+    .reward-tabs .tabs .tab {
+        height: 38px;
+        line-height: 38px;
+    }
+
+    .reward-tabs .tab a {
+        color: #fff;
+        background-color: #ccc;
+    }
+
+    .reward-tabs .tab a:hover {
+        background-color: #ccc;
+        color: #fff;
+    }
+
+    .reward-tabs .wechat-tab .active {
+        color: #fff !important;
+        background-color: #22AB38 !important;
+    }
+
+    .reward-tabs .alipay-tab .active {
+        color: #fff !important;
+        background-color: #019FE8 !important;
+    }
+
+    .reward-tabs .reward-img {
+        width: 210px;
+        height: 210px;
+    }
+</style>
+
+<div id="reward">
+    <a href="#rewardModal" class="reward-link modal-trigger btn-floating btn-large waves-effect waves-light red">赏</a>
+
+    <!-- Modal Structure -->
+    <div id="rewardModal" class="modal">
+        <div class="modal-content">
+            <a class="close modal-close"><i class="fa fa-close"></i></a>
+            <h4 class="reward-title">写作不易，客官能否打赏一杯奶茶？</h4>
+            <div class="reward-content">
+                <div class="reward-tabs">
+                    <ul class="tabs row">
+                        <li class="tab col s6 alipay-tab waves-effect waves-light"><a href="#alipay">支付宝</a></li>
+                        <li class="tab col s6 wechat-tab waves-effect waves-light"><a href="#wechat">微 信</a></li>
+                    </ul>
+                    <div id="alipay">
+                        <img src="/medias/reward/alipay.jpg" class="reward-img" alt="支付宝打赏二维码">
+                    </div>
+                    <div id="wechat">
+                        <img src="/medias/reward/wechat.png" class="reward-img" alt="微信打赏二维码">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(function () {
+        $('.tabs').tabs();
+    });
+</script>
+            
+
+            <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+
+<div id="article-share">
+    
+    <div class="social-share" data-disabled="qzone" data-wechat-qrcode-helper="<p>微信里点“发现”->“扫一扫”二维码便可查看分享。</p>"></div>
+    
+</div>
+
+<script src="/libs/share/js/social-share.min.js"></script>
+
+            
+
+    <div class="reprint" id="reprint-statement">
+        <p class="reprint-tip">
+            <i class="fa fa-exclamation-triangle"></i>&nbsp;&nbsp;
+            <span>转载规则</span>
+        </p>
+        
+            <div class="center-align">
+                <a rel="license" href="https://creativecommons.org/licenses/by/4.0/deed.zh">
+                    <img alt=""
+                         style="border-width:0"
+                         src="https://i.creativecommons.org/l/by/4.0/88x31.png"/>
+                </a>
+            </div>
+            <br/>
+            <span xmlns:dct="http://purl.org/dc/terms/" href="http://purl.org/dc/dcmitype/Text"
+                  property="dct:title" rel="dct:type">
+                    《网络必知必会》
+                </span> 由
+            <a xmlns:cc="http://creativecommons.org/ns#" href="/2021/05/20/interview-network/" property="cc:attributionName"
+               rel="cc:attributionURL">
+                wangyixin-tom
+            </a> 采用
+            <a rel="license" href="https://creativecommons.org/licenses/by/4.0/deed.zh">
+                知识共享署名 4.0 国际许可协议
+            </a>进行许可。
+        
+    </div>
+
+    <script async defer>
+      document.addEventListener("copy", function (e) {
+        let toastHTML = '<span>复制成功，请遵循本文的转载规则</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">查看</a>';
+        M.toast({html: toastHTML})
+      });
+
+      function navToReprintStatement() {
+        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
+      }
+    </script>
+
+
+        </div>
+    </div>
+
+    
+    <link rel="stylesheet" href="/libs/gitalk/gitalk.css">
+<link rel="stylesheet" href="/css/my-gitalk.css">
+
+<div class="card gitalk-card" data-aos="fade-up">
+    <div id="gitalk-container" class="card-content"></div>
+</div>
+
+<script src="/libs/gitalk/gitalk.min.js"></script>
+<script>
+    let gitalk = new Gitalk({
+        clientID: 'ea3985c0f8fdba464dea',
+        clientSecret: '2856369f95a20dce67cacde330ad344d409acb09',
+        repo: 'wangyixin-tom.github.io',
+        owner: 'WangYixin-Tom',
+        admin: "WangYixin-Tom",
+        id: '2021/05/20/interview-network/',
+        distractionFreeMode: false  // Facebook-like distraction free mode
+    });
+
+    gitalk.render('gitalk-container');
+</script>
+    
+
+    
+
+    
+
+    
+
+    
+    <style>
+    .valine-card {
+        margin: 1.5rem auto;
+    }
+
+    .valine-card .card-content {
+        padding: 20px 20px 5px 20px;
+    }
+
+    #vcomments input[type=text],
+    #vcomments input[type=email],
+    #vcomments input[type=url],
+    #vcomments textarea {
+        box-sizing: border-box;
+    }
+
+    #vcomments p {
+        margin: 2px 2px 10px;
+        font-size: 1.05rem;
+        line-height: 1.78rem;
+    }
+
+    #vcomments blockquote p {
+        text-indent: 0.2rem;
+    }
+
+    #vcomments a {
+        padding: 0 2px;
+        color: #42b983;
+        font-weight: 500;
+        text-decoration: underline;
+    }
+
+    #vcomments img {
+        max-width: 100%;
+        height: auto;
+        cursor: pointer;
+    }
+
+    #vcomments ol li {
+        list-style-type: decimal;
+    }
+
+    #vcomments ol,
+    ul {
+        display: block;
+        padding-left: 2em;
+        word-spacing: 0.05rem;
+    }
+
+    #vcomments ul li,
+    ol li {
+        display: list-item;
+        line-height: 1.8rem;
+        font-size: 1rem;
+    }
+
+    #vcomments ul li {
+        list-style-type: disc;
+    }
+
+    #vcomments ul ul li {
+        list-style-type: circle;
+    }
+
+    #vcomments table, th, td {
+        padding: 12px 13px;
+        border: 1px solid #dfe2e5;
+    }
+
+    #vcomments table, th, td {
+        border: 0;
+    }
+
+    table tr:nth-child(2n), thead {
+        background-color: #fafafa;
+    }
+
+    #vcomments table th {
+        background-color: #f2f2f2;
+        min-width: 80px;
+    }
+
+    #vcomments table td {
+        min-width: 80px;
+    }
+
+    #vcomments h1 {
+        font-size: 1.85rem;
+        font-weight: bold;
+        line-height: 2.2rem;
+    }
+
+    #vcomments h2 {
+        font-size: 1.65rem;
+        font-weight: bold;
+        line-height: 1.9rem;
+    }
+
+    #vcomments h3 {
+        font-size: 1.45rem;
+        font-weight: bold;
+        line-height: 1.7rem;
+    }
+
+    #vcomments h4 {
+        font-size: 1.25rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    #vcomments h5 {
+        font-size: 1.1rem;
+        font-weight: bold;
+        line-height: 1.4rem;
+    }
+
+    #vcomments h6 {
+        font-size: 1rem;
+        line-height: 1.3rem;
+    }
+
+    #vcomments p {
+        font-size: 1rem;
+        line-height: 1.5rem;
+    }
+
+    #vcomments hr {
+        margin: 12px 0;
+        border: 0;
+        border-top: 1px solid #ccc;
+    }
+
+    #vcomments blockquote {
+        margin: 15px 0;
+        border-left: 5px solid #42b983;
+        padding: 1rem 0.8rem 0.3rem 0.8rem;
+        color: #666;
+        background-color: rgba(66, 185, 131, .1);
+    }
+
+    #vcomments pre {
+        font-family: monospace, monospace;
+        padding: 1.2em;
+        margin: .5em 0;
+        background: #272822;
+        overflow: auto;
+        border-radius: 0.3em;
+        tab-size: 4;
+    }
+
+    #vcomments code {
+        font-family: monospace, monospace;
+        padding: 1px 3px;
+        font-size: 0.92rem;
+        color: #e96900;
+        background-color: #f8f8f8;
+        border-radius: 2px;
+    }
+
+    #vcomments pre code {
+        font-family: monospace, monospace;
+        padding: 0;
+        color: #e8eaf6;
+        background-color: #272822;
+    }
+
+    #vcomments pre[class*="language-"] {
+        padding: 1.2em;
+        margin: .5em 0;
+    }
+
+    #vcomments code[class*="language-"],
+    pre[class*="language-"] {
+        color: #e8eaf6;
+    }
+
+    #vcomments [type="checkbox"]:not(:checked), [type="checkbox"]:checked {
+        position: inherit;
+        margin-left: -1.3rem;
+        margin-right: 0.4rem;
+        margin-top: -1px;
+        vertical-align: middle;
+        left: unset;
+        visibility: visible;
+    }
+
+    #vcomments b,
+    strong {
+        font-weight: bold;
+    }
+
+    #vcomments dfn {
+        font-style: italic;
+    }
+
+    #vcomments small {
+        font-size: 85%;
+    }
+
+    #vcomments cite {
+        font-style: normal;
+    }
+
+    #vcomments mark {
+        background-color: #fcf8e3;
+        padding: .2em;
+    }
+
+    #vcomments table, th, td {
+        padding: 12px 13px;
+        border: 1px solid #dfe2e5;
+    }
+
+    table tr:nth-child(2n), thead {
+        background-color: #fafafa;
+    }
+
+    #vcomments table th {
+        background-color: #f2f2f2;
+        min-width: 80px;
+    }
+
+    #vcomments table td {
+        min-width: 80px;
+    }
+
+    #vcomments [type="checkbox"]:not(:checked), [type="checkbox"]:checked {
+        position: inherit;
+        margin-left: -1.3rem;
+        margin-right: 0.4rem;
+        margin-top: -1px;
+        vertical-align: middle;
+        left: unset;
+        visibility: visible;
+    }
+</style>
+
+<div class="card valine-card" data-aos="fade-up">
+    <div id="vcomments" class="card-content"></div>
+</div>
+
+<script src="/libs/valine/av-min.js"></script>
+<script src="/libs/valine/Valine.min.js"></script>
+<!-- <script src="//unpkg.com/valine@latest/dist/Valine.min.js"></script> -->
+
+<script>
+    new Valine({
+        el: '#vcomments',
+        appId: '',
+        appKey: '',
+        notify: 'false' === 'true',
+        verify: 'false' === 'true',
+        visitor: 'false' === 'true',
+        avatar: 'wavatar',
+        pageSize: '10',
+        lang: 'zh-cn',
+        placeholder: '如果你没有GitHub账号，还可以在这里评论啦！'
+    });
+</script>
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="fa fa-chevron-left"></i>&nbsp;上一篇</div>
+            <div class="card">
+                <a href="/2021/05/24/interview-changjin/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/7.jpg" class="responsive-img" alt="场景头脑风暴">
+                        
+                        <span class="card-title">场景头脑风暴</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            大数据布隆过滤器一个很长的二进制向量 （位数组）、一系列随机函数 (哈希)、空间效率和查询效率高，但是有一定的误判率（哈希表是精确匹配）
+基本原理
+首先将位数组进行初始化，将里面每个位都设置位0。对于集合里面的每一个元素，将元素依次通过3个
+                        
+                    </div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="fa fa-clock-o fa-fw icon-date"></i>2021-05-24
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fa fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/interview/" class="post-category" target="_blank">
+                                    interview
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/interview/" target="_blank">
+                        <span class="chip bg-color">interview</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fa fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2021/04/22/flask-mian-shi/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/3.jpg" class="responsive-img" alt="flask">
+                        
+                        <span class="card-title">flask</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            Flask框架WEB框架它们接收 HTTP 请求，然后分发任务，并生成 HTML，然后返回包含 HTML 的 HTTP 应答。
+应用启动过程
+run 方法启动了 Flask 应用
+
+run 方法调用werkzeug 的 run_simple
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2021-04-22
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fa fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/interview/" class="post-category" target="_blank">
+                                    interview
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/interview/" target="_blank">
+                        <span class="chip bg-color">interview</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+</div>
+
+
+<script>
+    $('#articleContent').on('copy', function (e) {
+        // IE8 or earlier browser is 'undefined'
+        if (typeof window.getSelection === 'undefined') return;
+
+        var selection = window.getSelection();
+        // if the selection is short let's not annoy our users.
+        if (('' + selection).length < Number.parseInt('120')) {
+            return;
+        }
+
+        // create a div outside of the visible area and fill it with the selected text.
+        var bodyElement = document.getElementsByTagName('body')[0];
+        var newdiv = document.createElement('div');
+        newdiv.style.position = 'absolute';
+        newdiv.style.left = '-99999px';
+        bodyElement.appendChild(newdiv);
+        newdiv.appendChild(selection.getRangeAt(0).cloneContents());
+
+        // we need a <pre> tag workaround.
+        // otherwise the text inside "pre" loses all the line breaks!
+        if (selection.getRangeAt(0).commonAncestorContainer.nodeName === 'PRE') {
+            newdiv.innerHTML = "<pre>" + newdiv.innerHTML + "</pre>";
+        }
+
+        var url = document.location.href;
+        newdiv.innerHTML += '<br />'
+            + '来源: 好好学习<br />'
+            + '作者: wangyixin-tom<br />'
+            + '链接: <a href="' + url + '">' + url + '</a><br />'
+            + '本文章著作权归作者所有，任何形式的转载都请注明出处。';
+
+        selection.selectAllChildren(newdiv);
+        window.setTimeout(function () { bodyElement.removeChild(newdiv); }, 200);
+    });
+</script>
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget">
+            <div class="toc-title"><i class="fa fa-list-alt"></i>&nbsp;&nbsp;目录</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fa fa-list"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            // headingsOffset: -205,
+            headingSelector: 'h1, h2, h3, h4'
+        });
+
+        // modify the toc link href to support Chinese.
+        let i = 0;
+        let tocHeading = 'toc-heading-';
+        $('#toc-content a').each(function () {
+            $(this).attr('href', '#' + tocHeading + (++i));
+        });
+
+        // modify the heading title id to support Chinese.
+        i = 0;
+        $('#articleContent').children('h1, h2, h3, h4').each(function () {
+            $(this).attr('id', tocHeading + (++i));
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).slideUp(500);
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).slideDown(500);
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+    
+
+</main>
+
+
+<script src="https://cdn.bootcss.com/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script>
+    MathJax.Hub.Config({
+        tex2jax: {inlineMath: [['$', '$'], ['\(', '\)']]}
+    });
+</script>
+
+<script type="text/javascript" src="/libs/codeBlock/codeBlockFuction.js"></script>
+<!-- 代码语言 -->
+<script type="text/javascript" src="/libs/codeBlock/codeLang.js"></script>
+<!-- 代码块复制 -->
+<script type="text/javascript" src="/libs/codeBlock/codeCopy.js"></script>
+<script type="text/javascript" src="/libs/codeBlock/clipboard.min.js"></script>
+<!-- 代码块收缩 -->
+<script type="text/javascript" src="/libs/codeBlock/codeShrink.js"></script> 
+<!-- 代码块折行 -->
+<style type="text/css">code[class*="language-"], pre[class*="language-"] { white-space: pre !important; }</style>
+
+
+    <footer class="page-footer bg-color">
+    <div class="container row center-align">
+        <div class="col s12 m8 l8 copy-right">
+            &copy; 2010-2021 yixin. 版权所有
+
+            
+            &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
+            <span class="white-color">175.3k</span>
+            
+
+            <br>
+            <span id="sitetime"></span>
+
+            
+            
+        </div>
+        <div class="col s12 m4 l4 social-link ">
+    <a href="https://github.com/WangYixin-Tom" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+        <i class="fa fa-github"></i>
+    </a>
+
+
+
+    <a href="mailto:tomwangyx@gmail.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fa fa-envelope-open"></i>
+    </a>
+
+
+
+    <a href="https://zhihu.com/people/WangYixin-Tom" class="tooltipped" target="_blank" data-tooltip="访问我的知乎" data-position="top" data-delay="50">
+        <i class="fa fa-inverse">知</i>
+    </a>
+
+
+
+    <a href="http://wpa.qq.com/msgrd?v=3&uin=2276505170&site=qq&menu=yes" class="tooltipped" target="_blank" data-tooltip="访问我的知乎" data-position="top" data-delay="50">
+        <i class="fa fa-qq"></i>
+    </a>
+
+
+
+    <a href="https://weibo.com/WangYixin-Tom" class="tooltipped" target="_blank" data-tooltip="关注我的微博" data-position="top" data-delay="50">
+        <i class="fa fa-weibo"></i>
+    </a>
+
+
+
+    <a href="/atom.xml" class="tooltipped" target="_blank" data-tooltip="RSS 订阅" data-position="top" data-delay="50">
+        <i class="fa fa-rss"></i>
+    </a>
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+<!-- 不蒜子计数初始值纠正 -->
+<script>
+    $(document).ready(function () {
+
+        var int = setInterval(fixCount, 50);
+        var pvcountOffset = 80000;
+        var uvcountOffset = 20000;
+
+        function fixCount() {
+            if (document.getElementById("busuanzi_container_site_pv").style.display != "none") {
+                $("#busuanzi_value_site_pv").html(parseInt($("#busuanzi_value_site_pv").html()) + pvcountOffset);
+                clearInterval(int);
+            }
+            if ($("#busuanzi_container_site_pv").css("display") != "none") {
+                $("#busuanzi_value_site_uv").html(parseInt($("#busuanzi_value_site_uv").html()) + uvcountOffset); // 加上初始数据 
+                clearInterval(int);
+            }
+        }
+    });
+</script>
+
+<script language=javascript>
+    function siteTime() {
+        window.setTimeout("siteTime()", 1000);
+        var seconds = 1000;
+        var minutes = seconds * 60;
+        var hours = minutes * 60;
+        var days = hours * 24;
+        var years = days * 365;
+        var today = new Date();
+        var todayYear = today.getFullYear();
+        var todayMonth = today.getMonth() + 1;
+        var todayDate = today.getDate();
+        var todayHour = today.getHours();
+        var todayMinute = today.getMinutes();
+        var todaySecond = today.getSeconds();
+        /* Date.UTC() -- 返回date对象距世界标准时间(UTC)1970年1月1日午夜之间的毫秒数(时间戳)
+        year - 作为date对象的年份，为4位年份值
+        month - 0-11之间的整数，做为date对象的月份
+        day - 1-31之间的整数，做为date对象的天数
+        hours - 0(午夜24点)-23之间的整数，做为date对象的小时数
+        minutes - 0-59之间的整数，做为date对象的分钟数
+        seconds - 0-59之间的整数，做为date对象的秒数
+        microseconds - 0-999之间的整数，做为date对象的毫秒数 */
+        var t1 = Date.UTC(2020, 10, 25, 00, 00, 00); //北京时间2018-2-13 00:00:00
+        var t2 = Date.UTC(todayYear, todayMonth, todayDate, todayHour, todayMinute, todaySecond);
+        var diff = t2 - t1;
+        var diffYears = Math.floor(diff / years);
+        var diffDays = Math.floor((diff / days) - diffYears * 365);
+        var diffHours = Math.floor((diff - (diffYears * 365 + diffDays) * days) / hours);
+        var diffMinutes = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours) / minutes);
+        var diffSeconds = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours - diffMinutes * minutes) / seconds);
+        document.getElementById("sitetime").innerHTML = "本站已运行 " + diffYears + " 年 " + diffDays + " 天 " + diffHours + " 小时 " + diffMinutes + " 分钟 " + diffSeconds + " 秒";
+    }/*因为建站时间还没有一年，就将之注释掉了。需要的可以取消*/
+    siteTime();
+</script>
+
+    <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fa fa-search"></i>&nbsp;&nbsp;搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script src="/js/search.js"></script>
+<script type="text/javascript">
+$(function () {
+    searchFunc("/" + "search.xml", 'searchInput', 'searchResult');
+});
+</script>
+    <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fa fa-angle-up"></i>
+    </a>
+</div>
+
+
+    <script src="/libs/materialize/materialize.min.js"></script>
+    <script src="/libs/masonry/masonry.pkgd.min.js"></script>
+    <script src="/libs/aos/aos.js"></script>
+    <script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+    <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script src="/js/matery.js"></script>
+	<!-- 
+    <script type="text/javascript"> var OriginTitile = document.title, st; document.addEventListener("visibilitychange", function () { document.hidden ? (document.title = "Σ(っ °Д °;)っ喔哟，崩溃啦！", clearTimeout(st)) : (document.title = "φ(゜▽゜*)♪咦，又好了！", st = setTimeout(function () { document.title = OriginTitile }, 3e3)) })
+    </script>-->
+	
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+
+    
+    <script src="/libs/others/clicklove.js"></script>
+    
+
+    
+
+    <!-- 雪花特效 -->
+    
+
+</body>
+
+</html>

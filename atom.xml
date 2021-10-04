@@ -1,0 +1,540 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>好好学习</title>
+  
+  <subtitle>知识梳理、总结、分享</subtitle>
+  <link href="/atom.xml" rel="self"/>
+  
+  <link href="https://wangyixin-tom.github.io/"/>
+  <updated>2021-10-04T03:25:49.263Z</updated>
+  <id>https://wangyixin-tom.github.io/</id>
+  
+  <author>
+    <name>wangyixin-tom</name>
+    
+  </author>
+  
+  <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>研发效能</title>
+    <link href="https://wangyixin-tom.github.io/2021/08/15/yanfa/"/>
+    <id>https://wangyixin-tom.github.io/2021/08/15/yanfa/</id>
+    <published>2021-08-15T12:26:07.000Z</published>
+    <updated>2021-10-04T03:25:49.263Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h2 id=&quot;概念&quot;&gt;&lt;a href=&quot;#概念&quot; class=&quot;headerlink&quot;
+        
+      
+    
+    </summary>
+    
+      <category term="other" scheme="https://wangyixin-tom.github.io/categories/other/"/>
+    
+    
+      <category term="other" scheme="https://wangyixin-tom.github.io/tags/other/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>一致性哈希</title>
+    <link href="https://wangyixin-tom.github.io/2021/07/12/c-hash/"/>
+    <id>https://wangyixin-tom.github.io/2021/07/12/c-hash/</id>
+    <published>2021-07-12T13:18:06.000Z</published>
+    <updated>2021-10-04T03:49:21.805Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h2 id=&quot;Hash取模&quot;&gt;&lt;a href=&quot;#Hash取模&quot; class=&quot;headerlink&quot;
+        
+      
+    
+    </summary>
+    
+      <category term="分布式" scheme="https://wangyixin-tom.github.io/categories/%E5%88%86%E5%B8%83%E5%BC%8F/"/>
+    
+    
+      <category term="分布式" scheme="https://wangyixin-tom.github.io/tags/%E5%88%86%E5%B8%83%E5%BC%8F/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>linux优化方法</title>
+    <link href="https://wangyixin-tom.github.io/2021/07/08/linux-youhua/"/>
+    <id>https://wangyixin-tom.github.io/2021/07/08/linux-youhua/</id>
+    <published>2021-07-07T23:44:42.000Z</published>
+    <updated>2021-10-04T03:25:49.223Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h2 id=&quot;CPU&quot;&gt;&lt;a href=&quot;#CPU&quot; class=&quot;headerlink&quot; title=&quot;CPU&quot;&gt;&lt;/a&gt;CPU&lt;/h2&gt;&lt;h3 id=&quot;高cpu占用率的进程和线程&quot;&gt;&lt;a href=&quot;#高cpu占用率的进程和线程&quot; class=&quot;headerlink&quot;
+        
+      
+    
+    </summary>
+    
+      <category term="linux" scheme="https://wangyixin-tom.github.io/categories/linux/"/>
+    
+    
+      <category term="linux" scheme="https://wangyixin-tom.github.io/tags/linux/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>docker必知必会</title>
+    <link href="https://wangyixin-tom.github.io/2021/07/07/interview-docker/"/>
+    <id>https://wangyixin-tom.github.io/2021/07/07/interview-docker/</id>
+    <published>2021-07-07T07:19:32.000Z</published>
+    <updated>2021-10-04T03:25:49.145Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h2 id=&quot;基本概念&quot;&gt;&lt;a href=&quot;#基本概念&quot; class=&quot;headerlink&quot; title=&quot;基本概念&quot;&gt;&lt;/a&gt;基本概念&lt;/h2&gt;&lt;h3 id=&quot;什么是容器&quot;&gt;&lt;a href=&quot;#什么是容器&quot; class=&quot;headerlink&quot;
+        
+      
+    
+    </summary>
+    
+      <category term="interview" scheme="https://wangyixin-tom.github.io/categories/interview/"/>
+    
+    
+      <category term="interview" scheme="https://wangyixin-tom.github.io/tags/interview/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>攻击技术</title>
+    <link href="https://wangyixin-tom.github.io/2021/06/30/attack/"/>
+    <id>https://wangyixin-tom.github.io/2021/06/30/attack/</id>
+    <published>2021-06-30T12:23:24.000Z</published>
+    <updated>2021-10-04T03:25:49.144Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h2 id=&quot;XSS-跨站脚本攻击&quot;&gt;&lt;a href=&quot;#XSS-跨站脚本攻击&quot; class=&quot;headerlink&quot; title=&quot;XSS 跨站脚本攻击&quot;&gt;&lt;/a&gt;XSS
+        
+      
+    
+    </summary>
+    
+      <category term="interview" scheme="https://wangyixin-tom.github.io/categories/interview/"/>
+    
+    
+      <category term="interview" scheme="https://wangyixin-tom.github.io/tags/interview/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>操作系统必知必会</title>
+    <link href="https://wangyixin-tom.github.io/2021/06/30/interview-os/"/>
+    <id>https://wangyixin-tom.github.io/2021/06/30/interview-os/</id>
+    <published>2021-06-30T03:20:37.000Z</published>
+    <updated>2021-10-04T03:25:49.157Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h2 id=&quot;操作系统&quot;&gt;&lt;a href=&quot;#操作系统&quot; class=&quot;headerlink&quot; title=&quot;操作系统&quot;&gt;&lt;/a&gt;操作系统&lt;/h2&gt;&lt;p&gt;操作系统是管理计算机硬件与软件资源的程序，本质上是运行在计算机上的软件程序 ，为用户提供一个与系统交互的操作界面
+        
+      
+    
+    </summary>
+    
+      <category term="interview" scheme="https://wangyixin-tom.github.io/categories/interview/"/>
+    
+    
+      <category term="interview" scheme="https://wangyixin-tom.github.io/tags/interview/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>HTTP和HTTPS</title>
+    <link href="https://wangyixin-tom.github.io/2021/06/30/interview-http/"/>
+    <id>https://wangyixin-tom.github.io/2021/06/30/interview-http/</id>
+    <published>2021-06-29T22:20:37.000Z</published>
+    <updated>2021-10-04T03:25:49.147Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h2 id=&quot;报文&quot;&gt;&lt;a href=&quot;#报文&quot; class=&quot;headerlink&quot; title=&quot;报文&quot;&gt;&lt;/a&gt;报文&lt;/h2&gt;&lt;h3 id=&quot;请求报文&quot;&gt;&lt;a href=&quot;#请求报文&quot; class=&quot;headerlink&quot;
+        
+      
+    
+    </summary>
+    
+      <category term="interview" scheme="https://wangyixin-tom.github.io/categories/interview/"/>
+    
+    
+      <category term="interview" scheme="https://wangyixin-tom.github.io/tags/interview/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>python多线程同步</title>
+    <link href="https://wangyixin-tom.github.io/2021/06/26/python-thread/"/>
+    <id>https://wangyixin-tom.github.io/2021/06/26/python-thread/</id>
+    <published>2021-06-26T04:46:40.000Z</published>
+    <updated>2021-10-04T03:25:49.224Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h2 id=&quot;Condition相关函数&quot;&gt;&lt;a href=&quot;#Condition相关函数&quot; class=&quot;headerlink&quot;
+        
+      
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Paxos与Raft</title>
+    <link href="https://wangyixin-tom.github.io/2021/06/25/paxos-yu-raft/"/>
+    <id>https://wangyixin-tom.github.io/2021/06/25/paxos-yu-raft/</id>
+    <published>2021-06-24T21:45:09.000Z</published>
+    <updated>2021-10-04T03:25:49.144Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h2 id=&quot;Paxos&quot;&gt;&lt;a href=&quot;#Paxos&quot; class=&quot;headerlink&quot; title=&quot;Paxos&quot;&gt;&lt;/a&gt;Paxos&lt;/h2&gt;&lt;p&gt;解决了一致性问题。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;在一个分布式系统中，每个
+        
+      
+    
+    </summary>
+    
+      <category term="分布式" scheme="https://wangyixin-tom.github.io/categories/%E5%88%86%E5%B8%83%E5%BC%8F/"/>
+    
+    
+      <category term="分布式" scheme="https://wangyixin-tom.github.io/tags/%E5%88%86%E5%B8%83%E5%BC%8F/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>2PC与3PC</title>
+    <link href="https://wangyixin-tom.github.io/2021/06/23/2pc-yu-3pc/"/>
+    <id>https://wangyixin-tom.github.io/2021/06/23/2pc-yu-3pc/</id>
+    <published>2021-06-23T14:14:45.000Z</published>
+    <updated>2021-10-04T03:25:49.130Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h2 id=&quot;2PC&quot;&gt;&lt;a href=&quot;#2PC&quot; class=&quot;headerlink&quot; title=&quot;2PC&quot;&gt;&lt;/a&gt;2PC&lt;/h2&gt;&lt;p&gt;二阶段提交就是将事务的提交过程分成了两个阶段来进行处理。&lt;/p&gt;
+&lt;h3 id=&quot;阶段一&quot;&gt;&lt;a href=&quot;#阶段一&quot;
+        
+      
+    
+    </summary>
+    
+      <category term="分布式" scheme="https://wangyixin-tom.github.io/categories/%E5%88%86%E5%B8%83%E5%BC%8F/"/>
+    
+    
+      <category term="分布式" scheme="https://wangyixin-tom.github.io/tags/%E5%88%86%E5%B8%83%E5%BC%8F/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>oceanbase了解</title>
+    <link href="https://wangyixin-tom.github.io/2021/06/23/oceanbase/"/>
+    <id>https://wangyixin-tom.github.io/2021/06/23/oceanbase/</id>
+    <published>2021-06-23T14:14:45.000Z</published>
+    <updated>2021-10-04T03:25:49.224Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;透明可扩展的企业级数据库&lt;/p&gt;
+&lt;h2 id=&quot;透明可扩展&quot;&gt;&lt;a href=&quot;#透明可扩展&quot; class=&quot;headerlink&quot;
+        
+      
+    
+    </summary>
+    
+      <category term="other" scheme="https://wangyixin-tom.github.io/categories/other/"/>
+    
+    
+      <category term="other" scheme="https://wangyixin-tom.github.io/tags/other/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>CAP和BASE理论</title>
+    <link href="https://wangyixin-tom.github.io/2021/06/23/cap-he-base-li-lun/"/>
+    <id>https://wangyixin-tom.github.io/2021/06/23/cap-he-base-li-lun/</id>
+    <published>2021-06-23T13:41:02.000Z</published>
+    <updated>2021-10-04T03:25:49.131Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h2 id=&quot;CAP定理&quot;&gt;&lt;a href=&quot;#CAP定理&quot; class=&quot;headerlink&quot; title=&quot;CAP定理&quot;&gt;&lt;/a&gt;CAP定理&lt;/h2&gt;&lt;p&gt;一个分布式系统不可能同时满足一致性（C:Consistency)，可用性（A:
+        
+      
+    
+    </summary>
+    
+      <category term="分布式" scheme="https://wangyixin-tom.github.io/categories/%E5%88%86%E5%B8%83%E5%BC%8F/"/>
+    
+    
+      <category term="分布式" scheme="https://wangyixin-tom.github.io/tags/%E5%88%86%E5%B8%83%E5%BC%8F/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>数据结构必知必会</title>
+    <link href="https://wangyixin-tom.github.io/2021/06/09/interview-structure/"/>
+    <id>https://wangyixin-tom.github.io/2021/06/09/interview-structure/</id>
+    <published>2021-06-09T09:35:27.000Z</published>
+    <updated>2021-10-04T03:25:49.164Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h2 id=&quot;哈希表&quot;&gt;&lt;a href=&quot;#哈希表&quot; class=&quot;headerlink&quot;
+        
+      
+    
+    </summary>
+    
+      <category term="interview" scheme="https://wangyixin-tom.github.io/categories/interview/"/>
+    
+    
+      <category term="interview" scheme="https://wangyixin-tom.github.io/tags/interview/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>多阶段构建</title>
+    <link href="https://wangyixin-tom.github.io/2021/06/07/docker-multistage/"/>
+    <id>https://wangyixin-tom.github.io/2021/06/07/docker-multistage/</id>
+    <published>2021-06-07T14:03:15.000Z</published>
+    <updated>2021-10-04T03:25:49.144Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h2 id=&quot;引入&quot;&gt;&lt;a href=&quot;#引入&quot; class=&quot;headerlink&quot;
+        
+      
+    
+    </summary>
+    
+      <category term="docker" scheme="https://wangyixin-tom.github.io/categories/docker/"/>
+    
+    
+      <category term="docker" scheme="https://wangyixin-tom.github.io/tags/docker/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>3. 无重复字符的最长子串</title>
+    <link href="https://wangyixin-tom.github.io/2021/06/05/3-wu-chong-fu-zi-fu-de-zui-chang-zi-chuan/"/>
+    <id>https://wangyixin-tom.github.io/2021/06/05/3-wu-chong-fu-zi-fu-de-zui-chang-zi-chuan/</id>
+    <published>2021-06-05T05:43:15.000Z</published>
+    <updated>2021-10-04T03:25:49.130Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h2 id=&quot;描述&quot;&gt;&lt;a href=&quot;#描述&quot; class=&quot;headerlink&quot; title=&quot;描述&quot;&gt;&lt;/a&gt;描述&lt;/h2&gt;&lt;p&gt;给定一个字符串，请你找出其中不含有重复字符的 &lt;strong&gt;最长子串&lt;/strong&gt; 的长度。&lt;/p&gt;
+&lt;p&gt; &lt;strong&gt;示例
+        
+      
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>53最大自序和</title>
+    <link href="https://wangyixin-tom.github.io/2021/06/05/53-zui-da-zi-xu-he/"/>
+    <id>https://wangyixin-tom.github.io/2021/06/05/53-zui-da-zi-xu-he/</id>
+    <published>2021-06-05T04:02:34.000Z</published>
+    <updated>2021-10-04T03:25:49.130Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h2 id=&quot;描述&quot;&gt;&lt;a href=&quot;#描述&quot; class=&quot;headerlink&quot; title=&quot;描述&quot;&gt;&lt;/a&gt;描述&lt;/h2&gt;&lt;p&gt;给定一个整数数组 &lt;code&gt;nums&lt;/code&gt;
+        
+      
+    
+    </summary>
+    
+      <category term="算法" scheme="https://wangyixin-tom.github.io/categories/%E7%AE%97%E6%B3%95/"/>
+    
+    
+      <category term="算法" scheme="https://wangyixin-tom.github.io/tags/%E7%AE%97%E6%B3%95/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>215数组中的第K个最大元素</title>
+    <link href="https://wangyixin-tom.github.io/2021/06/05/215-shu-zu-zhong-de-di-k-ge-zui-da-yuan-su/"/>
+    <id>https://wangyixin-tom.github.io/2021/06/05/215-shu-zu-zhong-de-di-k-ge-zui-da-yuan-su/</id>
+    <published>2021-06-05T02:58:22.000Z</published>
+    <updated>2021-10-04T03:25:49.130Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h2 id=&quot;描述&quot;&gt;&lt;a href=&quot;#描述&quot; class=&quot;headerlink&quot; title=&quot;描述&quot;&gt;&lt;/a&gt;描述&lt;/h2&gt;&lt;p&gt;在未排序的数组中找到第 k 个最大的元素。请注意，你需要找的是数组排序后的第 k 个最大的元素，而不是第 k
+        
+      
+    
+    </summary>
+    
+      <category term="算法" scheme="https://wangyixin-tom.github.io/categories/%E7%AE%97%E6%B3%95/"/>
+    
+    
+      <category term="算法" scheme="https://wangyixin-tom.github.io/tags/%E7%AE%97%E6%B3%95/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>121买卖股票最佳时机</title>
+    <link href="https://wangyixin-tom.github.io/2021/06/03/121-mai-mai-gu-piao-zui-jia-shi-ji/"/>
+    <id>https://wangyixin-tom.github.io/2021/06/03/121-mai-mai-gu-piao-zui-jia-shi-ji/</id>
+    <published>2021-06-03T13:00:15.000Z</published>
+    <updated>2021-10-04T03:25:49.130Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h2 id=&quot;描述&quot;&gt;&lt;a href=&quot;#描述&quot; class=&quot;headerlink&quot; title=&quot;描述&quot;&gt;&lt;/a&gt;描述&lt;/h2&gt;&lt;p&gt;给定一个数组 prices ，它的第 i 个元素 prices[i] 表示一支给定股票第 i 天的价格。&lt;/p&gt;
+&lt;p&gt;你只能选择 某一天
+        
+      
+    
+    </summary>
+    
+      <category term="算法" scheme="https://wangyixin-tom.github.io/categories/%E7%AE%97%E6%B3%95/"/>
+    
+    
+      <category term="算法" scheme="https://wangyixin-tom.github.io/tags/%E7%AE%97%E6%B3%95/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>最长公共子序列</title>
+    <link href="https://wangyixin-tom.github.io/2021/05/31/zui-chang-gong-gong-zi-xu-lie/"/>
+    <id>https://wangyixin-tom.github.io/2021/05/31/zui-chang-gong-gong-zi-xu-lie/</id>
+    <published>2021-05-31T13:19:42.000Z</published>
+    <updated>2021-10-04T03:25:49.264Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h2 id=&quot;描述&quot;&gt;&lt;a href=&quot;#描述&quot; class=&quot;headerlink&quot;
+        
+      
+    
+    </summary>
+    
+      <category term="算法" scheme="https://wangyixin-tom.github.io/categories/%E7%AE%97%E6%B3%95/"/>
+    
+    
+      <category term="算法" scheme="https://wangyixin-tom.github.io/tags/%E7%AE%97%E6%B3%95/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>最长公共子串</title>
+    <link href="https://wangyixin-tom.github.io/2021/05/30/zui-chang-gong-gong-zi-chuan/"/>
+    <id>https://wangyixin-tom.github.io/2021/05/30/zui-chang-gong-gong-zi-chuan/</id>
+    <published>2021-05-30T14:16:05.000Z</published>
+    <updated>2021-10-04T03:25:49.264Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;思路：动态规划。&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;dp[i][j]&lt;/code&gt;标识str1[i]和str[j]结尾的最长公共子串，递推关系如下：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;若&lt;code&gt;str1[i] == str2[j]&lt;/code&gt;，则&lt;code&gt;dp[i][j] =
+        
+      
+    
+    </summary>
+    
+      <category term="算法" scheme="https://wangyixin-tom.github.io/categories/%E7%AE%97%E6%B3%95/"/>
+    
+    
+      <category term="算法" scheme="https://wangyixin-tom.github.io/tags/%E7%AE%97%E6%B3%95/"/>
+    
+  </entry>
+  
+</feed>
