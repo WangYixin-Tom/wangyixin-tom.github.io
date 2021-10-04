@@ -17,9 +17,6 @@
 地址映射有哪些算法
 
 
-用cookie和session实现用户登录的过程是咋样的，
-
-说一下AMQP协议是怎么定义一个MQ的
 ThreadLocal有了解吗？说一下注意事项？
 
 token的设计应该考虑哪些因素？
